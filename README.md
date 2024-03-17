@@ -2,7 +2,9 @@
 на базі Linux Ubuntu 20.04
 
 Ви маєте бути під користувачем root (рядок в консолі має починатися з root)
+
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/1root.png)
+
 Переходимо до папки root: cd /root/
 Перевіряємо наявність файлу launch_binary_linux: ls -l
 
