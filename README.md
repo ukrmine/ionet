@@ -5,7 +5,11 @@
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/1root.png)
 
-Переходимо до папки root: cd /root/
+Переходимо до папки root: 
+
+<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
+
+cd /root/
 Перевіряємо наявність файлу launch_binary_linux: ls -l
 
 Якщо файлу немає скачуємо
