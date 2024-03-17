@@ -80,7 +80,7 @@ HOME=/root/
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/7crontab.png)
 
-Якщо використовуєте програму nanoдля редагування, для того щоб вийти натисніть ctrl+x потім y і Enter 
+Якщо використовуєте програму nano для редагування, для того щоб вийти натисніть ctrl+x потім y і Enter 
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/8all_is_done.png)
 
