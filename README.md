@@ -8,12 +8,10 @@
 Переходимо до папки root: 
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
-{% filename %}command-line{% endfilename %}
 ```
 $ cd /root/
 ```
 <!--endsec-->
-<!--sec data-title="Windows" data-id="windows_whoami" data-collapse=true ces-->
 
 Перевіряємо наявність файлу launch_binary_linux: ls -l
 
