@@ -1,3 +1,5 @@
+![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/mAa0QmH3Nl9IyKqDAZzvuFNZhE0.webp)
+
 # Скрипт для моніторингу та перезапуску воркера IO.NET 
 на базі Linux Ubuntu 20.04
 
