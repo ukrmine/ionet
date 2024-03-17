@@ -11,13 +11,16 @@
 cd /root/
 ```
 <!--endsec-->
-![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/1root.png)
 Перевіряємо наявність файлу launch_binary_linux
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
 ls -l
 ```
 <!--endsec-->
+
+
+![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/2launch_binary_linux.png)
+
 Якщо файлу немає скачуємо
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
@@ -25,6 +28,8 @@ curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/launch_bin
 chmod +x launch_binary_linux
 ```
 <!--endsec-->
+
+![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/3Download_binary.png)
 
 створюємо файл скрипта
 
