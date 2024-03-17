@@ -11,6 +11,7 @@
 cd /root/
 ```
 <!--endsec-->
+![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/1root.png)
 Перевіряємо наявність файлу launch_binary_linux
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
