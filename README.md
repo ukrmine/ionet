@@ -32,7 +32,8 @@ chmod +x launch_binary_linux
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/3Download_binary.png)
 
 створюємо файл скрипта
-
+<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
+```
 cat > /root/check.sh <<EOF 
 #!/bin/bash 
 if docker ps | grep -q "io-worker-monitor" && docker ps | grep -q "io-worker-vc"; then
@@ -42,7 +43,8 @@ echo "NODE ERROR, RUNING NEW NODE"
 ./launch_binary_linux --device_id= YOURDEVICEID --user_id=YOURUSERID --operating_system="Linux" --usegpus=false --device_name= YOURDEVICENAME
 fi 
 EOF
-
+```
+<!--endsec-->
 Рядок виділений червоним потрібно замінити, беремо з кабінету (2. Copy and run the command below)
 
 Перевіряємо як працює скрипт: /root/check.sh
