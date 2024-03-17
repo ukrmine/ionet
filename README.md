@@ -45,16 +45,32 @@ fi
 EOF
 ```
 <!--endsec-->
-Рядок виділений червоним потрібно замінити, беремо з кабінету (2. Copy and run the command below)
+Рядок ./launch_binary_linux... потрібно замінити, беремо з кабінету (2. Copy and run the command below)
 
-Перевіряємо як працює скрипт: /root/check.sh
+Перевіряємо як працює скрипт
+<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
+```
+/root/check.sh
+```
+<!--endsec-->
 Якщо воркер працює, то отримаємо:
+
 Якщо воркер не працює, отримаємо:
-Налаштуємо автозапуск скрипта: crontab -e
+
+Налаштуємо автозапуск скрипта
+<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
+```
+crontab -e
+```
+<!--endsec-->
 Якщо ця команда запускається вперше на сервері, спитає якою програмою редагувати (для початківців рекомендую nano)
-Добавляємо в кінець файлу цей текст:
+Добавляємо в кінець файлу цей текст
+<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
+```
 HOME=/root/
 */1 * * * * /root/check.sh
+```
+<!--endsec-->
 
 Якщо використовуєте програму nanoдля редагування, для того щоб вийти натисніть ctrl+x потім y і Enter 
  
