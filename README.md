@@ -8,20 +8,20 @@
 Переходимо до папки root
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
-$ cd /root/
+cd /root/
 ```
 <!--endsec-->
 Перевіряємо наявність файлу launch_binary_linux
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
-$ ls -l
+ls -l
 ```
 <!--endsec-->
 Якщо файлу немає скачуємо
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
-$ curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/launch_binary_linux -o launch_binary_linux
-$ chmod +x launch_binary_linux
+curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/launch_binary_linux -o launch_binary_linux
+chmod +x launch_binary_linux
 ```
 <!--endsec-->
 
