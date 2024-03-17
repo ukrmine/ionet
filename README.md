@@ -46,7 +46,9 @@ EOF
 ```
 <!--endsec-->
 Рядок ./launch_binary_linux... потрібно замінити, беремо з кабінету (2. Copy and run the command below)
+
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/4Copy_and_run_the_command.png)
+
 Перевіряємо як працює скрипт
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
@@ -54,9 +56,13 @@ EOF
 ```
 <!--endsec-->
 Якщо воркер працює, то отримаємо:
+
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/5check.png)
+
 Якщо воркер не працює, отримаємо:
+
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/6run_new_node.png)
+
 Налаштуємо автозапуск скрипта
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
@@ -71,9 +77,13 @@ HOME=/root/
 */1 * * * * /root/check.sh
 ```
 <!--endsec-->
+
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/7crontab.png)
+
 Якщо використовуєте програму nanoдля редагування, для того щоб вийти натисніть ctrl+x потім y і Enter 
+
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/8all_is_done.png)
+
 Скрипт кожної хвилини буде перевіряти чи працює воркер, і запускатиме якщо він не запущений.
 Для того щоб перевірити роботу скрипта, перезапустіть сервер командою reboot і дочекайтесь щоб воркер запустився без Вашої участі.
 
