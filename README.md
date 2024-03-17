@@ -5,16 +5,18 @@
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/1root.png)
 
-Переходимо до папки root: 
-
+Переходимо до папки root
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
 $ cd /root/
 ```
 <!--endsec-->
-
-Перевіряємо наявність файлу launch_binary_linux: ls -l
-
+Перевіряємо наявність файлу launch_binary_linux
+<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
+```
+$ ls -l
+```
+<!--endsec-->
 Якщо файлу немає скачуємо
 curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/launch_binary_linux -o launch_binary_linux
 chmod +x launch_binary_linux
