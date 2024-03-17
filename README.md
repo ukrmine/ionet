@@ -18,8 +18,12 @@ $ ls -l
 ```
 <!--endsec-->
 Якщо файлу немає скачуємо
-curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/launch_binary_linux -o launch_binary_linux
-chmod +x launch_binary_linux
+<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
+```
+$ curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/launch_binary_linux -o launch_binary_linux
+$ chmod +x launch_binary_linux
+```
+<!--endsec-->
 
 створюємо файл скрипта
 
