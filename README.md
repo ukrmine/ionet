@@ -41,7 +41,9 @@ cat > /root/check.sh <<EOF
 if docker ps | grep -q "io-worker-monitor" && docker ps | grep -q "io-worker-vc"; then
  echo "NODE IS WORKING." 
 else 
- echo "NODE ERROR, RUNING NEW NODE" 
+ echo "NODE ERROR, RUNING NEW NODE"
+ docker rm -f $(docker ps -aq)
+ docker system prune -a
  ./launch_binary_linux --device_id= YOURDEVICEID --user_id=YOURUSERID --operating_system="Linux" --usegpus=false --device_name= YOURDEVICENAME
 fi 
 EOF
