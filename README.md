@@ -44,7 +44,7 @@ else
  echo "NODE ERROR, RUNING NEW NODE"
  docker rm -f $(docker ps -aq)
  docker system prune -a
- ./launch_binary_linux --device_id= YOURDEVICEID --user_id=YOURUSERID --operating_system="Linux" --usegpus=false --device_name= YOURDEVICENAME
+ тут потрібно вставити рядок з сайту (2. Copy and run the command below)
 fi 
 EOF
 ```
