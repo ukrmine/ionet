@@ -78,12 +78,6 @@ EOF
 ```
 <!--endsec-->
 
-![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/7crontab.png)
-
-Якщо використовуєте програму nano для редагування, для того щоб вийти натисніть ctrl+x потім y і Enter 
-
-![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/8all_is_done.png)
-
 Скрипт кожної хвилини буде перевіряти чи працює воркер, і запускатиме якщо він не запущений.
 Для того щоб перевірити роботу скрипта, перезапустіть сервер командою reboot і дочекайтесь щоб воркер запустився без Вашої участі.
 
