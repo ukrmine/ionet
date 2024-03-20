@@ -68,17 +68,13 @@ EOF
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/6run_new_node.png)
 
 Налаштуємо автозапуск скрипта
+
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
-crontab -e
-```
-<!--endsec-->
-Якщо ця команда запускається вперше на сервері, спитає якою програмою редагувати (для початківців рекомендую nano)
-Добавляємо в кінець файлу цей текст
-<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
-```
+crontab<<EOF
 HOME=/root/
-*/1 * * * * /root/check.sh
+*/5 * * * * /root/check.sh
+EOF
 ```
 <!--endsec-->
 
