@@ -44,7 +44,7 @@ EOF
 <!--endsec-->
 The line ./launch_binary_linux... needs to be replaced, take it from the office (2. Copy and run the command below)
 
-![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/4Copy_and_run_the_command.png)
+![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Copy_and_run_the_command.png)
 
 Grant rights to run the script
 
