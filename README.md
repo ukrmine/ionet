@@ -3,10 +3,7 @@
 # Скрипт для моніторингу та перезапуску воркера IO.NET 
 на базі Linux Ubuntu 20.04
 
-Can install CPU node for io.net 
-Tested 
-Digital Ocean Droplets with premium CPU
-Azure D4as_v5
+Can install CPU node for io.net. Tested: Digital Ocean Droplets with premium CPU and Azure D4as_v5
 
 
 Ви маєте бути під користувачем root (рядок в консолі має починатися з root)
