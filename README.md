@@ -56,6 +56,13 @@ EOF
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/4Copy_and_run_the_command.png)
 
+Даємо права на запуск скрипта
+<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
+```
+chmod +x /root/check.sh
+```
+<!--endsec-->
+
 Перевіряємо як працює скрипт
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
