@@ -3,7 +3,7 @@
 # Script to monitor and restart the IO.NET worker
 based on Linux Ubuntu 20.04 or Mac OS
 
-Can install CPU node for io.net. Tested: Digital Ocean Droplets with premium CPU and Azure D4as_v5
+Install CPU node for io.net. Tested: Digital Ocean Droplets with premium CPU and Azure D4as_v5
 
 
 You must be a root user (the line in the console must start with root)
