@@ -17,11 +17,14 @@ cd /root/
 ```
 <!--endsec-->
 
-Create a script file
+Create a script, insert your data device_id, user_id, device_name, take it from the site https://cloud.io.net/worker/devices
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
 cat > /root/check.sh <<EOF 
-#!/bin/bash 
+#!/bin/bash
+device_id="Yours device_id"
+user_id="Yours user_id"
+device_name="Yours device_name"
 if [[ $(docker ps | grep -c "io-worker-monitor") -eq 1 && $(docker ps | grep -c "io-worker-vc") -eq 1 ]]; then
  echo "NODE IS WORKING." 
 else 
@@ -37,12 +40,12 @@ else
  curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/launch_binary_linux -o launch_binary_linux
  chmod +x launch_binary_linux
  echo "START NEW NODE"
- Here you need to paste a line from the site (2. Copy and run the command below)
+ /root/launch_binary_linux --device_id=$device_id --user_id=$user_id --operating_system="Linux" --usegpus=false --device_name=$device_name
 fi 
 EOF
 ```
 <!--endsec-->
-The line ./launch_binary_linux... needs to be replaced, take it from the office (2. Copy and run the command below)
+Take device_id, user_id, device_name, from the worker page (2. Copy and run the command below)
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Copy_and_run_the_command.png)
 
