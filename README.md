@@ -10,7 +10,7 @@ You must be a root user (the line in the console must start with root)
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/1root.png)
 
-Go to root folder
+Go to root folder, or another
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
 cd /root/
