@@ -8,6 +8,7 @@ if [[ "$system" == "linux" ]]; then
     os="Linux"
 elif [[ "$system" == "mac" ]]; then
     os="macOS"
+fi
 echo "STOP AND DELETE ALL CONTAINERS"
 docker rm -f $(docker ps -aq) && docker rmi -f $(docker images -q) 
 yes | docker system prune -a
