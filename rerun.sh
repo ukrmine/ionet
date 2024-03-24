@@ -8,10 +8,10 @@ if [[ "$system" == "linux" ]]; then
     os="Linux"
 elif [[ "$system" == "mac" ]]; then
     os="macOS"
-echo "NODE ERROR, STOP AND DELETE ALL CONTAINERS"
+echo "STOP AND DELETE ALL CONTAINERS"
 docker rm -f $(docker ps -aq) && docker rmi -f $(docker images -q) 
 yes | docker system prune -a
-echo "DOWNLOAD FILES FOR LINUX"
+echo "DOWNLOAD FILES FOR $os"
 rm -rf launch_binary_$system && rm -rf ionet_device_cache.txt
 curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/launch_binary_$system -o launch_binary_$system
 chmod +x launch_binary_$system
