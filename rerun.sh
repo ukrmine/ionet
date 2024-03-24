@@ -1,9 +1,9 @@
 #!/bin/bash 
 system=linux #linux or mac
 gpu=false #false or true
-device_id=""
-user_id=""
-device_name=""
+device_id="Yours device_id"
+user_id="Yours user_id"
+device_name="Yours device_name"
 if [[ "$system" == "linux" ]]; then
     os="Linux"
 elif [[ "$system" == "mac" ]]; then
