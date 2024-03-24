@@ -9,8 +9,7 @@ if [[ "$system" == "linux" ]]; then
     os="Linux"
 elif [[ "$system" == "mac" ]]; then
     os="macOS"
-    
-if docker ps | grep -q "io-worker-monitor" && docker ps | grep -q "io-worker-vc"; then
+if [[ $(docker ps | grep -c "io-worker-monitor") -eq 1 && $(docker ps | grep -c "io-worker-vc") -eq 1 ]]; then
     echo "NODE IS WORKING"
 else
     echo "STOP AND DELETE ALL CONTAINERS"
