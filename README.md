@@ -31,6 +31,7 @@ if [[ "$system" == "linux" ]]; then
     os="Linux"
 elif [[ "$system" == "mac" ]]; then
     os="macOS"
+fi
 if [[ $(docker ps | grep -c "io-worker-monitor") -eq 1 && $(docker ps | grep -c "io-worker-vc") -eq 1 ]]; then
     echo "NODE IS WORKING"
 else
