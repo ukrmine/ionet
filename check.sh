@@ -10,6 +10,14 @@ if [[ "$system" == "linux" ]]; then
 elif [[ "$system" == "mac" ]]; then
     os="macOS"
 fi
+if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
+    echo "io-launch is WORKING"
+    sleep 300
+    if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
+        echo "io-launch still WORKING, STOP ALL CONTAINERS"
+        docker rm -f $(docker ps -aq) 
+    fi
+fi
 if [[ $(docker ps | grep -c "io-worker-monitor") -eq 1 && $(docker ps | grep -c "io-worker-vc") -eq 1 ]]; then
     echo "NODE IS WORKING"
 else
