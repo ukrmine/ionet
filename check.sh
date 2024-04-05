@@ -11,7 +11,7 @@ elif [[ "$system" == "mac" ]]; then
     os="macOS"
 fi
 if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
-    echo "io-launch is WORKING"
+    echo "io-launch is WORKING, wait 5min"
     sleep 300
     if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
         echo "io-launch still WORKING, STOP ALL CONTAINERS"
