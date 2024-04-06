@@ -1,15 +1,7 @@
 #!/bin/bash
-
-device_id="Yours device_id"
-user_id="Yours user_id"
-device_name="Yours device_name"
-system=linux #linux or mac
-gpu=false #false or true
-if [[ "$system" == "linux" ]]; then
-    os="Linux"
-elif [[ "$system" == "mac" ]]; then
-    os="macOS"
-fi
+launch_string="Yours Run Docker Command from https://cloud.io.net/"
+file_path="/root"
+binary_name=$(basename "${launch_string%% *}")
 if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
     echo "io-launch is WORKING, wait 5min"
     sleep 300
@@ -24,10 +16,10 @@ else
     echo "STOP AND DELETE ALL CONTAINERS"
     docker rm -f $(docker ps -aq) && docker rmi -f $(docker images -q) 
     yes | docker system prune -a
-    echo "DOWNLOAD FILES FOR $os"
-    rm -rf launch_binary_$system && rm -rf ionet_device_cache.txt
-    curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/launch_binary_$system -o launch_binary_$system
-    chmod +x launch_binary_$system
+    echo "DOWNLOAD FILES FOR Linux"
+    rm -rf $binary_name && rm -rf ionet_device_cache.txt
+    curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/$binary_name -o $binary_name
+    chmod +x $binary_name
     echo "START NEW NODE"
-    /root/launch_binary_$system --device_id=$device_id --user_id=$user_id --operating_system="$os" --usegpus=$gpu --device_name=$device_name
+    cd "$file_path" && $launch_string
 fi
