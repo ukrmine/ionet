@@ -22,7 +22,7 @@ Create a script, insert your data device_id, user_id, device_name, take it from 
 ```
 cat > /root/check.sh <<EOF 
 #!/bin/bash
-launch_string="./launch_binary_linux --device_id=155503ed-9501-4111-9683-9c6a499df3c4 --user_id=11694796-9a22-4a58-9766-09573c0d9df9 --operating_system="Linux" --usegpus=false --device_name=ukrminedo1"
+launch_string="Yours Run Docker Command from https://cloud.io.net/"
 file_path="/root"
 binary_name=$(basename "${launch_string%% *}")
 if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
