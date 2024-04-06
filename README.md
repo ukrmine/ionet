@@ -17,7 +17,7 @@ cd /root/
 ```
 <!--endsec-->
 
-Create a script, insert your data device_id, user_id, device_name, take it from the site https://cloud.io.net/worker/devices
+Create a script, insert your Run Docker Command, take it from the site https://cloud.io.net/worker/devices
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
 cat > /root/check.sh <<EOF 
