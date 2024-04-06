@@ -39,7 +39,7 @@ else
     echo "STOP AND DELETE ALL CONTAINERS"
     docker rm -f $(docker ps -aq) && docker rmi -f $(docker images -q) 
     yes | docker system prune -a
-    echo "DOWNLOAD FILES FOR Linux"
+    echo "DOWNLOAD FILE $binary_name"
     rm -rf $file_path/$binary_name && rm -rf $file_path/ionet_device_cache.txt
     curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/$binary_name -o $file_path/$binary_name
     chmod +x $file_path/$binary_name
