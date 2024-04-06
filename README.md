@@ -6,7 +6,7 @@ based on Linux Ubuntu 20.04 or Mac OS
 Install CPU node for io.net. Tested: Digital Ocean Droplets with premium CPU and Azure D4as_v5 and Google cloud N1
 
 
-You must be a root user (the line in the console must start with root)
+You must be a root user (the line in the console must start with root). Change to root user "sudo -s"
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/1root.png)
 
