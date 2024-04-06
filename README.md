@@ -16,8 +16,14 @@ Go to root folder, or another
 cd /root/
 ```
 <!--endsec-->
-
-Create a script, insert your "Run Docker Command", take it from the site https://cloud.io.net/worker/devices
+Download script, and insert your "Run Docker Command", take it from the site https://cloud.io.net/worker/devices
+Like nano /root/check.sh
+<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
+```
+curl -L https://github.com/ukrmine/ionet/raw/main/check.sh -o check.sh
+```
+<!--endsec-->
+Create a script, and insert your "Run Docker Command", take it from the site https://cloud.io.net/worker/devices
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
 cat > /root/check.sh <<EOF 
