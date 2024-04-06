@@ -33,6 +33,7 @@ if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
         docker rm -f $(docker ps -aq) 
     fi
 fi
+
 if [[ $(docker ps | grep -c "io-worker-monitor") -eq 1 && $(docker ps | grep -c "io-worker-vc") -eq 1 ]]; then
     echo "NODE IS WORKING"
 else
