@@ -49,7 +49,7 @@ fi
 EOF
 ```
 <!--endsec-->
-Take device_id, user_id, device_name, from the worker page (2. Copy and run the command below)
+Take Run Docker Command, from the worker page (2. Copy and run the command below)
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Copy_and_run_the_command.png)
 
