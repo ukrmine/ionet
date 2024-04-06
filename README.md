@@ -17,7 +17,7 @@ cd /root/
 ```
 <!--endsec-->
 
-Create a script, insert your Run Docker Command, take it from the site https://cloud.io.net/worker/devices
+Create a script, insert your "Run Docker Command", take it from the site https://cloud.io.net/worker/devices
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
 cat > /root/check.sh <<EOF 
@@ -49,7 +49,7 @@ fi
 EOF
 ```
 <!--endsec-->
-Take Run Docker Command, from the worker page (2. Copy and run the command below)
+Take "Run Docker Command", from the worker page (2. Copy and run the command below)
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Copy_and_run_the_command.png)
 
