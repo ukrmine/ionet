@@ -21,6 +21,7 @@ ssd=48G
 
 basedir=$homedir/base
 vmdir=$homedir/$vmname
+cd $homedir
 image=focal-server-cloudimg-amd64.img
 echo "Update and upgrade packages..."
 sudo apt update -y && sudo apt upgrade -y
