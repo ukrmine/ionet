@@ -17,7 +17,7 @@ cpu_type="qemu64" #Digital Ocean, Kamatera
 #cpu_type="qemu64,-ibpb" #AZURE D2as_v5 or D4as_v5
 
 homedir=/home
-ssd=48Gb
+ssd=48G
 
 basedir=$homedir/base
 vmdir=$homedir/$vmlogin
