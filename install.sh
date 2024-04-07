@@ -30,8 +30,7 @@ sudo apt install qemu-kvm libvirt-daemon-system virt-manager bridge-utils cloud-
 echo "Adding current user to kvm and libvirt groups..."
 sudo usermod -aG kvm $USER
 sudo usermod -aG libvirt $USER
-mkdir -p $basedir
-mkdir -p $vmdir
+mkdir -p $basedir $vmdir
 wget -P "$basedir" https://cloud-images.ubuntu.com/focal/current/$image
 qemu-img create -F qcow2 -b $basedir/$image -f qcow2 $vmdir/$vmname.qcow2 $ssd
 
