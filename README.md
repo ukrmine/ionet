@@ -22,7 +22,7 @@ curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o install.sh
 ```
 <!--endsec-->
 
-You can change some 
+You can change the configuration before installation
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure.png)
 
