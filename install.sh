@@ -10,7 +10,7 @@ else
 fi
 
 vmhost=worker01
-vmlogin=ionet
+vmname=ionet
 password=Password
 
 cpu_type="qemu64" #Digital Ocean, Kamatera
@@ -20,7 +20,7 @@ homedir=/home
 ssd=48G
 
 basedir=$homedir/base
-vmdir=$homedir/$vmlogin
+vmdir=$homedir/$vmname
 image=focal-server-cloudimg-amd64.img
 echo "Update and upgrade packages..."
 sudo apt update -y && sudo apt upgrade -y
@@ -63,17 +63,17 @@ cat >user-data <<EOF
 hostname: $vmhost
 manage_etc_hosts: true
 users:
-  - name: $vmlogin
+  - name: $vmname
     sudo: ALL=(ALL) NOPASSWD:ALL
     groups: users, admin
-    home: /home/$vmlogin
+    home: /home/$vmname
     shell: /bin/bash
     lock_passwd: false
 ssh_pwauth: true
 disable_root: false
 chpasswd:
   list: |
-    $vmlogin:$password
+    $vmname:$password
   expire: false
 EOF
 
@@ -83,11 +83,11 @@ cloud-localds -v --network-config=$vmdir/network-config $vmdir/$vmname-seed.qcow
 
 # Create and start virtual machine
 echo "Creating and starting virtual machine..."
-virt-install --connect qemu:///system --virt-type kvm --name $vmlogin --ram $(free -m | awk '/^Mem/ {print int($2 * 0.9)}')  --vcpus=$(egrep -c '(vmx|svm)' /proc/cpuinfo) --os-type linux --os-variant ubuntu20.04 --disk path=$vmdir/$vmname.qcow2,device=disk --disk path=$vmdir/$vmname-seed.qcow2,device=disk --import --network network=default,model=virtio,mac=$MAC_ADDR --noautoconsole --cpu $cpu_type
+virt-install --connect qemu:///system --virt-type kvm --name $vmname --ram $(free -m | awk '/^Mem/ {print int($2 * 0.9)}')  --vcpus=$(egrep -c '(vmx|svm)' /proc/cpuinfo) --os-type linux --os-variant ubuntu20.04 --disk path=$vmdir/$vmname.qcow2,device=disk --disk path=$vmdir/$vmname-seed.qcow2,device=disk --import --network network=default,model=virtio,mac=$MAC_ADDR --noautoconsole --cpu $cpu_type
 
 # Check if virtual machine is running
 echo "Checking if virtual machine is running and put on austart..."
 virsh list
-virsh autostart $vmlogin
+virsh autostart $vmname
 
 echo "Setup completed."
