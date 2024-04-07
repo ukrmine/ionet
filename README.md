@@ -44,7 +44,7 @@ ssh ionet@192.168.122.10
 ```
 <!--endsec-->
 
-To be continiud !!!
+To be continued !!!
 
 # Scripts for IO.NET worker check containers and rebuild
 
