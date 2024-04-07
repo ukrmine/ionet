@@ -19,6 +19,9 @@ cpu_type="qemu64" #Digital Ocean, Kamatera
 homedir=/home
 ssd=48Gb
 
+basedir=$homedir/base
+vmdir=$homedir/$vmlogin
+image=focal-server-cloudimg-amd64.img
 echo "Update and upgrade packages..."
 sudo apt update -y && sudo apt upgrade -y
 
@@ -28,10 +31,11 @@ sudo apt install qemu-kvm libvirt-daemon-system virt-manager bridge-utils cloud-
 echo "Adding current user to kvm and libvirt groups..."
 sudo usermod -aG kvm $USER
 sudo usermod -aG libvirt $USER
-mkdir -p $homedir/kvm/base
-mkdir -p $homedir/kvm/ionet
-cd $homedir && wget -P $homedir/kvm/base https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
-qemu-img create -F qcow2 -b $homedir/kvm/base/focal-server-cloudimg-amd64.img -f qcow2 $homedir/kvm/ionet/ionet.qcow2 $ssd
+mkdir -p $basedir
+mkdir -p $vmdir
+wget -P "$basedir" https://cloud-images.ubuntu.com/focal/current/$image
+qemu-img create -F qcow2 -b $basedir/$image -f qcow2 $vmdir/$vmname.qcow2 $ssd
+
 
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
@@ -87,7 +91,7 @@ sudo setfacl -m u:libvirt-qemu:rx $PWD/kvm/*
 
 # Create and start virtual machine
 echo "Creating and starting virtual machine..."
-virt-install --connect qemu:///system --virt-type kvm --name $vmlogin --ram $(free -m | awk '/^Mem/ {print int($2 * 0.9)}')  --vcpus=$(egrep -c '(vmx|svm)' /proc/cpuinfo) --os-type linux --os-variant ubuntu20.04 --disk path=$homedir/kvm/ionet/ionet.qcow2,device=disk --disk path=$homedir/kvm/ionet/ionet-seed.qcow2,device=disk --import --network network=default,model=virtio,mac=$MAC_ADDR --noautoconsole --cpu $cpu_type
+virt-install --connect qemu:///system --virt-type kvm --name $vmlogin --ram $(free -m | awk '/^Mem/ {print int($2 * 0.9)}')  --vcpus=$(egrep -c '(vmx|svm)' /proc/cpuinfo) --os-type linux --os-variant ubuntu20.04 --disk path=$vmdir/$vmname.qcow2,device=disk --disk path=$vmdir/$vmname-seed.qcow2,device=disk --import --network network=default,model=virtio,mac=$MAC_ADDR --noautoconsole --cpu $cpu_type
 
 # Check if virtual machine is running
 echo "Checking if virtual machine is running and put on austart..."
