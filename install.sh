@@ -11,6 +11,9 @@ fi
 
 vmhost=worker01
 password=Password
+cpu_type="qemu64" #Digital Ocean
+#cpu_type="qemu64,-ibpb" #AZURE D2as_v5
+
 # Update packages
 echo "Update and upgrade packages..."
 sudo apt update -y && sudo apt upgrade -y
@@ -94,11 +97,11 @@ sudo setfacl -m u:libvirt-qemu:rx $PWD/kvm/*
 
 # Create and start virtual machine
 echo "Creating and starting virtual machine..."
-virt-install --connect qemu:///system --virt-type kvm --name ionet --ram 12000  --vcpus=3 --os-type linux --os-variant ubuntu20.04 --disk path=$HOME/kvm/ionet/ionet.qcow2,device=disk --disk path=$HOME/kvm/ionet/ionet-seed.qcow2,device=disk --import --network network=default,model=virtio,mac=$MAC_ADDR --noautoconsole --cpu qemu64
+virt-install --connect qemu:///system --virt-type kvm --name $vmhost --ram $(free -m | awk '/^Mem/ {print int($2 * 0.9)}')  --vcpus=$(egrep -c '(vmx|svm)' /proc/cpuinfo) --os-type linux --os-variant ubuntu20.04 --disk path=$HOME/kvm/ionet/ionet.qcow2,device=disk --disk path=$HOME/kvm/ionet/ionet-seed.qcow2,device=disk --import --network network=default,model=virtio,mac=$MAC_ADDR --noautoconsole --cpu $cpu_type
 
 # Check if virtual machine is running
 echo "Checking if virtual machine is running..."
 virsh list
-virsh 
+virsh vmhost autostart
 
-echo "Setup completed. Please follow the remaining instructions in the guide."
+echo "Setup completed."
