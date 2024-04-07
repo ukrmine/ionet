@@ -88,6 +88,6 @@ virt-install --connect qemu:///system --virt-type kvm --name $vmlogin --ram $(fr
 # Check if virtual machine is running
 echo "Checking if virtual machine is running and put on austart..."
 virsh list
-virsh $vmhost autostart
+virsh $vmlogin autostart
 
 echo "Setup completed."
