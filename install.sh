@@ -30,8 +30,8 @@ sudo usermod -aG kvm $USER
 sudo usermod -aG libvirt $USER
 mkdir -p $homedir/kvm/base
 mkdir -p $homedir/kvm/ionet
-wget -P $homedir/kvm/base https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
-qemu-img create -F qcow2 -b ~/kvm/base/focal-server-cloudimg-amd64.img -f qcow2 ~/kvm/ionet/ionet.qcow2 $ssd
+cd $homedir && wget -P $homedir/kvm/base https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
+qemu-img create -F qcow2 -b $homedir/kvm/base/focal-server-cloudimg-amd64.img -f qcow2 $homedir/kvm/ionet/ionet.qcow2 $ssd
 
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
@@ -77,7 +77,7 @@ EOF
 touch meta-data
 
 # Create seed disk image
-cloud-localds -v --network-config=network-config ~/kvm/ionet/ionet-seed.qcow2 user-data meta-data
+cloud-localds -v --network-config=network-config $homedir/kvm/ionet/ionet-seed.qcow2 user-data meta-data
 
 # Provide access to files
 echo "Providing access to files..."
