@@ -81,12 +81,6 @@ EOF
 touch $vmdir/meta-data
 cloud-localds -v --network-config=$vmdir/network-config $vmdir/$vmname-seed.qcow2 $vmdir/user-data $vmdir/meta-data
 
-# Provide access to files
-echo "Providing access to files..."
-sudo setfacl -m u:libvirt-qemu:rx $PWD
-sudo setfacl -m u:libvirt-qemu:rx $PWD/kvm
-sudo setfacl -m u:libvirt-qemu:rx $PWD/kvm/*
-
 # Create and start virtual machine
 echo "Creating and starting virtual machine..."
 virt-install --connect qemu:///system --virt-type kvm --name $vmlogin --ram $(free -m | awk '/^Mem/ {print int($2 * 0.9)}')  --vcpus=$(egrep -c '(vmx|svm)' /proc/cpuinfo) --os-type linux --os-variant ubuntu20.04 --disk path=$vmdir/$vmname.qcow2,device=disk --disk path=$vmdir/$vmname-seed.qcow2,device=disk --import --network network=default,model=virtio,mac=$MAC_ADDR --noautoconsole --cpu $cpu_type
