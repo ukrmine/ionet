@@ -78,10 +78,8 @@ chpasswd:
 EOF
 
 # Create meta-data
-touch meta-data
-
-# Create seed disk image
-cloud-localds -v --network-config=network-config $homedir/kvm/ionet/ionet-seed.qcow2 user-data meta-data
+touch $vmdir/meta-data
+cloud-localds -v --network-config=$vmdir/network-config $vmdir/$vmname-seed.qcow2 $vmdir/user-data $vmdir/meta-data
 
 # Provide access to files
 echo "Providing access to files..."
