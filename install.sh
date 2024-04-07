@@ -27,13 +27,12 @@ echo "Update and upgrade packages..."
 sudo apt update -y && sudo apt upgrade -y
 echo "Installing KVM and related packages..."
 sudo apt install qemu-kvm libvirt-daemon-system virt-manager bridge-utils cloud-image-utils -y
-echo "Adding current user to kvm and libvirt groups..."
 sudo usermod -aG kvm $USER
 sudo usermod -aG libvirt $USER
 mkdir -p $basedir $vmdir
 wget -P "$basedir" https://cloud-images.ubuntu.com/focal/current/$image
 qemu-img create -F qcow2 -b $basedir/$image -f qcow2 $vmdir/$vmname.qcow2 $ssd
-
+virsh net-start default
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
 IP_ADDR=192.168.122.10
