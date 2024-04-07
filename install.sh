@@ -24,10 +24,8 @@ vmdir=$homedir/$vmname
 image=focal-server-cloudimg-amd64.img
 echo "Update and upgrade packages..."
 sudo apt update -y && sudo apt upgrade -y
-
 echo "Installing KVM and related packages..."
 sudo apt install qemu-kvm libvirt-daemon-system virt-manager bridge-utils cloud-image-utils -y
-
 echo "Adding current user to kvm and libvirt groups..."
 sudo usermod -aG kvm $USER
 sudo usermod -aG libvirt $USER
@@ -35,7 +33,6 @@ mkdir -p $basedir
 mkdir -p $vmdir
 wget -P "$basedir" https://cloud-images.ubuntu.com/focal/current/$image
 qemu-img create -F qcow2 -b $basedir/$image -f qcow2 $vmdir/$vmname.qcow2 $ssd
-
 
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
@@ -77,16 +74,12 @@ chpasswd:
   expire: false
 EOF
 
-# Create meta-data
 touch $vmdir/meta-data
 cloud-localds -v --network-config=$vmdir/network-config $vmdir/$vmname-seed.qcow2 $vmdir/user-data $vmdir/meta-data
 
-# Create and start virtual machine
 echo "Creating and starting virtual machine..."
 virt-install --connect qemu:///system --virt-type kvm --name $vmname --ram $(free -m | awk '/^Mem/ {print int($2 * 0.9)}')  --vcpus=$(egrep -c '(vmx|svm)' /proc/cpuinfo) --os-type linux --os-variant ubuntu20.04 --disk path=$vmdir/$vmname.qcow2,device=disk --disk path=$vmdir/$vmname-seed.qcow2,device=disk --import --network network=default,model=virtio,mac=$MAC_ADDR --noautoconsole --cpu $cpu_type
 
-# Check if virtual machine is running
-echo "Checking if virtual machine is running and put on austart..."
 virsh list
 virsh autostart $vmname
 
