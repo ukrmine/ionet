@@ -24,7 +24,7 @@ curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o install.sh
 
 You can change the configuration before installation
 
-![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure.png)
+![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Config.png)
 
 
 Execute script to create VM for ionet worker depolyment
