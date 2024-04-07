@@ -10,6 +10,7 @@ else
 fi
 
 vmhost=worker01
+vmlogin=ionet
 password=Password
 cpu_type="qemu64" #Digital Ocean
 #cpu_type="qemu64,-ibpb" #AZURE D2as_v5
@@ -69,7 +70,7 @@ cat >user-data <<EOF
 hostname: $vmhost
 manage_etc_hosts: true
 users:
-  - name: ionet
+  - name: $vmlogin
     sudo: ALL=(ALL) NOPASSWD:ALL
     groups: users, admin
     home: /home/user
@@ -79,7 +80,7 @@ ssh_pwauth: true
 disable_root: false
 chpasswd:
   list: |
-    ionet:$password
+    $vmlogin:$password
   expire: false
 EOF
 
@@ -97,7 +98,7 @@ sudo setfacl -m u:libvirt-qemu:rx $PWD/kvm/*
 
 # Create and start virtual machine
 echo "Creating and starting virtual machine..."
-virt-install --connect qemu:///system --virt-type kvm --name ionet --ram $(free -m | awk '/^Mem/ {print int($2 * 0.9)}')  --vcpus=$(egrep -c '(vmx|svm)' /proc/cpuinfo) --os-type linux --os-variant ubuntu20.04 --disk path=$HOME/kvm/ionet/ionet.qcow2,device=disk --disk path=$HOME/kvm/ionet/ionet-seed.qcow2,device=disk --import --network network=default,model=virtio,mac=$MAC_ADDR --noautoconsole --cpu $cpu_type
+virt-install --connect qemu:///system --virt-type kvm --name $vmlogin --ram $(free -m | awk '/^Mem/ {print int($2 * 0.9)}')  --vcpus=$(egrep -c '(vmx|svm)' /proc/cpuinfo) --os-type linux --os-variant ubuntu20.04 --disk path=$HOME/kvm/ionet/ionet.qcow2,device=disk --disk path=$HOME/kvm/ionet/ionet-seed.qcow2,device=disk --import --network network=default,model=virtio,mac=$MAC_ADDR --noautoconsole --cpu $cpu_type
 
 # Check if virtual machine is running
 echo "Checking if virtual machine is running..."
