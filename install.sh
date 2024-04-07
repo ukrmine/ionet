@@ -12,7 +12,7 @@ fi
 vmhost=worker01
 vmlogin=ionet
 password=Password
-cpu_type="qemu64" #Digital Ocean
+cpu_type="qemu64" #Digital Ocean, Kamatera
 #cpu_type="qemu64,-ibpb" #AZURE D2as_v5
 
 # Update packages
