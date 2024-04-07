@@ -15,8 +15,10 @@ password=Password
 
 cpu_type="qemu64" #Digital Ocean, Kamatera
 #cpu_type="qemu64,-ibpb" #AZURE D2as_v5or D4as_v5
+
 homedir=/home
 ssd=48Gb
+
 echo "Update and upgrade packages..."
 sudo apt update -y && sudo apt upgrade -y
 
