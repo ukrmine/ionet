@@ -15,15 +15,12 @@ password=Password
 cpu_type="qemu64" #Digital Ocean, Kamatera
 #cpu_type="qemu64,-ibpb" #AZURE D2as_v5
 
-# Update packages
 echo "Update and upgrade packages..."
 sudo apt update -y && sudo apt upgrade -y
 
-# Install KVM and related packages
 echo "Installing KVM and related packages..."
 sudo apt install qemu-kvm libvirt-daemon-system virt-manager bridge-utils cloud-image-utils -y
 
-# Add user to kvm and libvirt groups
 echo "Adding current user to kvm and libvirt groups..."
 sudo usermod -aG kvm $USER
 sudo usermod -aG libvirt $USER
