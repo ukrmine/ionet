@@ -59,7 +59,7 @@ users:
   - name: $vmlogin
     sudo: ALL=(ALL) NOPASSWD:ALL
     groups: users, admin
-    home: /home/user
+    home: /home/$vmlogin
     shell: /bin/bash
     lock_passwd: false
 ssh_pwauth: true
