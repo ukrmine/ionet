@@ -16,6 +16,7 @@ password=Password
 cpu_type="qemu64" #Digital Ocean, Kamatera
 #cpu_type="qemu64,-ibpb" #AZURE D2as_v5
 homedir=/home
+ssd=48Gb
 echo "Update and upgrade packages..."
 sudo apt update -y && sudo apt upgrade -y
 
@@ -28,7 +29,7 @@ sudo usermod -aG libvirt $USER
 mkdir -p $homedir/kvm/base
 mkdir -p $homedir/kvm/ionet
 wget -P $homedir/kvm/base https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
-qemu-img create -F qcow2 -b ~/kvm/base/focal-server-cloudimg-amd64.img -f qcow2 ~/kvm/ionet/ionet.qcow2 80G
+qemu-img create -F qcow2 -b ~/kvm/base/focal-server-cloudimg-amd64.img -f qcow2 ~/kvm/ionet/ionet.qcow2 $ssd
 
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
