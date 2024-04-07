@@ -25,7 +25,7 @@ Open console of the created VM
     user: ionet
     password: Password
 
-I prefer a connection via SMS, which is possible as follows
+I prefer a connection via SSH, which is possible as follows
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
