@@ -1,6 +1,6 @@
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/mAa0QmH3Nl9IyKqDAZzvuFNZhE0.webp)
 
-# Scripts for IO.NET worker
+# Scripts for IO.NET worker install
 based on Linux Ubuntu 20.04 or Mac OS
 
 Install CPU node for io.net. Tested: Digital Ocean Droplets, Azure D4as_v5, D2s_v5, Google cloud N1, OVHcloud B3-16
@@ -10,6 +10,20 @@ Install CPU node for io.net. Tested: Digital Ocean Droplets, Azure D4as_v5, D2s_
 curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o install.sh
 ```
 <!--endsec-->
+
+Execute script to create VM for ionet worker depolyment
+
+    chmod +x install.sh && ./install.sh
+    
+Open console of the created VM
+
+    virsh console ionet
+    user: ionet
+    password: Password
+
+To be continiud !!!
+
+# Scripts for IO.NET worker check containers and rebuild
 
 You must be a root user (the line in the console must start with root). Change to root user "sudo -s"
 
