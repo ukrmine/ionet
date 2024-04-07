@@ -12,9 +12,10 @@ fi
 vmhost=worker01
 vmlogin=ionet
 password=Password
+
 cpu_type="qemu64" #Digital Ocean, Kamatera
 #cpu_type="qemu64,-ibpb" #AZURE D2as_v5
-
+homedir=/home
 echo "Update and upgrade packages..."
 sudo apt update -y && sudo apt upgrade -y
 
@@ -24,9 +25,9 @@ sudo apt install qemu-kvm libvirt-daemon-system virt-manager bridge-utils cloud-
 echo "Adding current user to kvm and libvirt groups..."
 sudo usermod -aG kvm $USER
 sudo usermod -aG libvirt $USER
-mkdir -p $HOME/kvm/base
-mkdir -p $HOME/kvm/ionet
-wget -P $HOME/kvm/base https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
+mkdir -p $homedir/kvm/base
+mkdir -p $homedir/kvm/ionet
+wget -P $homedir/kvm/base https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
 qemu-img create -F qcow2 -b ~/kvm/base/focal-server-cloudimg-amd64.img -f qcow2 ~/kvm/ionet/ionet.qcow2 80G
 
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
