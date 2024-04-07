@@ -3,7 +3,7 @@
 # Scripts for IO.NET worker install
 based on Linux Ubuntu 20.04 or Mac OS
 
-Install CPU node for io.net. Tested: Digital Ocean Droplets, Azure D4as_v5, D2s_v5, Google cloud N1, OVHcloud B3-16
+Install CPU node for io.net. Tested: Digital Ocean Droplets AMD Premium, Azure D4as_v5, D2s_v5, Google cloud N1, OVHcloud B3-16
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
@@ -13,13 +13,25 @@ curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o install.sh
 
 Execute script to create VM for ionet worker depolyment
 
-    chmod +x install.sh && ./install.sh
+<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
+```
+chmod +x install.sh && ./install.sh
+```
+<!--endsec-->
     
 Open console of the created VM
 
     virsh console ionet
     user: ionet
     password: Password
+
+I prefer a connection via SMS, which is possible as follows
+
+<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
+```
+ssh ionet@192.168.122.10
+```
+<!--endsec-->
 
 To be continiud !!!
 
