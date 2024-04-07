@@ -1,5 +1,5 @@
 #!/bin/bash
-launch_string="Yours Run Docker Command from https://cloud.io.net/"
+launch_string="Yours Run Docker Command"
 file_path="/root"
 binary_name=$(basename "${launch_string%% *}")
 if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
