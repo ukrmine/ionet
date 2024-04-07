@@ -22,6 +22,11 @@ curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o install.sh
 ```
 <!--endsec-->
 
+You can change some 
+
+![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure.png)
+
+
 Execute script to create VM for ionet worker depolyment
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
