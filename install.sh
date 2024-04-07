@@ -27,26 +27,15 @@ sudo apt install qemu-kvm libvirt-daemon-system virt-manager bridge-utils cloud-
 echo "Adding current user to kvm and libvirt groups..."
 sudo usermod -aG kvm $USER
 sudo usermod -aG libvirt $USER
-
-# Create directories for cloud images
-echo "Creating directories for cloud images..."
 mkdir -p $HOME/kvm/base
 mkdir -p $HOME/kvm/ionet
-
-# Download Ubuntu Server 20.04 cloud image
-echo "Downloading Ubuntu Server 20.04 cloud image..."
 wget -P $HOME/kvm/base https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
-
-# Create disk image for virtual machine
-echo "Creating disk image for virtual machine..."
 qemu-img create -F qcow2 -b ~/kvm/base/focal-server-cloudimg-amd64.img -f qcow2 ~/kvm/ionet/ionet.qcow2 80G
 
-# Set network configuration
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
 IP_ADDR=192.168.122.10
 
-# Create network configuration file
 cat >network-config <<EOF
 ethernets:
     $INTERFACE:
@@ -64,7 +53,6 @@ ethernets:
 version: 2
 EOF
 
-# Create user-data
 cat >user-data <<EOF 
 #cloud-config
 hostname: $vmhost
@@ -101,8 +89,8 @@ echo "Creating and starting virtual machine..."
 virt-install --connect qemu:///system --virt-type kvm --name $vmlogin --ram $(free -m | awk '/^Mem/ {print int($2 * 0.9)}')  --vcpus=$(egrep -c '(vmx|svm)' /proc/cpuinfo) --os-type linux --os-variant ubuntu20.04 --disk path=$HOME/kvm/ionet/ionet.qcow2,device=disk --disk path=$HOME/kvm/ionet/ionet-seed.qcow2,device=disk --import --network network=default,model=virtio,mac=$MAC_ADDR --noautoconsole --cpu $cpu_type
 
 # Check if virtual machine is running
-echo "Checking if virtual machine is running..."
+echo "Checking if virtual machine is running and put on austart..."
 virsh list
-virsh vmhost autostart
+virsh $vmhost autostart
 
 echo "Setup completed."
