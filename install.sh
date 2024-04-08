@@ -12,14 +12,13 @@ fi
 vmhost=worker01
 vmname=ionet
 password=Password
+homedir=/home
+ssd=48G
 
 cpu_type="qemu64" #Digital Ocean, Kamatera AMD
 #cpu_type="qemu64,-ibpb" #AZURE D2as_v5 or D4as_v5
 #cpu_type="qemu64,-spec-ctrl,-ssbbd,-svm" #AZURE D2s_v5 or D4s_v5
 #cpu_type="qemu64,-svm" #Google cloud N1, Kamatera Intel
-
-homedir=/home
-ssd=48G
 
 basedir=$homedir/base
 vmdir=$homedir/$vmname
