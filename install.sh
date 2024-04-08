@@ -55,7 +55,7 @@ ethernets:
 version: 2
 EOF
 
-cat >user-data <<EOF 
+cat >$vmdir/user-data <<EOF 
 #cloud-config
 hostname: $vmhost
 manage_etc_hosts: true
