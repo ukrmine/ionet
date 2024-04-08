@@ -5,7 +5,7 @@ echo "Checking hardware virtualization support..."
 if egrep -q '(vmx|svm)' /proc/cpuinfo; then
     echo "Hardware virtualization supported."
 else
-    echo "Hardware virtualization not supported. Exiting."
+    echo "Hardware virtualization NOT SUPPORTED. Exiting."
     exit 1
 fi
 
