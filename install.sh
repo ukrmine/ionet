@@ -15,6 +15,7 @@ password=Password
 
 cpu_type="qemu64" #Digital Ocean, Kamatera
 #cpu_type="qemu64,-ibpb" #AZURE D2as_v5 or D4as_v5
+#D2s_v5="qemu64,-spec-ctrl,-ssbbd,-svm" #AZURE D2s_v5 or D4s_v5
 
 homedir=/home
 ssd=48G
