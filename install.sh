@@ -38,7 +38,7 @@ MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((R
 INTERFACE=eth01
 IP_ADDR=192.168.122.10
 
-cat >network-config <<EOF
+cat >$vmdir/network-config <<EOF
 ethernets:
     $INTERFACE:
         addresses:
