@@ -101,6 +101,7 @@ else
 fi
 sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
 ssh_key="/root/.ssh/id_rsa.pub"
+echo "$ssh_key"
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
 
