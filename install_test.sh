@@ -19,10 +19,10 @@ ssd="48G"
 # Function to select CPU type
 select_cpu_type() {
     echo "Select CPU type:"
-    echo "1. Digital Ocean, Kamatera AMD"
+    echo "1. Digital Ocean"
     echo "2. AZURE D2as_v5 or D4as_v5"
     echo "3. AZURE D2s_v5 or D4s_v5"
-    echo "4. Google cloud N1, Kamatera Intel"
+    echo "4. Google cloud N1, Kamatera"
     echo "5. Enter custom CPU type"
 
     read -p "Enter option number: " choice
