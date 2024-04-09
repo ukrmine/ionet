@@ -108,9 +108,12 @@ Take "Run Docker Command", take it from the worker page https://cloud.io.net/wor
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Copy_and_run_the_command.png)
 
 Insert your "Run Docker Command" in to script
-'''
+
+<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
+```
 nano /root/check.sh
-'''
+```
+<!--endsec-->
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/check.png)
 
