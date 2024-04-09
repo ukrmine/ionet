@@ -30,7 +30,7 @@ chmod +x install.sh && ./install.sh
 ```
 <!--endsec-->
 
-You can change (CPU type, Hostname, Login, Password, Home directory, Disk size), or leave default setings
+You can change (CPU type, Hostname, Login, Password, Home directory, Disk size, IP address), or leave default setings
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/install1.png)
     
