@@ -70,39 +70,7 @@ Download script
 curl -L https://github.com/ukrmine/ionet/raw/main/check.sh -o check.sh
 ```
 <!--endsec-->
-or create a script
-<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
-```
-cat > /root/check.sh <<EOF 
-#!/bin/bash
-launch_string="Yours Run Docker Command from https://cloud.io.net/"
-file_path="/root"
-binary_name=$(basename "${launch_string%% *}")
-if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
-    echo "io-launch is WORKING, wait 5min"
-    sleep 300
-    if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
-        echo "io-launch still WORKING, STOP ALL CONTAINERS"
-        docker rm -f $(docker ps -aq) 
-    fi
-fi
 
-if [[ $(docker ps | grep -c "io-worker-monitor") -eq 1 && $(docker ps | grep -c "io-worker-vc") -eq 1 ]]; then
-    echo "NODE IS WORKING"
-else
-    echo "STOP AND DELETE ALL CONTAINERS"
-    docker rm -f $(docker ps -aq) && docker rmi -f $(docker images -q) 
-    yes | docker system prune -a
-    echo "DOWNLOAD FILE $binary_name"
-    rm -rf $file_path/$binary_name && rm -rf $file_path/ionet_device_cache.txt
-    curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/$binary_name -o $file_path/$binary_name
-    chmod +x $file_path/$binary_name
-    echo "START NEW NODE"
-    cd "$file_path" && $launch_string
-fi
-EOF
-```
-<!--endsec-->
 Take "Run Docker Command", take it from the worker page https://cloud.io.net/worker/devices (2. Copy and run the command below)
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Copy_and_run_the_command.png)
