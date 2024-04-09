@@ -55,13 +55,13 @@ select_cpu_type() {
 select_variables() {
     read -p "Enter virtual host name (default: $vmhost): " vmhost_input
     vmhost="${vmhost_input:-$vmhost}"
-    read -p "Enter login (default: $vmname): " vmname_input
+    read -p "Enter Login (default: $vmname): " vmname_input
     vmname="${vmname_input:-$vmname}"
     read -p "Enter password (default: $password): " password_input
     password="${password_input:-$password}"
     read -p "Enter home directory (default: $homedir): " homedir_input
     homedir="${homedir_input:-$homedir}"
-    read -p "Enter SSD size (default: $ssd): " ssd_input
+    read -p "Enter Disk size (default: $ssd): " ssd_input
     ssd="${ssd_input:-$ssd}"
 }
 
@@ -71,10 +71,10 @@ select_variables
 # Output selected CPU type and other variables
 echo "Selected CPU type: $cpu_type"
 echo "Virtual host name: $vmhost"
-echo "Virtual machine name: $vmname"
+echo "Login: $vmname"
 echo "Password: $password"
 echo "Home directory: $homedir"
-echo "SSD size: $ssd"
+echo "Disk size: $ssd"
 
 basedir=$homedir/base
 vmdir=$homedir/$vmname
