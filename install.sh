@@ -5,17 +5,79 @@ echo "Checking hardware virtualization support..."
 if egrep -q '(vmx|svm)' /proc/cpuinfo; then
     echo "Hardware virtualization supported."
 else
-    echo "Hardware virtualization not supported. Exiting."
+    echo "Hardware virtualization NOT SUPPORTED. Exiting."
     exit 1
 fi
 
-vmhost=worker01
-vmname=ionet
-password=Password
-homedir=/home
-ssd=48G
+# Default variables
+vmhost="worker01"
+vmname="ionet"
+password="Password"
+homedir="/home"
+ssd="48G"
 
-cpu_type="qemu64" #Digital Ocean, Kamatera AMD
+# Function to select CPU type
+select_cpu_type() {
+    echo "Select CPU type:"
+    echo "1. Digital Ocean AMD Premium"
+    echo "2. AZURE D2as_v5 or D4as_v5"
+    echo "3. AZURE D2s_v5 or D4s_v5"
+    echo "4. Google cloud N1, Kamatera"
+    echo "5. Enter custom CPU type"
+
+    read -p "Enter option number: " choice
+
+    case $choice in
+        1)
+            cpu_type="qemu64"
+            ;;
+        2)
+            cpu_type="qemu64,-ibpb"
+            ;;
+        3)
+            cpu_type="qemu64,-spec-ctrl,-ssbbd,-svm"
+            ;;
+        4)
+            cpu_type="qemu64,-svm"
+            ;;
+        5)
+            read -p "Enter your custom CPU type: " custom_cpu_type
+            cpu_type="$custom_cpu_type"
+            ;;
+        *)
+            echo "Setting CPU type to default: qemu64."
+            cpu_type="qemu64"
+            ;;
+    esac
+}
+
+# Function to select other variables
+select_variables() {
+    read -p "Enter virtual host name (default: $vmhost): " vmhost_input
+    vmhost="${vmhost_input:-$vmhost}"
+    read -p "Enter login (default: $vmname): " vmname_input
+    vmname="${vmname_input:-$vmname}"
+    read -p "Enter password (default: $password): " password_input
+    password="${password_input:-$password}"
+    read -p "Enter home directory (default: $homedir): " homedir_input
+    homedir="${homedir_input:-$homedir}"
+    read -p "Enter SSD size (default: $ssd): " ssd_input
+    ssd="${ssd_input:-$ssd}"
+}
+
+select_cpu_type
+select_variables
+
+# Output selected CPU type and other variables
+echo "Selected CPU type: $cpu_type"
+echo "Virtual host name: $vmhost"
+echo "Virtual machine name: $vmname"
+echo "Password: $password"
+echo "Home directory: $homedir"
+echo "SSD size: $ssd"
+
+
+#cpu_type="qemu64" #Digital Ocean, Kamatera AMD
 #cpu_type="qemu64,-ibpb" #AZURE D2as_v5 or D4as_v5
 #cpu_type="qemu64,-spec-ctrl,-ssbbd,-svm" #AZURE D2s_v5 or D4s_v5
 #cpu_type="qemu64,-svm" #Google cloud N1, Kamatera Intel
