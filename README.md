@@ -85,6 +85,8 @@ nano /root/check.sh
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/check.png)
 
+Exit from nano ctrl+x ->  y -> Enter
+
 Grant rights to run the script
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
