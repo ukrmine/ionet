@@ -15,6 +15,7 @@ vmname="ionet"
 password="Password"
 homedir="/home"
 ssd="48G"
+IP_ADDR="192.168.122.10"
 
 # Function to select CPU type
 select_cpu_type() {
@@ -63,6 +64,8 @@ select_variables() {
     homedir="${homedir_input:-$homedir}"
     read -p "Enter SSD size (default: $ssd): " ssd_input
     ssd="${ssd_input:-$ssd}"
+    read -p "Enter IP address (default: $IP_ADDR): " IP_ADDR_input
+    IP_ADDR="${IP_ADDR_input:-$IP_ADDR}"
 }
 
 select_cpu_type
@@ -75,6 +78,7 @@ echo "Virtual machine name: $vmname"
 echo "Password: $password"
 echo "Home directory: $homedir"
 echo "SSD size: $ssd"
+
 
 basedir=$homedir/base
 vmdir=$homedir/$vmname
@@ -89,18 +93,16 @@ sudo usermod -aG libvirt $USER
 mkdir -p $basedir $vmdir
 wget -P "$basedir" https://cloud-images.ubuntu.com/focal/current/$image
 qemu-img create -F qcow2 -b $basedir/$image -f qcow2 $vmdir/$vmname.qcow2 $ssd
-net_state=$(virsh net-list --all | grep "default\s*active")
-if [[ -z "$net_state" ]]; then
+if [[ -z "virsh net-list --all | grep "default\s*active"" ]]; then
     echo "Network 'default' is not active. Starting the network..."
     virsh net-start default
 else
     echo "Network 'default' is active."
 fi
 sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
-ssh_key="/root/.ssh/id_rsa.pem"
+ssh_key="cat /root/.ssh/id_rsa.pem"
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
-IP_ADDR=192.168.122.10
 
 cat >$vmdir/network-config <<EOF
 ethernets:
