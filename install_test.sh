@@ -101,7 +101,8 @@ else
 fi
 sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
 ssh_key=$(cat /root/.ssh/id_rsa.pub)
-echo "alias nodererun='ssh root@192.168.122.10 '/root/rerun.sh''" >> /root/.bashrc
+echo "alias node='ssh root@$IP_ADDR'" >> /root/.bashrc
+echo "alias nodererun='ssh root@$IP_ADDR '/root/rerun.sh''" >> /root/.bashrc
 source /root/.bashrc
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
