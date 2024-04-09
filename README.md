@@ -90,7 +90,7 @@ Grant rights and run the script
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
-chmod +x check.sh && ./check.sh
+chmod +x /root/check.sh && /root/check.sh
 ```
 <!--endsec-->
 
@@ -102,7 +102,7 @@ If at least one container is not running, we will get it:
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/6run_new_node.png)
 
-Let's set up an autorun script
+Set up the automatic execution of the script
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
