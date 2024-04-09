@@ -22,11 +22,6 @@ curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o install.sh
 ```
 <!--endsec-->
 
-You can change the configuration before installation
-
-![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Config.png)
-
-
 Execute script to create VM for ionet worker depolyment
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
@@ -34,6 +29,8 @@ Execute script to create VM for ionet worker depolyment
 chmod +x install.sh && ./install.sh
 ```
 <!--endsec-->
+
+You can change (CPU type, Hostname, Login, Password, Home directory, Disk size), or leave default setings
     
 Open console of the created VM
 
