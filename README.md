@@ -1,7 +1,7 @@
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/mAa0QmH3Nl9IyKqDAZzvuFNZhE0.webp)
 
-### Scripts for IO.NET worker install
-#based on Linux Ubuntu 20.04 or Mac OS
+# Scripts for IO.NET worker install
+## based on Linux Ubuntu 20.04 or Mac OS
 
 Install CPU node for io.net. 
 Tested: Digital Ocean Droplets AMD Premium, Azure D4as_v5, D2s_v5, Google cloud N1, OVHcloud B3-16, Kamatera
