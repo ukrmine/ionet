@@ -130,11 +130,19 @@ users:
     home: /home/$vmname
     shell: /bin/bash
     lock_passwd: false
+    ssh-authorized-keys:
+      - $ssh_key
+  - name: root
+    shell: /bin/bash
+    lock-passwd: false
+    ssh-authorized-keys:
+      - $ssh_key
 ssh_pwauth: true
 disable_root: false
 chpasswd:
   list: |
     $vmname:$password
+    root:$password
   expire: false
 EOF
 
