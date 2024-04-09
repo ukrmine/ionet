@@ -76,12 +76,6 @@ echo "Password: $password"
 echo "Home directory: $homedir"
 echo "SSD size: $ssd"
 
-
-#cpu_type="qemu64" #Digital Ocean, Kamatera AMD
-#cpu_type="qemu64,-ibpb" #AZURE D2as_v5 or D4as_v5
-#cpu_type="qemu64,-spec-ctrl,-ssbbd,-svm" #AZURE D2s_v5 or D4s_v5
-#cpu_type="qemu64,-svm" #Google cloud N1, Kamatera Intel
-
 basedir=$homedir/base
 vmdir=$homedir/$vmname
 cd $homedir
@@ -95,7 +89,15 @@ sudo usermod -aG libvirt $USER
 mkdir -p $basedir $vmdir
 wget -P "$basedir" https://cloud-images.ubuntu.com/focal/current/$image
 qemu-img create -F qcow2 -b $basedir/$image -f qcow2 $vmdir/$vmname.qcow2 $ssd
-virsh net-start default
+net_state=$(virsh net-list --all | grep "default\s*active")
+if [[ -z "$net_state" ]]; then
+    echo "Network 'default' is not active. Starting the network..."
+    virsh net-start default
+else
+    echo "Network 'default' is active."
+fi
+sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
+ssh_key="/root/.ssh/id_rsa.pem"
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
 IP_ADDR=192.168.122.10
