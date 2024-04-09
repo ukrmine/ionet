@@ -108,7 +108,11 @@ Take "Run Docker Command", take it from the worker page https://cloud.io.net/wor
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Copy_and_run_the_command.png)
 
 Insert your "Run Docker Command" in to script
-Like nano /root/check.sh
+'''
+nano /root/check.sh
+'''
+
+![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/check.png)
 
 Grant rights to run the script
 
