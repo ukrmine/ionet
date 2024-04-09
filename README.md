@@ -86,19 +86,11 @@ nano /root/check.sh
 
 Exit from nano ctrl+x ->  y -> Enter
 
-Grant rights to run the script
+Grant rights and run the script
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
-chmod +x check.sh
-```
-<!--endsec-->
-
-Check how the script works﻿
-
-<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
-```
-./check.sh
+chmod +x check.sh && ./check.sh
 ```
 <!--endsec-->
 
