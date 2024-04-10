@@ -34,11 +34,7 @@ You can change (CPU type, Hostname, Login, Password, Home directory, Disk size, 
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/install1.png)
     
-Open console of the created VM
-
-    virsh console ionet
-    user: ionet
-    password: Password
+Login to created VM put just command "noda" if you want to exit put "exit"
 
 I prefer a connection via SSH, which is possible as follows
 
