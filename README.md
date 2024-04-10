@@ -18,7 +18,7 @@ Download script
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
-curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o install.sh
+cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o install.sh
 ```
 <!--endsec-->
 
