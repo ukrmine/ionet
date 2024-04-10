@@ -46,17 +46,11 @@ You must be a root user (the line in the console must start with root). Change t
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/1root.png)
 
-Go to root folder, or another
-<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
-```
-cd /root/
-```
-<!--endsec-->
-Download script
+Go to root folder and download script
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
-curl -L https://github.com/ukrmine/ionet/raw/main/check.sh -o check.sh
+cd /root/ && curl -L https://github.com/ukrmine/ionet/raw/main/check.sh -o check.sh
 ```
 <!--endsec-->
 
