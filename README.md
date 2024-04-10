@@ -36,13 +36,7 @@ You can change (CPU type, Hostname, Login, Password, Home directory, Disk size, 
     
 Login to created VM put just command "noda" if you want to exit put "exit"
 
-I prefer a connection via SSH, which is possible as follows
-
-<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
-```
-ssh ionet@192.168.122.10
-```
-<!--endsec-->
+Than install yours worker on VM
 
 To be continued !!!
 
