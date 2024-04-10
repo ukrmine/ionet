@@ -141,7 +141,6 @@ ssh_pwauth: true
 disable_root: false
 chpasswd:
   list: |
-    $vmname:$password
     root:$password
   expire: false
 write_files:
@@ -173,4 +172,5 @@ virt-install --connect qemu:///system --virt-type kvm --name $vmname --ram $(fre
 virsh list
 virsh autostart $vmname
 
+echo "Login to VM enter "noda""
 echo "Setup completed."
