@@ -6,7 +6,7 @@
 Install CPU node for io.net. 
 Tested: Digital Ocean Droplets AMD Premium, Azure D4as_v5, D2s_v5, Google cloud N1, OVHcloud B3-16, Kamatera
 
-Change user to root
+1. Change user to root
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
@@ -14,7 +14,7 @@ sudo -s
 ```
 <!--endsec-->
 
-Download script
+2. Download script
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
@@ -22,7 +22,7 @@ cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o inst
 ```
 <!--endsec-->
 
-Execute script to create VM for ionet worker depolyment
+3. Execute script to create VM for ionet worker depolyment
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
@@ -34,9 +34,9 @@ You can change (CPU type, Hostname, Login, Password, Home directory, Disk size, 
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/install1.png)
     
-Login to created VM put just command "noda" if you want to exit put "exit"
+4. Login to created VM put just command "noda" if you want to exit put "exit"
 
-Than install yours worker on VM
+5. Than install yours worker on VM
 
 To be continued !!!
 
@@ -46,7 +46,7 @@ You must be a root user (the line in the console must start with root). Change t
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/1root.png)
 
-Go to root folder and download script
+1. Go to root folder and download script
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
@@ -58,7 +58,7 @@ Take "Run Docker Command", take it from the worker page https://cloud.io.net/wor
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Copy_and_run_the_command.png)
 
-Insert your "Run Docker Command" in to script
+2. Insert your "Run Docker Command" in to script
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
@@ -70,7 +70,7 @@ nano /root/check.sh
 
 Exit from nano ctrl+x ->  y -> Enter
 
-Grant rights and run the script
+3. Grant rights and run the script
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
