@@ -149,6 +149,20 @@ chpasswd:
     $vmname:$password
     root:$password
   expire: false
+write_files:
+  - path: /root/script.sh
+    permissions: '0755'
+    content: |
+      #!/bin/bash
+      sed -i "s/#Port 22/Port 22/" /etc/ssh/sshd_config
+      sed -i 's/^#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+      sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+      curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
+      apt install -y speedtest
+runcmd:
+  - [ bash, "/root/script.sh" ]
+  - service ssh reload
+  - rm /root/script.sh
 EOF
 
 touch $vmdir/meta-data
