@@ -133,14 +133,6 @@ cat >$vmdir/user-data <<EOF
 hostname: $vmhost
 manage_etc_hosts: true
 users:
-  - name: $vmname
-    sudo: ALL=(ALL) NOPASSWD:ALL
-    groups: users, admin
-    home: /home/$vmname
-    shell: /bin/bash
-    lock_passwd: false
-    ssh-authorized-keys:
-      - $ssh_key
   - name: root
     shell: /bin/bash
     lock-passwd: false
