@@ -92,7 +92,7 @@ Set up the automatic execution of the script
 ```
 crontab<<EOF
 HOME=/root/
-*/5 * * * * check.sh
+*/10 * * * * check.sh
 EOF
 ```
 <!--endsec-->
