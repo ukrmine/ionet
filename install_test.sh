@@ -91,7 +91,9 @@ sudo apt install qemu-kvm libvirt-daemon-system virt-manager bridge-utils cloud-
 sudo usermod -aG kvm $USER
 sudo usermod -aG libvirt $USER
 mkdir -p $basedir $vmdir
-wget -P "$basedir" https://cloud-images.ubuntu.com/focal/current/$image
+if [ ! -f "$basedir/$image" ]; then
+  wget -P "$basedir" https://cloud-images.ubuntu.com/focal/current/$image
+fi
 qemu-img create -F qcow2 -b $basedir/$image -f qcow2 $vmdir/$vmname.qcow2 $ssd
 if [[ -z "virsh net-list --all | grep "default\s*active"" ]]; then
     echo "Network 'default' is not active. Starting the network..."
