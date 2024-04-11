@@ -59,9 +59,8 @@ select_variables() {
     vmhost="${vmhost_input:-$vmhost}"
     read -p "Enter password (default: $password): " password_input
     password="${password_input:-$password}"
-    read -p "Enter  (default: $launch): " launch_input
-    launch="${launch_input:-$launch}"
-    
+    read -p "Enter your Docker Command (default: $launch): " launch_input
+    launch="${launch_input:-$launch}" 
 }
 
 select_cpu_type
@@ -176,6 +175,8 @@ virsh list
 virsh autostart $vmname
 
 echo "Login to VM enter "noda""
-echo "Check Docker containers "nodacheck""
+echo "Check Docker containers "nodadocker""
 echo "Check Connectivity Tier "nodaspeed""
+echo "Check worker "nodacheck""
+echo "Rerun worker "nodarerun""
 echo "Setup completed."
