@@ -103,7 +103,7 @@ echo "alias nodacheck='ssh root@$IP_ADDR '/root/check.sh''" >> /root/.bashrc
 echo "alias nodarerun='ssh root@$IP_ADDR '/root/rerun.sh''" >> /root/.bashrc
 echo "alias nodadocker='ssh root@$IP_ADDR \"docker ps\"'" >> /root/.bashrc
 echo "alias nodaspeed='ssh root@$IP_ADDR "speedtest"'" >> /root/.bashrc
-. ~/.bashrc
+. /root/.bashrc
 cat >/root/checkvm.sh <<EOF
 #!/bin/bash
 vmname=$vmname
