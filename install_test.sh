@@ -56,16 +56,10 @@ select_cpu_type() {
 select_variables() {
     read -p "Enter virtual host name (default: $vmhost): " vmhost_input
     vmhost="${vmhost_input:-$vmhost}"
-    read -p "Enter login (default: $vmname): " vmname_input
-    vmname="${vmname_input:-$vmname}"
     read -p "Enter password (default: $password): " password_input
     password="${password_input:-$password}"
-    read -p "Enter home directory (default: $homedir): " homedir_input
-    homedir="${homedir_input:-$homedir}"
     read -p "Enter SSD size (default: $ssd): " ssd_input
     ssd="${ssd_input:-$ssd}"
-    read -p "Enter IP address (default: $IP_ADDR): " IP_ADDR_input
-    IP_ADDR="${IP_ADDR_input:-$IP_ADDR}"
 }
 
 select_cpu_type
