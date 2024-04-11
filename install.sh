@@ -36,7 +36,7 @@ select_cpu_type() {
             cpu_type="qemu64,-ibpb"
             ;;
         3)
-            cpu_type="qemu64,-spec-ctrl,-ssbbd,-svm"
+            cpu_type="qemu64,-svm,-spec-ctrl,-ssbd"
             ;;
         4)
             cpu_type="qemu64,-svm"
@@ -104,9 +104,10 @@ fi
 sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
 ssh_key=$(cat /root/.ssh/id_rsa.pub)
 echo "alias noda='ssh root@$IP_ADDR'" >> /root/.bashrc
+echo "alias nodacheck='ssh root@$IP_ADDR '/root/check.sh''" >> /root/.bashrc
 echo "alias nodarerun='ssh root@$IP_ADDR '/root/rerun.sh''" >> /root/.bashrc
-#chmod a+x ~/.bashrc
-#PS1='$ '
+echo "alias nodadocker='ssh root@$IP_ADDR "docker ps"'" >> /root/.bashrc
+echo "alias nodaspeed='ssh root@$IP_ADDR "speedtest"'" >> /root/.bashrc
 . ~/.bashrc
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
@@ -142,7 +143,6 @@ ssh_pwauth: true
 disable_root: false
 chpasswd:
   list: |
-    $vmname:$password
     root:$password
   expire: false
 write_files:
@@ -153,6 +153,10 @@ write_files:
       sed -i "s/#Port 22/Port 22/" /etc/ssh/sshd_config
       sed -i 's/^#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
       sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+      curl -L -o /root/ionet-setup.sh https://github.com/ionet-official/io-net-official-setup-script/raw/main/ionet-setup.sh
+      curl -L -o /root/launch_binary_linux https://github.com/ionet-official/io_launch_binaries/raw/main/launch_binary_linux
+      chmod +x /root/ionet-setup.sh && /root/ionet-setup.sh
+      chmod +x /root/launch_binary_linux
       curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
       apt install -y speedtest
 runcmd:
@@ -170,4 +174,5 @@ virt-install --connect qemu:///system --virt-type kvm --name $vmname --ram $(fre
 virsh list
 virsh autostart $vmname
 
+echo "Login to VM enter "noda""
 echo "Setup completed."
