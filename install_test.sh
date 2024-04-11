@@ -36,7 +36,7 @@ select_cpu_type() {
             cpu_type="qemu64,-ibpb"
             ;;
         3)
-            cpu_type="qemu64,-ssbbd,-spec,-ctrl,-svm"
+            cpu_type="qemu64,-spec,-ctrl,-svm,-ssbbd"
             ;;
         4)
             cpu_type="qemu64,-svm"
