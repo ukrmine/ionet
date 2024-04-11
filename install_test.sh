@@ -161,6 +161,11 @@ write_files:
       apt install -y speedtest
 runcmd:
   - [ bash, "/root/script.sh" ]
+  - |
+    crontab<<EOF
+    */5 * * * * /root/check.sh
+    03 03 * * * /root/rerun.sh
+    EOF
   - service ssh reload
   - rm /root/script.sh
 EOF
