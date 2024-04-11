@@ -195,10 +195,11 @@ virt-install --connect qemu:///system --virt-type kvm --name $vmname --ram $(fre
 
 virsh list
 virsh autostart $vmname
-
-echo "Login to VM enter "noda""
-echo "Check Docker containers "nodadocker""
-echo "Check Connectivity Tier "nodaspeed""
-echo "Check worker "nodacheck""
-echo "Rerun worker "nodarerun""
 echo "Setup completed."
+
+echo "Login to VM enter - "noda""
+echo "Check Docker containers - "nodadocker""
+echo "Check Connectivity Tier - "nodaspeed""
+echo "Check worker - "nodacheck""
+echo "Rerun worker - "nodarerun""
+
