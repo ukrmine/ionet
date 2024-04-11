@@ -16,6 +16,7 @@ password="Password"
 homedir="/home"
 ssd="48G"
 IP_ADDR="192.168.122.10"
+launch=""
 
 # Function to select CPU type
 select_cpu_type() {
@@ -58,8 +59,9 @@ select_variables() {
     vmhost="${vmhost_input:-$vmhost}"
     read -p "Enter password (default: $password): " password_input
     password="${password_input:-$password}"
-    read -p "Enter SSD size (default: $ssd): " ssd_input
-    ssd="${ssd_input:-$ssd}"
+    read -p "Enter  (default: $launch): " launch_input
+    launch="${launch_input:-$launch}"
+    
 }
 
 select_cpu_type
@@ -149,8 +151,13 @@ write_files:
       sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
       curl -L -o /root/ionet-setup.sh https://github.com/ionet-official/io-net-official-setup-script/raw/main/ionet-setup.sh
       curl -L -o /root/launch_binary_linux https://github.com/ionet-official/io_launch_binaries/raw/main/launch_binary_linux
+      curl -L -o /root/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh
+      curl -L -o /root/rerun.sh https://github.com/ukrmine/ionet/raw/main/rerun.sh
+      sed -i "s|launch_string=.*|launch_string=\"$launch\"|" /root/check.sh
+      sed -i "s|launch_string=.*|launch_string=\"$launch\"|" /root/rerun.sh
+      chmod +x /root/launch_binary_linux && chmod +x /root/check.sh
       chmod +x /root/ionet-setup.sh && /root/ionet-setup.sh
-      chmod +x /root/launch_binary_linux
+      chmod +x /root/rerun.sh && /root/rerun.sh
       curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
       apt install -y speedtest
 runcmd:
