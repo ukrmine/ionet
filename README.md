@@ -34,9 +34,10 @@ You can change (CPU type, Hostname, Login, Password, Home directory, Disk size, 
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/install1.png)
     
-4. Login to created VM put just command "noda" if you want to exit put "exit"
+4. 
+5. Login to created VM put just command "noda" if you want to exit put "exit"
 
-5. Than install yours worker on VM
+6. Than install yours worker on VM
 
 To be continued !!!
 
