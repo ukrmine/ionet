@@ -104,6 +104,23 @@ echo "alias nodarerun='ssh root@$IP_ADDR '/root/rerun.sh''" >> /root/.bashrc
 echo "alias nodadocker='ssh root@$IP_ADDR "docker ps"'" >> /root/.bashrc
 echo "alias nodaspeed='ssh root@$IP_ADDR "speedtest"'" >> /root/.bashrc
 . ~/.bashrc
+cat >/root/checkvm.sh <<EOF
+#!/bin/bash
+vmname=$vmname
+vm_status=\$(sudo virsh list --state-running --name | grep $vmname)
+if [ -n "\$vm_status" ]; then
+    echo "$vmname run and working."
+else
+    echo "Have no running $vmname"
+    virsh start \$vmname
+fi
+EOF
+
+chmod +x /root/checkvm.sh
+
+crontab<<EOF
+*/5 * * * * /root/checkvm.sh
+EOF
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
 
