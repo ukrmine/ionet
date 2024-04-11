@@ -175,4 +175,6 @@ virsh list
 virsh autostart $vmname
 
 echo "Login to VM enter "noda""
+echo "Check Docker containers "nodacheck""
+echo "Check Connectivity Tier "nodaspeed""
 echo "Setup completed."
