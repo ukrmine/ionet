@@ -16,7 +16,7 @@ password="Password"
 homedir="/home"
 ssd="48G"
 IP_ADDR="192.168.122.10"
-launch=""
+launch="./launch_binary_linux --device_id=your_device_id --user_id=your_user_id --operating_system="Linux" --usegpus=false --device_name=your_device_name"
 
 # Function to select CPU type
 select_cpu_type() {
