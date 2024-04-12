@@ -101,7 +101,7 @@ sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR '/r
 sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR '/root/rerun.sh''' ~/.bashrc
 sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR \"docker ps\"'' ~/.bashrc
 sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR "speedtest"'' ~/.bashrc
-. /root/.bashrc
+. /root/.bashrc -i
 cat >/root/checkvm.sh <<EOF
 #!/bin/bash
 vmname=$vmname
