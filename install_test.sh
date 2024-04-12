@@ -57,8 +57,6 @@ select_cpu_type() {
 select_variables() {
     read -p "Enter virtual host name (default: $vmhost): " vmhost_input
     vmhost="${vmhost_input:-$vmhost}"
-    read -p "Enter password (default: $password): " password_input
-    password="${password_input:-$password}"
     read -p "Enter your Docker Command (default: $launch): " launch_input
     launch="${launch_input:-$launch}" 
 }
