@@ -96,11 +96,11 @@ else
 fi
 sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
 ssh_key=$(cat /root/.ssh/id_rsa.pub)
-echo "alias noda='ssh root@$IP_ADDR'" >> /root/.bashrc
-echo "alias nodacheck='ssh root@$IP_ADDR '/root/check.sh''" >> /root/.bashrc
-echo "alias nodarerun='ssh root@$IP_ADDR '/root/rerun.sh''" >> /root/.bashrc
-echo "alias nodadocker='ssh root@$IP_ADDR \"docker ps\"'" >> /root/.bashrc
-echo "alias nodaspeed='ssh root@$IP_ADDR "speedtest"'" >> /root/.bashrc
+sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR'' ~/.bashrc
+sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR '/root/check.sh''' ~/.bashrc
+sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR '/root/rerun.sh''' ~/.bashrc
+sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR \"docker ps\"'' ~/.bashrc
+sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR "speedtest"'' ~/.bashrc
 . /root/.bashrc
 cat >/root/checkvm.sh <<EOF
 #!/bin/bash
