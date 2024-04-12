@@ -16,6 +16,7 @@ password="Password"
 homedir="/home"
 ssd="48G"
 IP_ADDR="192.168.122.10"
+launch="./launch_binary_linux --device_id=your_device_id --user_id=your_user_id --operating_system="Linux" --usegpus=false --device_name=your_device_name"
 
 # Function to select CPU type
 select_cpu_type() {
@@ -56,16 +57,8 @@ select_cpu_type() {
 select_variables() {
     read -p "Enter virtual host name (default: $vmhost): " vmhost_input
     vmhost="${vmhost_input:-$vmhost}"
-    read -p "Enter login (default: $vmname): " vmname_input
-    vmname="${vmname_input:-$vmname}"
-    read -p "Enter password (default: $password): " password_input
-    password="${password_input:-$password}"
-    read -p "Enter home directory (default: $homedir): " homedir_input
-    homedir="${homedir_input:-$homedir}"
-    read -p "Enter SSD size (default: $ssd): " ssd_input
-    ssd="${ssd_input:-$ssd}"
-    read -p "Enter IP address (default: $IP_ADDR): " IP_ADDR_input
-    IP_ADDR="${IP_ADDR_input:-$IP_ADDR}"
+    read -p "Enter your Docker Command (default: $launch): " launch_input
+    launch="${launch_input:-$launch}" 
 }
 
 select_cpu_type
@@ -105,10 +98,10 @@ sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
 ssh_key=$(cat /root/.ssh/id_rsa.pub)
 echo "alias noda='ssh root@$IP_ADDR'" >> /root/.bashrc
 echo "alias nodacheck='ssh root@$IP_ADDR '/root/check.sh''" >> /root/.bashrc
-echo "alias nodarerun='ssh root@$IP_ADDR '/root/rerun.sh''" >> /root/.bashrc
-echo "alias nodadocker='ssh root@$IP_ADDR "docker ps"'" >> /root/.bashrc
+echo "alias nodadocker='ssh root@$IP_ADDR \"docker ps\"'" >> /root/.bashrc
 echo "alias nodaspeed='ssh root@$IP_ADDR "speedtest"'" >> /root/.bashrc
-. ~/.bashrc
+. /root/.bashrc
+
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
 
@@ -155,12 +148,20 @@ write_files:
       sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
       curl -L -o /root/ionet-setup.sh https://github.com/ionet-official/io-net-official-setup-script/raw/main/ionet-setup.sh
       curl -L -o /root/launch_binary_linux https://github.com/ionet-official/io_launch_binaries/raw/main/launch_binary_linux
-      chmod +x /root/ionet-setup.sh && /root/ionet-setup.sh
+      curl -L -o /root/rerun.sh https://github.com/ukrmine/ionet/raw/main/rerun.sh
+      sed -i "s|launch_string=.*|launch_string=\"$launch\"|" /root/rerun.sh
       chmod +x /root/launch_binary_linux
+      chmod +x /root/ionet-setup.sh && /root/ionet-setup.sh
+      chmod +x /root/rerun.sh && /root/rerun.sh
       curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
       apt install -y speedtest
 runcmd:
   - [ bash, "/root/script.sh" ]
+  - [ bash, "/root/rerun.sh" ]
+  - |
+    crontab<<EOF
+    03 03 * * * /root/rerun.sh
+    EOF
   - service ssh reload
   - rm /root/script.sh
 EOF
@@ -173,8 +174,8 @@ virt-install --connect qemu:///system --virt-type kvm --name $vmname --ram $(fre
 
 virsh list
 virsh autostart $vmname
-
-echo "Login to VM enter "noda""
-echo "Check Docker containers "nodacheck""
-echo "Check Connectivity Tier "nodaspeed""
 echo "Setup completed."
+
+echo "Login to VM enter - "noda""
+echo "Check Docker containers - "nodadocker""
+echo "Check Connectivity Tier - "nodaspeed""
