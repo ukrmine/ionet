@@ -184,6 +184,13 @@ crontab<<EOF
 */5 * * * * /root/checkvm.sh
 EOF
 
+ssh_key=$(cat /root/.ssh/id_rsa.pub)
+sudo sed -i '/# If not running interactively/i alias noda="ssh root@'$IP_ADDR'"' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodacheck="ssh root@'$IP_ADDR' "/root/check.sh""' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodarerun="ssh root@'$IP_ADDR' "/root/rerun.sh""' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodadocker="ssh root@'$IP_ADDR' '"docker ps"'"' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodaspeed="ssh root@'$IP_ADDR' "speedtest""' /etc/bash.bashrc
+
 if [ ! -d "/root/.ssh" ]; then
     echo "Create dir for ssh in root folder"
     mkdir -p /root/.ssh
@@ -216,20 +223,13 @@ for user in $active_users; do
     fi
 done
 
-ssh_key=$(cat /root/.ssh/id_rsa.pub)
-sudo sed -i '/# If not running interactively/i alias noda="ssh root@'$IP_ADDR'"' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias nodacheck="ssh root@'$IP_ADDR' "/root/check.sh""' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias nodarerun="ssh root@'$IP_ADDR' "/root/rerun.sh""' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias nodadocker="ssh root@'$IP_ADDR' '"docker ps"'"' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias nodaspeed="ssh root@'$IP_ADDR' "speedtest""' /etc/bash.bashrc
-
 virsh list
 virsh autostart $vmname
 echo "Setup completed."
-exec bash
+
 echo "Login to VM enter - "noda""
 echo "Check Docker containers - "nodadocker""
 echo "Check Connectivity Tier - "nodaspeed""
 echo "Check worker - "nodacheck""
 echo "Rerun worker - "nodarerun""
-
+exec bash
