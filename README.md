@@ -10,7 +10,7 @@ Tested: Digital Ocean Droplets AMD Premium, Azure D4as_v5, D2s_v5, Google cloud 
 
 Create new worker
 
-![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure_worker.png)
+![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Create_new_worker.png)
 
 Configure new worker
 
