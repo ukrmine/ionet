@@ -14,19 +14,11 @@ sudo -s
 ```
 <!--endsec-->
 
-2. Download script
+2. Download script and execute script to create VM for ionet worker depolyment
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
-cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o install.sh
-```
-<!--endsec-->
-
-3. Execute script to create VM for ionet worker depolyment
-
-<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
-```
-chmod +x install.sh && ./install.sh
+cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o install.sh && chmod +x install.sh && ./install.sh
 ```
 <!--endsec-->
 
