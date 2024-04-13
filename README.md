@@ -6,6 +6,18 @@
 Install CPU node for io.net. 
 Tested: Digital Ocean Droplets AMD Premium, Azure D4as_v5, D2s_v5, Google cloud N1, OVHcloud B3-16, Kamatera
 
+## Preparation on site https://cloud.io.net/worker/devices/
+
+Create new worker
+
+![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure.png)
+
+Configure new worker
+
+![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure_worker.png)
+
+## Install worker on Linux server
+
 1. Change user to root
 
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
@@ -26,12 +38,8 @@ Please choose Hosting or CPU type, put your Docker Command, VM Hostname
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/install.png)
     
-4. 
-5. Login to created VM put just command "noda" if you want to exit put "exit"
-
-6. Than install yours worker on VM
-
-To be continued !!!
+Wait about 10 min.
+All is done, worker was installed and configured
 
 
 
