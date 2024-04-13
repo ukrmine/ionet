@@ -134,8 +134,8 @@ sudo sed -i '/# If not running interactively/i alias nodarerun="ssh root@'$IP_AD
 sudo sed -i '/# If not running interactively/i alias nodadocker="ssh root@'$IP_ADDR' "'docker ps'""' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias nodaspeed="ssh root@'$IP_ADDR' "speedtest""' /etc/bash.bashrc
 exec bash
-cat >/root/checkvm.sh <<EOF
 
+cat >/root/checkvm.sh <<EOF
 #!/bin/bash
 vmname=$vmname
 vm_status=\$(sudo virsh list --state-running --name | grep $vmname)
