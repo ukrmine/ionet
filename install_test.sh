@@ -133,7 +133,6 @@ sudo sed -i '/# If not running interactively/i alias nodacheck="ssh root@'$IP_AD
 sudo sed -i '/# If not running interactively/i alias nodarerun="ssh root@'$IP_ADDR' "/root/rerun.sh""' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias nodadocker="ssh root@'$IP_ADDR' '"docker ps"'"' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias nodaspeed="ssh root@'$IP_ADDR' "speedtest""' /etc/bash.bashrc
-exec bash
 
 cat >/root/checkvm.sh <<EOF
 #!/bin/bash
@@ -152,6 +151,7 @@ chmod +x /root/checkvm.sh
 crontab<<EOF
 */5 * * * * /root/checkvm.sh
 EOF
+
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
 
@@ -228,7 +228,7 @@ virt-install --connect qemu:///system --virt-type kvm --name $vmname --ram $(fre
 virsh list
 virsh autostart $vmname
 echo "Setup completed."
-
+exec bash
 echo "Login to VM enter - "noda""
 echo "Check Docker containers - "nodadocker""
 echo "Check Connectivity Tier - "nodaspeed""
