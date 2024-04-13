@@ -20,7 +20,7 @@ launch="./launch_binary_linux --device_id=your_device_id --user_id=your_user_id 
 
 # Function to select CPU type
 select_cpu_type() {
-    echo "Select hosting:"
+    echo "Select hosting where you rent VPS:"
     echo "1. Digital Ocean AMD Premium"
     echo "2. AZURE D2as_v5 or D4as_v5"
     echo "3. AZURE D2s_v5 or D4s_v5"
