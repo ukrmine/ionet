@@ -94,7 +94,36 @@ if [[ -z "virsh net-list --all | grep "default\s*active"" ]]; then
 else
     echo "Network 'default' is active."
 fi
-sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
+
+if [ ! -d "/root/.ssh" ]; then
+    echo "Create dir for ssh in root folder"
+    mkdir -p /root/.ssh
+    chmod 700 /root/.ssh
+fi
+
+if [ ! -f "/root/.ssh/id_rsa" ]; then
+    sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
+fi
+
+active_users=$(users)
+
+for user in $active_users; do
+    if [ "$user" != "root" ]; then
+        home_dir=$(getent passwd $user | cut -d: -f6)
+        ssh_dir="$home_dir/.ssh"
+        
+        if [ ! -d "$ssh_dir" ]; then
+            mkdir -p $ssh_dir
+            chmod 700 $ssh_dir
+            chown $user:$user $ssh_dir
+        fi
+
+    	cp /root/.ssh/id_rsa* $ssh_dir/
+        chown $user:$user $ssh_dir/id_rsa*
+        chmod 600 $ssh_dir/id_rsa*
+    fi
+done
+
 ssh_key=$(cat /root/.ssh/id_rsa.pub)
 sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR'' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR '/root/check.sh''' /etc/bash.bashrc
@@ -103,6 +132,7 @@ sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR \"d
 sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR "speedtest"'' /etc/bash.bashrc
 source /etc/bash.bashrc -i
 cat >/root/checkvm.sh <<EOF
+
 #!/bin/bash
 vmname=$vmname
 vm_status=\$(sudo virsh list --state-running --name | grep $vmname)
