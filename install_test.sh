@@ -119,20 +119,21 @@ for user in $active_users; do
         fi
 
     	if [ ! -f "$ssh_dir/id_rsa" ]; then
-            cp /root/.ssh/id_rsa* $ssh_dir/
+            sudo -u $user ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
             chown $user:$user $ssh_dir/id_rsa*
             chmod 600 $ssh_dir/id_rsa*
         fi
+        ssh_userkey=$(cat $ssh_dir/id_rsa.pub)
     fi
 done
 
 ssh_key=$(cat /root/.ssh/id_rsa.pub)
-sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR'' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR '/root/check.sh''' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR '/root/rerun.sh''' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR \"docker ps\"'' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias noda='ssh root@$IP_ADDR "speedtest"'' /etc/bash.bashrc
-source /etc/bash.bashrc -i
+sudo sed -i '/# If not running interactively/i alias noda="ssh root@'$IP_ADDR'"' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodacheck="ssh root@'$IP_ADDR' "/root/check.sh""' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodarerun="ssh root@'$IP_ADDR' "/root/rerun.sh""' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodadocker="ssh root@'$IP_ADDR' "'docker ps'""' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodaspeed="ssh root@'$IP_ADDR' "speedtest""' /etc/bash.bashrc
+exec bash
 cat >/root/checkvm.sh <<EOF
 
 #!/bin/bash
@@ -181,6 +182,7 @@ users:
     lock-passwd: false
     ssh-authorized-keys:
       - $ssh_key
+      - $ssh_userkey
 ssh_pwauth: true
 disable_root: false
 chpasswd:
