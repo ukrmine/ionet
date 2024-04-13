@@ -55,10 +55,10 @@ select_cpu_type() {
 
 # Function to select other variables
 select_variables() {
+    read -p "Enter your Docker Command (default: $launch): " launch_input
+    launch="${launch_input:-$launch}"
     read -p "Enter virtual host name (default: $vmhost): " vmhost_input
     vmhost="${vmhost_input:-$vmhost}"
-    read -p "Enter your Docker Command (default: $launch): " launch_input
-    launch="${launch_input:-$launch}" 
 }
 
 select_cpu_type
@@ -91,16 +91,7 @@ qemu-img create -F qcow2 -b $basedir/$image -f qcow2 $vmdir/$vmname.qcow2 $ssd
 if [[ -z "virsh net-list --all | grep "default\s*active"" ]]; then
     echo "Network 'default' is not active. Starting the network..."
     virsh net-start default
-else
-    echo "Network 'default' is active."
 fi
-sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
-ssh_key=$(cat /root/.ssh/id_rsa.pub)
-echo "alias noda='ssh root@$IP_ADDR'" >> /root/.bashrc
-echo "alias nodacheck='ssh root@$IP_ADDR '/root/check.sh''" >> /root/.bashrc
-echo "alias nodadocker='ssh root@$IP_ADDR \"docker ps\"'" >> /root/.bashrc
-echo "alias nodaspeed='ssh root@$IP_ADDR "speedtest"'" >> /root/.bashrc
-. /root/.bashrc
 
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
@@ -122,6 +113,57 @@ ethernets:
 version: 2
 EOF
 
+cat >/root/checkvm.sh <<EOF
+#!/bin/bash
+vmname=$vmname
+vm_status=\$(sudo virsh list --state-running --name | grep $vmname)
+if [ -n "\$vm_status" ]; then
+    echo "$vmname run and working."
+else
+    echo "Have no running $vmname"
+    virsh start \$vmname
+fi
+EOF
+
+chmod +x /root/checkvm.sh
+
+crontab<<EOF
+*/5 * * * * /root/checkvm.sh
+EOF
+
+if [ ! -d "/root/.ssh" ]; then
+    mkdir -p /root/.ssh
+    chmod 700 /root/.ssh
+fi
+
+if [ ! -f "/root/.ssh/id_rsa" ]; then
+    sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
+fi
+
+ssh_rootkey=$(cat /root/.ssh/id_rsa.pub)
+active_users=$(users)
+
+for user in $active_users; do
+    if [ "$user" != "root" ]; then
+        home_dir=$(getent passwd $user | cut -d: -f6)
+        ssh_dir="$home_dir/.ssh"
+        
+        if [ ! -d "$ssh_dir" ]; then
+            mkdir -p $ssh_dir
+            chmod 700 $ssh_dir
+            chown $user:$user $ssh_dir
+        fi
+
+    	if [ ! -f "$ssh_dir/id_rsa" ]; then
+            sudo -u $user ssh-keygen -t rsa -b 2048 -f "$ssh_dir/id_rsa" -N ""
+            chown $user:$user $ssh_dir/id_rsa*
+            chmod 600 $ssh_dir/id_rsa*
+            ssh_userkey=$(cat /home/$active_users/.ssh/id_rsa.pub)
+        fi
+    fi
+done
+
+echo "user data"
 cat >$vmdir/user-data <<EOF 
 #cloud-config
 hostname: $vmhost
@@ -131,7 +173,8 @@ users:
     shell: /bin/bash
     lock-passwd: false
     ssh-authorized-keys:
-      - $ssh_key
+      - $ssh_rootkey
+      - $ssh_userkey
 ssh_pwauth: true
 disable_root: false
 chpasswd:
@@ -148,18 +191,20 @@ write_files:
       sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
       curl -L -o /root/ionet-setup.sh https://github.com/ionet-official/io-net-official-setup-script/raw/main/ionet-setup.sh
       curl -L -o /root/launch_binary_linux https://github.com/ionet-official/io_launch_binaries/raw/main/launch_binary_linux
+      curl -L -o /root/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh
       curl -L -o /root/rerun.sh https://github.com/ukrmine/ionet/raw/main/rerun.sh
+      sed -i "s|launch_string=.*|launch_string=\"$launch\"|" /root/check.sh
       sed -i "s|launch_string=.*|launch_string=\"$launch\"|" /root/rerun.sh
-      chmod +x /root/launch_binary_linux
+      chmod +x /root/launch_binary_linux && chmod +x /root/check.sh
       chmod +x /root/ionet-setup.sh && /root/ionet-setup.sh
       chmod +x /root/rerun.sh && /root/rerun.sh
       curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
       apt install -y speedtest
 runcmd:
   - [ bash, "/root/script.sh" ]
-  - [ bash, "/root/rerun.sh" ]
   - |
     crontab<<EOF
+    */10 * * * * /root/check.sh
     03 03 * * * /root/rerun.sh
     EOF
   - service ssh reload
@@ -174,8 +219,21 @@ virt-install --connect qemu:///system --virt-type kvm --name $vmname --ram $(fre
 
 virsh list
 virsh autostart $vmname
+
+ssh_key=$(cat /root/.ssh/id_rsa.pub)
+sudo sed -i '/# If not running interactively/i alias noda="ssh root@'$IP_ADDR'"' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodacheck="ssh root@'$IP_ADDR' "/root/check.sh""' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodarerun="ssh root@'$IP_ADDR' "/root/rerun.sh""' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodadocker="ssh root@'$IP_ADDR' \"docker ps\""' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodaspeed="ssh root@'$IP_ADDR' "speedtest""' /etc/bash.bashrc
+
+virsh list
+virsh autostart $vmname
 echo "Setup completed."
 
 echo "Login to VM enter - "noda""
 echo "Check Docker containers - "nodadocker""
 echo "Check Connectivity Tier - "nodaspeed""
+echo "Check worker - "nodacheck""
+echo "Rerun worker - "nodarerun""
+exec bash
