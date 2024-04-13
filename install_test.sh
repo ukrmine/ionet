@@ -137,7 +137,7 @@ for user in $active_users; do
         fi
 
     	if [ ! -f "$ssh_dir/id_rsa" ]; then
-            sudo -u $user ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
+            sudo -u $user ssh-keygen -t rsa -b 2048 -f "$ssh_dir/id_rsa" -N ""
             chown $user:$user $ssh_dir/id_rsa*
             chmod 600 $ssh_dir/id_rsa*
         fi
