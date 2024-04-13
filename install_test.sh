@@ -55,10 +55,10 @@ select_cpu_type() {
 
 # Function to select other variables
 select_variables() {
+    read -p "Enter your Docker Command (default: $launch): " launch_input
+    launch="${launch_input:-$launch}"
     read -p "Enter virtual host name (default: $vmhost): " vmhost_input
     vmhost="${vmhost_input:-$vmhost}"
-    read -p "Enter your Docker Command (default: $launch): " launch_input
-    launch="${launch_input:-$launch}" 
 }
 
 select_cpu_type
