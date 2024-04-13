@@ -112,9 +112,8 @@ ethernets:
         set-name: $INTERFACE
 version: 2
 EOF
-echo "start ssh configure"
+
 if [ ! -d "/root/.ssh" ]; then
-    echo "Create dir for ssh in root folder"
     mkdir -p /root/.ssh
     chmod 700 /root/.ssh
 fi
@@ -123,6 +122,7 @@ if [ ! -f "/root/.ssh/id_rsa" ]; then
     sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
 fi
 
+ssh_rootkey=$(cat /root/.ssh/id_rsa.pub)
 active_users=$(users)
 
 for user in $active_users; do
@@ -140,10 +140,12 @@ for user in $active_users; do
             sudo -u $user ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
             chown $user:$user $ssh_dir/id_rsa*
             chmod 600 $ssh_dir/id_rsa*
+            ssh_userkey=$(cat $ssh_dir/id_rsa.pub)
         fi
-        ssh_userkey=$(cat $ssh_dir/id_rsa.pub)
     fi
 done
+
+
 
 echo "user data"
 cat >$vmdir/user-data <<EOF 
@@ -155,7 +157,7 @@ users:
     shell: /bin/bash
     lock-passwd: false
     ssh-authorized-keys:
-      - $ssh_key
+      - $ssh_rootkey
       - $ssh_userkey
 ssh_pwauth: true
 disable_root: false
