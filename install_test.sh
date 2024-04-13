@@ -91,66 +91,7 @@ qemu-img create -F qcow2 -b $basedir/$image -f qcow2 $vmdir/$vmname.qcow2 $ssd
 if [[ -z "virsh net-list --all | grep "default\s*active"" ]]; then
     echo "Network 'default' is not active. Starting the network..."
     virsh net-start default
-else
-    echo "Network 'default' is active."
 fi
-
-if [ ! -d "/root/.ssh" ]; then
-    echo "Create dir for ssh in root folder"
-    mkdir -p /root/.ssh
-    chmod 700 /root/.ssh
-fi
-
-if [ ! -f "/root/.ssh/id_rsa" ]; then
-    sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
-fi
-
-active_users=$(users)
-
-for user in $active_users; do
-    if [ "$user" != "root" ]; then
-        home_dir=$(getent passwd $user | cut -d: -f6)
-        ssh_dir="$home_dir/.ssh"
-        
-        if [ ! -d "$ssh_dir" ]; then
-            mkdir -p $ssh_dir
-            chmod 700 $ssh_dir
-            chown $user:$user $ssh_dir
-        fi
-
-    	if [ ! -f "$ssh_dir/id_rsa" ]; then
-            sudo -u $user ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
-            chown $user:$user $ssh_dir/id_rsa*
-            chmod 600 $ssh_dir/id_rsa*
-        fi
-        ssh_userkey=$(cat $ssh_dir/id_rsa.pub)
-    fi
-done
-
-ssh_key=$(cat /root/.ssh/id_rsa.pub)
-sudo sed -i '/# If not running interactively/i alias noda="ssh root@'$IP_ADDR'"' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias nodacheck="ssh root@'$IP_ADDR' "/root/check.sh""' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias nodarerun="ssh root@'$IP_ADDR' "/root/rerun.sh""' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias nodadocker="ssh root@'$IP_ADDR' '"docker ps"'"' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias nodaspeed="ssh root@'$IP_ADDR' "speedtest""' /etc/bash.bashrc
-
-cat >/root/checkvm.sh <<EOF
-#!/bin/bash
-vmname=$vmname
-vm_status=\$(sudo virsh list --state-running --name | grep $vmname)
-if [ -n "\$vm_status" ]; then
-    echo "$vmname run and working."
-else
-    echo "Have no running $vmname"
-    virsh start \$vmname
-fi
-EOF
-
-chmod +x /root/checkvm.sh
-
-crontab<<EOF
-*/5 * * * * /root/checkvm.sh
-EOF
 
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
@@ -224,6 +165,63 @@ cloud-localds -v --network-config=$vmdir/network-config $vmdir/$vmname-seed.qcow
 
 echo "Creating and starting virtual machine..."
 virt-install --connect qemu:///system --virt-type kvm --name $vmname --ram $(free -m | awk '/^Mem/ {print int($2 * 0.9)}')  --vcpus=$(egrep -c '(vmx|svm)' /proc/cpuinfo) --os-type linux --os-variant ubuntu20.04 --disk path=$vmdir/$vmname.qcow2,device=disk --disk path=$vmdir/$vmname-seed.qcow2,device=disk --import --network network=default,model=virtio,mac=$MAC_ADDR --noautoconsole --cpu $cpu_type
+
+cat >/root/checkvm.sh <<EOF
+#!/bin/bash
+vmname=$vmname
+vm_status=\$(sudo virsh list --state-running --name | grep $vmname)
+if [ -n "\$vm_status" ]; then
+    echo "$vmname run and working."
+else
+    echo "Have no running $vmname"
+    virsh start \$vmname
+fi
+EOF
+
+chmod +x /root/checkvm.sh
+
+crontab<<EOF
+*/5 * * * * /root/checkvm.sh
+EOF
+
+if [ ! -d "/root/.ssh" ]; then
+    echo "Create dir for ssh in root folder"
+    mkdir -p /root/.ssh
+    chmod 700 /root/.ssh
+fi
+
+if [ ! -f "/root/.ssh/id_rsa" ]; then
+    sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
+fi
+
+active_users=$(users)
+
+for user in $active_users; do
+    if [ "$user" != "root" ]; then
+        home_dir=$(getent passwd $user | cut -d: -f6)
+        ssh_dir="$home_dir/.ssh"
+        
+        if [ ! -d "$ssh_dir" ]; then
+            mkdir -p $ssh_dir
+            chmod 700 $ssh_dir
+            chown $user:$user $ssh_dir
+        fi
+
+    	if [ ! -f "$ssh_dir/id_rsa" ]; then
+            sudo -u $user ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
+            chown $user:$user $ssh_dir/id_rsa*
+            chmod 600 $ssh_dir/id_rsa*
+        fi
+        ssh_userkey=$(cat $ssh_dir/id_rsa.pub)
+    fi
+done
+
+ssh_key=$(cat /root/.ssh/id_rsa.pub)
+sudo sed -i '/# If not running interactively/i alias noda="ssh root@'$IP_ADDR'"' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodacheck="ssh root@'$IP_ADDR' "/root/check.sh""' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodarerun="ssh root@'$IP_ADDR' "/root/rerun.sh""' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodadocker="ssh root@'$IP_ADDR' '"docker ps"'"' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodaspeed="ssh root@'$IP_ADDR' "speedtest""' /etc/bash.bashrc
 
 virsh list
 virsh autostart $vmname
