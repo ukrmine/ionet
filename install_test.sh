@@ -158,11 +158,10 @@ for user in $active_users; do
             sudo -u $user ssh-keygen -t rsa -b 2048 -f "$ssh_dir/id_rsa" -N ""
             chown $user:$user $ssh_dir/id_rsa*
             chmod 600 $ssh_dir/id_rsa*
+            ssh_userkey=$(cat /home/$active_users/.ssh/id_rsa.pub)
         fi
     fi
 done
-
-#ssh_userkey=$(cat /home/$active_users/.ssh/id_rsa.pub)
 
 echo "user data"
 cat >$vmdir/user-data <<EOF 
@@ -175,6 +174,7 @@ users:
     lock-passwd: false
     ssh-authorized-keys:
       - $ssh_rootkey
+      - $ssh_userkey
 ssh_pwauth: true
 disable_root: false
 chpasswd:
