@@ -224,11 +224,9 @@ ssh_key=$(cat /root/.ssh/id_rsa.pub)
 sudo sed -i '/# If not running interactively/i alias noda="ssh root@'$IP_ADDR'"' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias nodacheck="ssh root@'$IP_ADDR' "/root/check.sh""' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias nodarerun="ssh root@'$IP_ADDR' "/root/rerun.sh""' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias nodadocker="ssh root@'$IP_ADDR' \"docker ps\""' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodadocker="ssh root@'$IP_ADDR' '"docker ps"'"' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias nodaspeed="ssh root@'$IP_ADDR' "speedtest""' /etc/bash.bashrc
 
-virsh list
-virsh autostart $vmname
 echo "Setup completed."
 
 echo "Login to VM enter - "noda""
