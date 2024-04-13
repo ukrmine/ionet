@@ -24,7 +24,7 @@ cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o inst
 
 You can change (CPU type, Hostname, Login, Password, Home directory, Disk size, IP address), or leave default setings
 
-![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/install1.png)
+![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/install.png)
     
 4. 
 5. Login to created VM put just command "noda" if you want to exit put "exit"
@@ -32,7 +32,6 @@ You can change (CPU type, Hostname, Login, Password, Home directory, Disk size, 
 6. Than install yours worker on VM
 
 To be continued !!!
-
 
 
 
