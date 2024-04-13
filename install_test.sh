@@ -118,9 +118,11 @@ for user in $active_users; do
             chown $user:$user $ssh_dir
         fi
 
-    	cp /root/.ssh/id_rsa* $ssh_dir/
-        chown $user:$user $ssh_dir/id_rsa*
-        chmod 600 $ssh_dir/id_rsa*
+    	if [ ! -f "$ssh_dir/id_rsa" ]; then
+            cp /root/.ssh/id_rsa* $ssh_dir/
+            chown $user:$user $ssh_dir/id_rsa*
+            chmod 600 $ssh_dir/id_rsa*
+        fi
     fi
 done
 
