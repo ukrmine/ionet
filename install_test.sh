@@ -112,7 +112,40 @@ ethernets:
         set-name: $INTERFACE
 version: 2
 EOF
+echo "start ssh configure"
+if [ ! -d "/root/.ssh" ]; then
+    echo "Create dir for ssh in root folder"
+    mkdir -p /root/.ssh
+    chmod 700 /root/.ssh
+fi
 
+if [ ! -f "/root/.ssh/id_rsa" ]; then
+    sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
+fi
+
+active_users=$(users)
+
+for user in $active_users; do
+    if [ "$user" != "root" ]; then
+        home_dir=$(getent passwd $user | cut -d: -f6)
+        ssh_dir="$home_dir/.ssh"
+        
+        if [ ! -d "$ssh_dir" ]; then
+            mkdir -p $ssh_dir
+            chmod 700 $ssh_dir
+            chown $user:$user $ssh_dir
+        fi
+
+    	if [ ! -f "$ssh_dir/id_rsa" ]; then
+            sudo -u $user ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
+            chown $user:$user $ssh_dir/id_rsa*
+            chmod 600 $ssh_dir/id_rsa*
+        fi
+        ssh_userkey=$(cat $ssh_dir/id_rsa.pub)
+    fi
+done
+
+echo "user data"
 cat >$vmdir/user-data <<EOF 
 #cloud-config
 hostname: $vmhost
@@ -190,38 +223,6 @@ sudo sed -i '/# If not running interactively/i alias nodacheck="ssh root@'$IP_AD
 sudo sed -i '/# If not running interactively/i alias nodarerun="ssh root@'$IP_ADDR' "/root/rerun.sh""' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias nodadocker="ssh root@'$IP_ADDR' '"docker ps"'"' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias nodaspeed="ssh root@'$IP_ADDR' "speedtest""' /etc/bash.bashrc
-
-if [ ! -d "/root/.ssh" ]; then
-    echo "Create dir for ssh in root folder"
-    mkdir -p /root/.ssh
-    chmod 700 /root/.ssh
-fi
-
-if [ ! -f "/root/.ssh/id_rsa" ]; then
-    sudo -u root ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
-fi
-
-active_users=$(users)
-
-for user in $active_users; do
-    if [ "$user" != "root" ]; then
-        home_dir=$(getent passwd $user | cut -d: -f6)
-        ssh_dir="$home_dir/.ssh"
-        
-        if [ ! -d "$ssh_dir" ]; then
-            mkdir -p $ssh_dir
-            chmod 700 $ssh_dir
-            chown $user:$user $ssh_dir
-        fi
-
-    	if [ ! -f "$ssh_dir/id_rsa" ]; then
-            sudo -u $user ssh-keygen -t rsa -b 2048 -f "/root/.ssh/id_rsa" -N ""
-            chown $user:$user $ssh_dir/id_rsa*
-            chmod 600 $ssh_dir/id_rsa*
-        fi
-        ssh_userkey=$(cat $ssh_dir/id_rsa.pub)
-    fi
-done
 
 virsh list
 virsh autostart $vmname
