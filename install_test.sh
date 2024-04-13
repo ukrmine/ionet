@@ -113,6 +113,24 @@ ethernets:
 version: 2
 EOF
 
+cat >/root/checkvm.sh <<EOF
+#!/bin/bash
+vmname=$vmname
+vm_status=\$(sudo virsh list --state-running --name | grep $vmname)
+if [ -n "\$vm_status" ]; then
+    echo "$vmname run and working."
+else
+    echo "Have no running $vmname"
+    virsh start \$vmname
+fi
+EOF
+
+chmod +x /root/checkvm.sh
+
+crontab<<EOF
+*/5 * * * * /root/checkvm.sh
+EOF
+
 if [ ! -d "/root/.ssh" ]; then
     mkdir -p /root/.ssh
     chmod 700 /root/.ssh
@@ -144,7 +162,7 @@ for user in $active_users; do
     fi
 done
 
-ssh_userkey=$(cat /home/$active_users/.ssh/id_rsa.pub)
+#ssh_userkey=$(cat /home/$active_users/.ssh/id_rsa.pub)
 
 echo "user data"
 cat >$vmdir/user-data <<EOF 
@@ -157,7 +175,6 @@ users:
     lock-passwd: false
     ssh-authorized-keys:
       - $ssh_rootkey
-      - $ssh_userkey
 ssh_pwauth: true
 disable_root: false
 chpasswd:
@@ -200,29 +217,11 @@ cloud-localds -v --network-config=$vmdir/network-config $vmdir/$vmname-seed.qcow
 echo "Creating and starting virtual machine..."
 virt-install --connect qemu:///system --virt-type kvm --name $vmname --ram $(free -m | awk '/^Mem/ {print int($2 * 0.9)}')  --vcpus=$(egrep -c '(vmx|svm)' /proc/cpuinfo) --os-type linux --os-variant ubuntu20.04 --disk path=$vmdir/$vmname.qcow2,device=disk --disk path=$vmdir/$vmname-seed.qcow2,device=disk --import --network network=default,model=virtio,mac=$MAC_ADDR --noautoconsole --cpu $cpu_type
 
-cat >/root/checkvm.sh <<EOF
-#!/bin/bash
-vmname=$vmname
-vm_status=\$(sudo virsh list --state-running --name | grep $vmname)
-if [ -n "\$vm_status" ]; then
-    echo "$vmname run and working."
-else
-    echo "Have no running $vmname"
-    virsh start \$vmname
-fi
-EOF
-
-chmod +x /root/checkvm.sh
-
-crontab<<EOF
-*/5 * * * * /root/checkvm.sh
-EOF
-
 ssh_key=$(cat /root/.ssh/id_rsa.pub)
 sudo sed -i '/# If not running interactively/i alias noda="ssh root@'$IP_ADDR'"' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias nodacheck="ssh root@'$IP_ADDR' "/root/check.sh""' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias nodarerun="ssh root@'$IP_ADDR' "/root/rerun.sh""' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias nodadocker="ssh root@'$IP_ADDR' '""docker ps""'"' /etc/bash.bashrc
+sudo sed -i '/# If not running interactively/i alias nodadocker="ssh root@'$IP_ADDR' '"docker ps"'"' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias nodaspeed="ssh root@'$IP_ADDR' "speedtest""' /etc/bash.bashrc
 
 virsh list
