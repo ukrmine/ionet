@@ -22,7 +22,7 @@ cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o inst
 ```
 <!--endsec-->
 
-You can change (CPU type, Hostname, Login, Password, Home directory, Disk size, IP address), or leave default setings
+Please choose Hosting or CPU type, put your Docker Command, VM Hostname
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/install.png)
     
