@@ -1,9 +1,6 @@
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/mAa0QmH3Nl9IyKqDAZzvuFNZhE0.webp)
 
-# Scripts for IO.NET worker install
-## based on Linux Ubuntu 20.04 or Mac OS
-
-Install CPU node for io.net. 
+# Scripts for IO.NET worker install based on Linux Ubuntu 20.04 or Mac OS
 
 ## Preparation on site https://cloud.io.net/worker/devices/
 
