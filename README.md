@@ -1,6 +1,6 @@
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/mAa0QmH3Nl9IyKqDAZzvuFNZhE0.webp)
 
-# Scripts for IO.NET worker install, which based on Linux Ubuntu 20.04 or Mac OS
+# Scripts for IO.NET worker install
 
 ## Preparation on site https://cloud.io.net/worker/devices/
 
@@ -12,7 +12,7 @@
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure_worker.png)
 
-## Install worker on Linux server
+## Install worker on Linux Ubuntu 20.04 server
 
 2.1 Change user to root
 
