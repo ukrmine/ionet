@@ -40,6 +40,8 @@ cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o inst
 Wait about 10-20 min.
 All is done, worker was installed and configured
 
+-------------------
+
 ## -- Stopping and Remove Docker containers, Uninstall Docker and NVIDIA --
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
