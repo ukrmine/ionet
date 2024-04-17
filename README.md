@@ -35,7 +35,7 @@ cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o inst
 
 2.3 Please choose 
 1. Hosting or CPU type 
-2. Put your Docker Command, Paste the line your Docker Command that you copied earlier in paragraph 1.2
+2. Paste the line your Docker Command that you copied earlier in paragraph 1.2
 3. Input VM name
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/install.png)
