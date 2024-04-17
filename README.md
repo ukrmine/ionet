@@ -41,7 +41,7 @@ Please choose Hosting or CPU type, put your Docker Command, VM Hostname
 Wait about 10 min.
 All is done, worker was installed and configured
 
-# Stopping and Remove Docker containers, Uninstall Docker and NVIDIA
+## Stopping and Remove Docker containers, Uninstall Docker and NVIDIA
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
 curl -L https://github.com/ukrmine/ionet/raw/main/reset_drivers_and_docker.sh -o reset_drivers_and_docker.sh && chmod +x reset_drivers_and_docker.sh && ./reset_drivers_and_docker.sh
