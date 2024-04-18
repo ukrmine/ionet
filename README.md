@@ -41,7 +41,7 @@ Wait about 10-20 min.
 All is done, worker was installed and configured
 
 ## io.net worker guide, created by @zorn
-![Video alt](https://www.youtube.com/watch?v=Cs1ToGG2plQ)
+![Image alt](https://www.youtube.com/watch?v=Cs1ToGG2plQ)
 
 -------------------
 
