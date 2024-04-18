@@ -40,8 +40,8 @@ cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o inst
 Wait about 10-20 min.
 All is done, worker was installed and configured
 
-title: io.net worker guide, created by @zorn
-product_video: 'https://www.youtube.com/watch?v=Cs1ToGG2plQ'
+## io.net worker guide, created by @zorn
+!(https://www.youtube.com/watch?v=Cs1ToGG2plQ)
 
 -------------------
 
