@@ -20,7 +20,7 @@ launch="./launch_binary_linux --device_id=your_device_id --user_id=your_user_id 
 
 # Function to select CPU type
 select_cpu_type() {
-    echo "Select CPU type:"
+    echo "Select hosting where you rent VPS:"
     echo "1. Digital Ocean AMD Premium"
     echo "2. AZURE D2as_v5 or D4as_v5"
     echo "3. AZURE D2s_v5 or D4s_v5"
@@ -85,7 +85,8 @@ sudo usermod -aG kvm $USER
 sudo usermod -aG libvirt $USER
 mkdir -p $basedir $vmdir
 if [ ! -f "$basedir/$image" ]; then
-  wget -P "$basedir" https://cloud-images.ubuntu.com/focal/current/$image
+#  wget -P "$basedir" https://cloud-images.ubuntu.com/focal/current/$image
+  wget -P "$basedir" --content-disposition "https://www.dropbox.com/scl/fi/tqvr9si1u9mrim9vvwxr8/focal-server-cloudimg-amd64.img?rlkey=vv55oux10ifu6txtm7vkc8icn&st=6w8sux74&dl=0"
 fi
 qemu-img create -F qcow2 -b $basedir/$image -f qcow2 $vmdir/$vmname.qcow2 $ssd
 if [[ -z "virsh net-list --all | grep "default\s*active"" ]]; then
@@ -217,19 +218,18 @@ cloud-localds -v --network-config=$vmdir/network-config $vmdir/$vmname-seed.qcow
 echo "Creating and starting virtual machine..."
 virt-install --connect qemu:///system --virt-type kvm --name $vmname --ram $(free -m | awk '/^Mem/ {print int($2 * 0.9)}')  --vcpus=$(egrep -c '(vmx|svm)' /proc/cpuinfo) --os-type linux --os-variant ubuntu20.04 --disk path=$vmdir/$vmname.qcow2,device=disk --disk path=$vmdir/$vmname-seed.qcow2,device=disk --import --network network=default,model=virtio,mac=$MAC_ADDR --noautoconsole --cpu $cpu_type
 
+virsh list
+virsh autostart $vmname
+
 ssh_key=$(cat /root/.ssh/id_rsa.pub)
 sudo sed -i '/# If not running interactively/i alias noda="ssh root@'$IP_ADDR'"' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias nodacheck="ssh root@'$IP_ADDR' "/root/check.sh""' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias nodarerun="ssh root@'$IP_ADDR' "/root/rerun.sh""' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias nodadocker="ssh root@'$IP_ADDR' \"docker ps\""' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias nodaspeed="ssh root@'$IP_ADDR' "speedtest""' /etc/bash.bashrc
 
-virsh list
-virsh autostart $vmname
 echo "Setup completed."
 
 echo "Login to VM enter - "noda""
-echo "Check Docker containers - "nodadocker""
 echo "Check Connectivity Tier - "nodaspeed""
 echo "Check worker - "nodacheck""
 echo "Rerun worker - "nodarerun""
