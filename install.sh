@@ -88,10 +88,7 @@ if [ ! -f "$basedir/$image" ]; then
   wget -P "$basedir" https://cloud-images.ubuntu.com/focal/current/$image
 fi
 qemu-img create -F qcow2 -b $basedir/$image -f qcow2 $vmdir/$vmname.qcow2 $ssd
-if [[ -z "virsh net-list --all | grep "default\s*active"" ]]; then
-    echo "Network 'default' is not active. Starting the network..."
-    virsh net-start default
-fi
+virsh net-start default
 
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
