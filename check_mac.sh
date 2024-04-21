@@ -6,3 +6,4 @@ sed -i 'sh' "s|launch_string=\"Yours Run Docker Command\"|launch_string=\"$new_s
 crontab<<EOF
 */10 * * * * ~/Documents/ionet/check.sh
 EOF
+rm ~/Documents/ionet/check_mac.sh
