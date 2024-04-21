@@ -8,4 +8,5 @@ sed -i '' "s|file_path=\"/root\"|file_path=\"$home_dir\"|" $home_dir/check.sh
 crontab<<EOF
 */10 * * * * $home_dir/check.sh
 EOF
+
 rm $home_dir/check_mac.sh
