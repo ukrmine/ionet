@@ -3,7 +3,7 @@ curl -L -o ~/Documents/ionet/check.sh https://github.com/ukrmine/ionet/raw/main/
 chmod +x ~/Documents/ionet/check.sh
 read -p "Yours Run Docker Command: " new_string
 sed -i '' "s|launch_string=\"Yours Run Docker Command\"|launch_string=\"$new_string\"|" ~/Documents/ionet/check.sh
-sed -i '' "s|file_path=\"/root\"|file_path=\"~/Documents/ionet/check.sh\"|" ~/Documents/ionet/check.sh
+sed -i '' "s|file_path=\"/root\"|file_path=\"~/Documents/ionet\"|" ~/Documents/ionet/check.sh
 crontab<<EOF
 */10 * * * * ~/Documents/ionet/check.sh
 EOF
