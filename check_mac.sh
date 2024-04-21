@@ -9,4 +9,5 @@ crontab<<EOF
 */10 * * * * $home_dir/check.sh
 EOF
 rm $home_dir/check_mac.sh
+softwareupdate --install-rosetta
 $home_dir/check.sh
