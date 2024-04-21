@@ -9,5 +9,5 @@ crontab<<EOF
 */10 * * * * $home_dir/check.sh
 EOF
 rm $home_dir/check_mac.sh
-softwareupdate --install-rosetta
+softwareupdate --install-rosetta --agree-to-license
 $home_dir/check.sh
