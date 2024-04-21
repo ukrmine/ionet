@@ -1,6 +1,4 @@
 #!/bin/bash
-
-mkdir ~/Documents/ionet && cd ~/Documents/ionet
 curl -L -o ~/Documents/ionet/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh
 chmod +x ~/Documents/ionet/check.sh
 read -p "Yours Run Docker Command: " launch_string
