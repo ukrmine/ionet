@@ -41,8 +41,11 @@ Wait about 10-20 min.
 All is done, worker was installed and configured
 
 ## io.net worker guides
+
 https://medium.com/@bitcoin_50400/how-instaling-io-net-cpu-worker-e6b528f73270
+
 https://medium.com/@bitcoin_50400/io-net-worker-on-google-cloud-7ce24c5b7797
+
 https://www.youtube.com/watch?v=Cs1ToGG2plQ
 
 -------------------
