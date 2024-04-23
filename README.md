@@ -12,7 +12,7 @@
 - [MacOS EN](DOCS/Install_mac_EN.md)
 - [MacOS UA](DOCS/Install_mac_UA.md)
 
-## Script for checking the status of a worker <a href="curl -L -o /root/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh" target="_blank">check.sh</a>
+## Script for checking the status of a worker <a href="https://github.com/ukrmine/ionet/raw/main/check.sh" target="_blank">check.sh</a>
 
 ## Script to restart the worker rerun.sh
   
