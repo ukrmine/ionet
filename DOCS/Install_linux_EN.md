@@ -1,4 +1,4 @@
-# :checkered_flag: Scripts for IO.NET worker install
+# :checkered_flag: Install worker for IO.NET (QEMU Virtual CPU version 2.5+)
 
 ## 1. Preparation on site <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
