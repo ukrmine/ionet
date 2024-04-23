@@ -2,11 +2,14 @@
 
 ## Linux
 
-To list all Virtual Machines (VM):
+To list all Virtual Machines (VM), (where "ionet" name of your Virtual Machine):
+
 ```Bash
 virsh list --all
 ```
-States of VM: running, paused, shutoff, 
+States of VM: running, paused, shutoff
+
+You can Start, Reboot or Shutdown VM
 ```Bash
 virsh start ionet
 virsh reboot ionet
