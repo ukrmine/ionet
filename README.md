@@ -31,7 +31,7 @@
     - 6.2 Run the command to launch binary
       * `Skip this step`
     - 6.3 Run the command to connect device
-      * `./launch_binary_linux --device_id= --user_id= --operating_system="Linux" --usegpus=false --device_name=`
+      * `Copy this string`
 
 </details>
 
