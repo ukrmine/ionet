@@ -69,3 +69,11 @@ cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o inst
 Чекайте біля 10-20 хв.
 Все готово, воркер встановлено та налаштовано
 
+## Гайди
+
+<a href="https://www.youtube.com/watch?v=Cs1ToGG2plQ" target="_blank">YouTube</a>
+
+<a href="https://medium.com/@bitcoin_50400/how-instaling-io-net-cpu-worker-e6b528f73270" target="_blank">Medium CPU Worker</a>
+
+<a href="https://medium.com/@bitcoin_50400/io-net-worker-on-google-cloud-7ce24c5b7797" target="_blank">Medium CPU Worker на Google Cloud</a>
+
