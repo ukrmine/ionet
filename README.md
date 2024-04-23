@@ -8,13 +8,6 @@
 - [Linux UA](DOCS/Install_linux_UA.md)
 
 
--------------------
-
-## -- Stopping and Remove Docker containers, Uninstall Docker and NVIDIA --
-```Bash
-curl -L https://github.com/ukrmine/ionet/raw/main/reset_drivers_and_docker.sh -o reset_drivers_and_docker.sh && chmod +x reset_drivers_and_docker.sh && ./reset_drivers_and_docker.sh
-```
-
   
   Made with :heart: by <a href="https://github.com/ukrmine" target="_blank">Ukrmine</a>
 
