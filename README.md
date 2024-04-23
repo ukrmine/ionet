@@ -14,7 +14,7 @@
 
 ## Script for checking the status of a worker <a href="https://github.com/ukrmine/ionet/raw/main/check.sh" target="_blank">check.sh</a>
 
-## Script to restart the worker rerun.sh
+## Script to restart the worker <a href="https://github.com/ukrmine/ionet/raw/main/rerun.sh" target="_blank">rerun.sh</a>
   
   Made with :heart: by <a href="https://github.com/ukrmine" target="_blank">Ukrmine</a>
 
