@@ -7,10 +7,26 @@ else
 fi
 home_dir="$HOME/Documents/ionet"
 cd $home_dir
-curl -L -o $home_dir/Docker.dmg https://desktop.docker.com/mac/main/arm64/145265/Docker.dmg
-sudo hdiutil attach Docker.dmg
-sudo /Volumes/Docker/Docker.app/Contents/MacOS/install --accept-license
-sudo hdiutil detach /Volumes/Docker
+
+if ! command -v docker &> /dev/null; then
+    echo "Docker is not installed. Install it via Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    brew install --cask docker
+    brew install docker docker-compose colima
+    colima start
+    unset DOCKER_HOST
+    unset DOCKER_CERT_PATH
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo "Docker is successfully installed."
+else
+    echo "Docker is already installed."
+fi
+#curl -L -o $home_dir/Docker.dmg https://desktop.docker.com/mac/main/arm64/145265/Docker.dmg
+#sudo hdiutil attach Docker.dmg
+#sudo /Volumes/Docker/Docker.app/Contents/MacOS/install --accept-license
+#sudo hdiutil detach /Volumes/Docker
 curl -L -o $home_dir/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh
 chmod +x $home_dir/check.sh
 read -p "Yours Run Docker Command: " new_string
