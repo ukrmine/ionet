@@ -36,16 +36,15 @@
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure_worker.png)
 
 ## 2. Install worker on Linux Ubuntu 20.04 server
-
-2.1 Change user to root
+2.1 Copy and paste in terminal
 ```Bash
+# Change user to root
 sudo -s
-```
 
-2.2 Download script and execute script to create VM for ionet worker depolyment
-```Bash
+# Download script and execute script to create VM for ionet worker depolyment
 cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o install.sh && chmod +x install.sh && ./install.sh
 ```
+
 <details>
 <summary> 2.3 Please choose </summary>
 
