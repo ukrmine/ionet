@@ -1,6 +1,11 @@
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/mAa0QmH3Nl9IyKqDAZzvuFNZhE0.webp)
 
-# :checkered_flag: Scripts for IO.NET worker install
+# :checkered_flag: Scripts for IO.NET 
+
+## Install worker based on "QEMU Virtual CPU version 2.5+"
+
+- [DOCS/Install_linux_EN](DOCS/Install_linux_EN.md)
+- [DOCS/Install_linux_UA](DOCS/Install_linux_UA.md)
 
 ## 1. Preparation on site <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
@@ -112,6 +117,7 @@ crontab -l | grep -v 'check.sh' | crontab -
     [DOCS/Install_linux_EN](DOCS/Install_linux_EN.md)
     [DOCS/Install_linux_UA](DOCS/Install_linux_UA.md)
     - [src/README.md](src/README.md)
+  [DOCS/Install_linux_UA](DOCS/Install_linux_UA.md)
   
   Made with :heart: by <a href="https://github.com/ukrmine" target="_blank">Ukrmine</a>
 
