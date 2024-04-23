@@ -12,6 +12,9 @@
 - [MacOS EN](DOCS/Install_mac_EN.md)
 - [MacOS UA](DOCS/Install_mac_UA.md)
 
+## Script for checking the status of a worker check.sh
+
+## Script to restart the worker rerun.sh
   
   Made with :heart: by <a href="https://github.com/ukrmine" target="_blank">Ukrmine</a>
 
