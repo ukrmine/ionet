@@ -10,7 +10,7 @@
 ## Install worker on Mac "Apple M* CPUs"
 
 - [MacOS EN](DOCS/Install_mac_EN.md)
-- [MacOS EN](DOCS/Install_mac_EN.md)
+- [MacOS UA](DOCS/Install_mac_UA.md)
 
   
   Made with :heart: by <a href="https://github.com/ukrmine" target="_blank">Ukrmine</a>
