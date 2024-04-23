@@ -18,12 +18,9 @@
 ## Install worker on Linux Ubuntu 20.04 server
 
 2.1 Change user to root
-
-<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
-```
+```Bash
 sudo -s
 ```
-<!--endsec-->
 
 2.2 Download script and execute script to create VM for ionet worker depolyment
 
