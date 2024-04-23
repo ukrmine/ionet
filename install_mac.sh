@@ -1,4 +1,10 @@
 #!/bin/bash
+macos_ver=$(sw_vers -productVersion)
+if [[ "$macos_ver" > "14.0" ]]; then
+    echo "Your system is Sonoma $macos_ver"
+else
+    echo "It is recommended to update your Mac to the latest version of Sonoma"
+fi
 home_dir="$HOME/Documents/ionet"
 cd $home_dir
 curl -L -o $home_dir/Docker.dmg https://desktop.docker.com/mac/main/arm64/145265/Docker.dmg
