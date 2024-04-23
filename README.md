@@ -2,7 +2,7 @@
 
 # Scripts for IO.NET worker install
 
-## Preparation on site <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
+## 1. Preparation on site <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
 1.1 Create new worker
 
