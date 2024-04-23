@@ -8,12 +8,16 @@
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Create_new_worker.png)
 
-### 1.2 Configure new worker
+1.2 Configure new worker
+    1.
+    1.
+    1.
+
     1.2.1. Linux
     1.2.1.
     1.
     1.
-
+    
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure_worker.png)
 
 ## Install worker on Linux Ubuntu 20.04 server
