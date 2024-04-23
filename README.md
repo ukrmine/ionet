@@ -49,10 +49,18 @@ sudo -s
 cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o install.sh && chmod +x install.sh && ./install.sh
 ```
 <details>
+   
 <summary>2.3 Please choose</summary>
-   1. Hosting or CPU type 
-   2. Paste the line your Docker Command that you copied earlier in paragraph 1.2
-   3. Input VM name
+1. Hosting or CPU type
+    * ``
+    * ``
+    * ``
+    * ``
+2. Paste the line your Docker Command that you copied earlier in paragraph 6.3
+    * `./launch_binary_linux --device_id=f42ee2d8-1ae3-445e-9a63-f3eb5b75ab5a --user_id=11694796-9a22-4a58-9766-09573c0d9df9 --operating_system="Linux" --usegpus=false --device_name=dsds`
+3. Name your device
+    * `Worker01`
+
 <details>
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/install.png)
