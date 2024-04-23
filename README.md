@@ -18,8 +18,18 @@
     * `Worker01`
 4. Device Type
     * `CPU Worker`
-6. Start the containers using binary
-    * `Run the command to connect device`   
+5.Prerequisites for Linux
+   5.1 Download the setup script
+      * `Skip this step`
+   5.2 Run the script
+      * `Skip this step`
+6. Start the containers using binary   
+   6.1 Run the command to download binary
+      * `Skip this step`
+   6.2 Run the command to launch binary
+      * `Skip this step`
+   6.3 Run the command to connect device
+      * `./launch_binary_linux --device_id= --user_id= --operating_system="Linux" --usegpus=false --device_name=`
     
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure_worker.png)
 
