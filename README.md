@@ -1,6 +1,6 @@
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/mAa0QmH3Nl9IyKqDAZzvuFNZhE0.webp)
 
-# Scripts for IO.NET worker install
+# :checkered_flag: Scripts for IO.NET worker install
 
 ## 1. Preparation on site <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
