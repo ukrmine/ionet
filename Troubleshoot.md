@@ -2,14 +2,16 @@
 
 ## Linux
 
-virsh reboot ionet	
-virsh start ionet	
-To list all currently-running Virtual Machines:
-<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
-```
+To list all Virtual Machines (VM):
+```Bash
 virsh list --all
 ```
-<!--endsec-->
+States of VM: running, paused, shutoff, 
+```Bash
+virsh start ionet
+virsh reboot ionet
+virsh shutdown ionet
+```
 Delete KVM from your server, where "ionet" name of your Virtual Machine
 ```Bash
 virsh destroy ionet && virsh undefine ionet --remove-all-storage && systemctl restart libvirtd
