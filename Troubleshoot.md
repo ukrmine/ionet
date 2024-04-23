@@ -20,8 +20,14 @@ virsh destroy ionet && virsh undefine ionet --remove-all-storage && systemctl re
 
 
 ### Commands for KVM Libvirt (where "ionet" name of your Virtual Machine)
-Set the 'autostart' flag so the VM is started upon boot: virsh autostart ionet	
-Open console a Domain: virsh console ionet	
+- `virsh autostart ionet`: The VM is started upon boot;
+- `virsh console ionet`: Open console a VM;
+- `start`: starts the application in production mode at localhost:3000 (make sure to run the build first);
+- `test`: runs the tests;
+- `lint`: runs eslint in the /src directory.
+
+: 	
+: 	
 To display info on a specific domain: virsh dominfo ionet
 To start a VM: virsh start ionet	
 To shutdown VM: virsh shutdown ionet	
