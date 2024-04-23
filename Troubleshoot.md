@@ -24,7 +24,7 @@ virsh destroy ionet && virsh undefine ionet --remove-all-storage && systemctl re
 ```
 
 <details>
-  <summary>## Commands for KVM Libvirt (where "ionet" name of your Virtual Machine)</summary>
+  <summary>Commands for KVM Libvirt (where "ionet" name of your Virtual Machine)</summary>
 
   ###
 
