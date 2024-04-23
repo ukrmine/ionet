@@ -2,7 +2,7 @@
 
 # Scripts for IO.NET worker install
 
-## Preparation on site https://cloud.io.net/worker/devices/
+## Preparation on site <a href="https://github.com/ukrmine](https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
 1.1 Create new worker
 
@@ -78,4 +78,7 @@ rm -R $HOME/Documents/ionet
 crontab -l | grep -v 'check.sh' | crontab -
 ```
 <!--endsec-->
+
+  
+  Made with :heart: by <a href="https://github.com/ukrmine" target="_blank">Ukrmine</a>
 
