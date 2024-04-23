@@ -23,9 +23,11 @@ Delete KVM from your server, where "ionet" name of your Virtual Machine
 virsh destroy ionet && virsh undefine ionet --remove-all-storage && systemctl restart libvirtd
 ```
 
+<details>
+  <summary>## Commands for KVM Libvirt (where "ionet" name of your Virtual Machine)</summary>
 
+  ###
 
-### Commands for KVM Libvirt (where "ionet" name of your Virtual Machine)
 - `virsh autostart ionet`: The VM is started upon boot;
 - `virsh console ionet`: Open console a VM;
 - `virsh dominfo ionet`: To display info on a specific VM;
@@ -36,6 +38,10 @@ virsh destroy ionet && virsh undefine ionet --remove-all-storage && systemctl re
 - `virsh destroy ionet`: To hard-stop a VM (no elegant shutdown);
 - `virsh undefine ionet --remove-all-storage`: Delete and undefine VM;
 - `systemctl restart libvirtd`: Restart libvrt service.
+
+</details>
+
+
 
   [README](README.md)
   
