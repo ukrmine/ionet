@@ -9,7 +9,7 @@
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Create_new_worker.png)
 
 
-<details1>
+<details>
 <summary>1.2 Configure new worker</summary>
 
 1. Select Operating System “OS”
@@ -33,7 +33,7 @@
     - 6.3 Run the command to connect device
       * `Copy this string`
 
-</details1>
+</details>
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure_worker.png)
 
@@ -48,8 +48,8 @@ sudo -s
 ```Bash
 cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o install.sh && chmod +x install.sh && ./install.sh
 ```
-<details2>
-<summary>2.3 Please choose</summary>
+<details>
+<summary> 2.3 Please choose </summary>
 
 1. Hosting or CPU type
     * `Put "1" Digital Ocean (AMD Premium)`
@@ -63,7 +63,7 @@ cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o inst
 4. Name your device
    * `Worker01`
 
-<details2>
+</details>
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/install.png)
     
