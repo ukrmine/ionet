@@ -31,6 +31,6 @@ virsh destroy ionet && virsh undefine ionet --remove-all-storage && systemctl re
 
   [README](README.md)
   
-  Made with :heart: by <a href="https://github.com/maurodesouza" target="_blank">Mauro de Souza</a>
+  Made with :heart: by <a href="https://github.com/ukrmine" target="_blank">Ukrmine</a>
 
 
