@@ -8,7 +8,9 @@
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Create_new_worker.png)
 
-1.2 Configure new worker
+
+<details>
+<summary>1.2 Configure new worker</summary>
 
 1. Select Operating System “OS”
     * `Linux`
@@ -32,7 +34,9 @@
    * `Skip this step`
 6.3 Run the command to connect device
    * `./launch_binary_linux --device_id= --user_id= --operating_system="Linux" --usegpus=false --device_name=`
-    
+
+</details>
+
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure_worker.png)
 
 ## Install worker on Linux Ubuntu 20.04 server
