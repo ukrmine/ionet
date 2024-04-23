@@ -2,7 +2,7 @@
 
 ## 1. Preparation on site <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
-### 1.1 Connect new worker
+1.1 Connect new worker
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Create_new_worker.png)
 
@@ -55,7 +55,7 @@ cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o inst
     * `Put "4" Google cloud N1, Kamatera`
     * `Put "5" Enter custom CPU type`
   
-2. Paste the line your Docker Command that you copied earlier in paragraph 6.3
+2. Paste the line your Docker Command that you copied earlier in paragraph 1.2-6.3
    * `./launch_binary_linux --device_id=f42ee2d8-1ae3-445e-9a63-f3eb5b75ab5a --user_id=11694796-9a22-4a58-9766-09573c0d9df9 --operating_system="Linux" --usegpus=false --device_name=dsds`
 4. Name your device
    * `Worker01`
