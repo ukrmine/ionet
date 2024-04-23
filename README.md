@@ -2,12 +2,12 @@
 
 # :checkered_flag: Scripts for IO.NET 
 
-## Install worker based on Ubuntu 20.04 "QEMU Virtual CPU version 2.5+"
+## Install worker on Ubuntu 20.04 "QEMU Virtual CPU version 2.5+"
 
 - [Linux EN](DOCS/Install_linux_EN.md)
 - [Linux UA](DOCS/Install_linux_UA.md)
 
-## Install worker on Mac "Apple M* CPUs"
+## Install worker on MacOS "Apple M* CPUs"
 
 - [MacOS EN](DOCS/Install_mac_EN.md)
 - [MacOS UA](DOCS/Install_mac_UA.md)
