@@ -24,10 +24,10 @@ virsh destroy ionet && virsh undefine ionet --remove-all-storage && systemctl re
 ```
 
 <details>
-  <summary>Commands for KVM Libvirt (where "ionet" name of your Virtual Machine)</summary>
+  <summary>Commands for KVM Libvirt</summary>
 
   ###
-
+## "ionet" name of your Virtual Machine
 - `virsh autostart ionet`: The VM is started upon boot;
 - `virsh console ionet`: Open console a VM;
 - `virsh dominfo ionet`: To display info on a specific VM;
