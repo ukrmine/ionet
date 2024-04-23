@@ -20,12 +20,12 @@
     * `Worker01`
 4. Device Type
     * `CPU Worker`
-5.Prerequisites for Linux
+5. Prerequisites for Linux
+    - 5.1 Download the setup script
+      * `Skip this step`
+    - 5.2 Run the script
+      * `Skip this step`
 
-5.1 Download the setup script
-   * `Skip this step`
-5.2 Run the script
-   * `Skip this step`
 6. Start the containers using binary
 
 6.1 Run the command to download binary
