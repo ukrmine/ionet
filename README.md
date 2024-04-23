@@ -10,14 +10,16 @@
 
 1.2 Configure new worker
 
-    1.
-    1.
-    1.
-
-    1.2.1. Linux
-    1.2.1.
-    1.
-    1.
+1. Select Operating System “OS”
+    * `Linux`
+2. Select Supplier
+    * `io.net`
+3. Name your device
+    * `Worker01`
+4. Device Type
+    * `CPU Worker`
+6. Start the containers using binary
+    * `Run the command to connect device`   
     
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure_worker.png)
 
