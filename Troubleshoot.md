@@ -2,7 +2,7 @@
 
 ## Linux
 
-To list all Virtual Machines (VM), (where "ionet" name of your Virtual Machine):
+To list all Virtual Machines (VM), where "ionet" name of your Virtual Machine:
 
 ```Bash
 virsh list --all
