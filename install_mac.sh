@@ -35,6 +35,5 @@ crontab<<EOF
 */10 * * * * $home_dir/check.sh
 EOF
 rm $home_dir/install_mac.sh
-rm $home_dir/Docker.dmg
 softwareupdate --install-rosetta --agree-to-license
 $home_dir/check.sh
