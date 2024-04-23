@@ -75,6 +75,7 @@ Delete check.sh
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
 rm -R $HOME/Documents/ionet
+crontab -l | grep -v 'check.sh' | crontab -
 ```
 <!--endsec-->
 
