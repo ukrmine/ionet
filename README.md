@@ -109,8 +109,9 @@ crontab -l | grep -v 'check.sh' | crontab -
 ```
 <!--endsec-->
 
-    [Install_linux_EN](DOCS/Install_linux_EN.md)
-    [Install_linux_UA](DOCS/Install_linux_UA.md)
+    [DOCS/Install_linux_EN](DOCS/Install_linux_EN.md)
+    [DOCS/Install_linux_UA](DOCS/Install_linux_UA.md)
+    - [src/README.md](src/README.md)
   
   Made with :heart: by <a href="https://github.com/ukrmine" target="_blank">Ukrmine</a>
 
