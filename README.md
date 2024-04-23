@@ -37,7 +37,7 @@
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure_worker.png)
 
-## Install worker on Linux Ubuntu 20.04 server
+## 2. Install worker on Linux Ubuntu 20.04 server
 
 2.1 Change user to root
 ```Bash
@@ -45,17 +45,15 @@ sudo -s
 ```
 
 2.2 Download script and execute script to create VM for ionet worker depolyment
-
-<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
-```
+```Bash
 cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o install.sh && chmod +x install.sh && ./install.sh
 ```
-<!--endsec-->
-
-2.3 Please choose 
-1. Hosting or CPU type 
-2. Paste the line your Docker Command that you copied earlier in paragraph 1.2
-3. Input VM name
+<details>
+<summary>2.3 Please choose</summary>
+   1. Hosting or CPU type 
+   2. Paste the line your Docker Command that you copied earlier in paragraph 1.2
+   3. Input VM name
+<details>
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/install.png)
     
