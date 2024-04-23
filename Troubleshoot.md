@@ -29,7 +29,7 @@ virsh destroy ionet && virsh undefine ionet --remove-all-storage && systemctl re
 - `virsh undefine ionet --remove-all-storage`: Delete and undefine VM;
 - `systemctl restart libvirtd`: Restart libvrt service.
 
-  [LICENSE](LICENSE.md)
+  [README](README.md)
   Made with :heart: by <a href="https://github.com/maurodesouza" target="_blank">Mauro de Souza</a>
 
 
