@@ -7,7 +7,6 @@ else
 fi
 home_dir="$HOME/Documents/ionet"
 cd $home_dir
-
 if ! command -v docker &> /dev/null; then
     echo "Docker is not installed. Install it via Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
