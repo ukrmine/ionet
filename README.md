@@ -2,10 +2,10 @@
 
 # :checkered_flag: Scripts for IO.NET 
 
-## Install worker based on "QEMU Virtual CPU version 2.5+"
+## Install worker based on Ubuntu 20.04 "QEMU Virtual CPU version 2.5+"
 
-- [DOCS/Install_linux_EN](DOCS/Install_linux_EN.md)
-- [DOCS/Install_linux_UA](DOCS/Install_linux_UA.md)
+- [Linux EN](DOCS/Install_linux_EN.md)
+- [Linux UA](DOCS/Install_linux_UA.md)
 
 ## 1. Preparation on site <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
