@@ -9,6 +9,7 @@
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Create_new_worker.png)
 
 1.2 Configure new worker
+
     1.
     1.
     1.
