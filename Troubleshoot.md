@@ -11,11 +11,9 @@ virsh list --all
 ```
 <!--endsec-->
 Delete KVM from your server, where "ionet" name of your Virtual Machine
-<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
-```
+```Bash
 virsh destroy ionet && virsh undefine ionet --remove-all-storage && systemctl restart libvirtd
 ```
-<!--endsec-->
 
 
 
@@ -30,5 +28,8 @@ virsh destroy ionet && virsh undefine ionet --remove-all-storage && systemctl re
 - `virsh destroy ionet`: To hard-stop a VM (no elegant shutdown);
 - `virsh undefine ionet --remove-all-storage`: Delete and undefine VM;
 - `systemctl restart libvirtd`: Restart libvrt service.
+
+  [LICENSE](LICENSE.md)
+  Made with :heart: by <a href="https://github.com/maurodesouza" target="_blank">Mauro de Souza</a>
 
 
