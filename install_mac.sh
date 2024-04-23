@@ -17,7 +17,7 @@ if ! command -v docker &> /dev/null; then
     colima start
     unset DOCKER_HOST
     unset DOCKER_CERT_PATH
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    unset DOCKER_TLS_VERIFY
     echo "Docker is successfully installed."
 else
     echo "Docker is already installed."
@@ -34,7 +34,7 @@ sed -i '' "s|file_path=\"/root\"|file_path=\"$home_dir\"|" $home_dir/check.sh
 crontab<<EOF
 */10 * * * * $home_dir/check.sh
 EOF
-rm $home_dir/check_mac.sh
+rm $home_dir/install_mac.sh
 rm $home_dir/Docker.dmg
 softwareupdate --install-rosetta --agree-to-license
 $home_dir/check.sh
