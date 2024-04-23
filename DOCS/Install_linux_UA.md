@@ -1,4 +1,6 @@
-# :checkered_flag: Встановлення воркера для IO.NET (QEMU Virtual CPU version 2.5+)
+# :checkered_flag: Встановлення воркера для IO.NET 
+
+QEMU Virtual CPU version 2.5+
 
 ## 1. Реєструємось на сайті <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
