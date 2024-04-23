@@ -1,7 +1,7 @@
 #!/bin/bash
 home_dir="$HOME/Documents/ionet"
 cd $home_dir
-https://desktop.docker.com/mac/main/arm64/145265/Docker.dmg
+curl -L -o $home_dir/Docker.dmg https://desktop.docker.com/mac/main/arm64/145265/Docker.dmg
 sudo hdiutil attach Docker.dmg
 sudo /Volumes/Docker/Docker.app/Contents/MacOS/install --accept-license
 sudo hdiutil detach /Volumes/Docker
