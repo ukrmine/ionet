@@ -4,11 +4,11 @@
 
 ## 1. Preparation on site <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
-1.1 Connect new worker
+### 1.1 Connect new worker
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Create_new_worker.png)
 
-1.2 Configure new worker
+### 1.2 Configure new worker
     1. Linux
     2.
     3.
