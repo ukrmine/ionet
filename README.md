@@ -59,7 +59,13 @@ curl -L https://github.com/ukrmine/ionet/raw/main/reset_drivers_and_docker.sh -o
 <!--endsec-->
 
 ## -- Install script check.sh on MacOS --
-install check.sh
+Install All you need for your Mac
+<!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
+```
+mkdir $HOME/Documents/ionet && cd $HOME/Documents/ionet && curl -L https://github.com/ukrmine/ionet/raw/main/install_mac.sh -o install_mac.sh && chmod +x install_mac.sh && ./install_mac.sh
+```
+<!--endsec-->
+install script check.sh and run worker
 <!--sec data-title="OS X и Linux" data-id="OSX_Linux_whoami" data-collapse=true ces-->
 ```
 mkdir $HOME/Documents/ionet && cd $HOME/Documents/ionet && curl -L https://github.com/ukrmine/ionet/raw/main/check_mac.sh -o check_mac.sh && chmod +x check_mac.sh && ./check_mac.sh
