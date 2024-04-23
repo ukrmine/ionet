@@ -8,11 +8,14 @@ To list all Virtual Machines (VM), (where "ionet" name of your Virtual Machine):
 virsh list --all
 ```
 States of VM: running, paused, shutoff
-
-You can Start, Reboot or Shutdown VM
 ```Bash
+# To start a VM
 virsh start ionet
+
+# To reboot a VM
 virsh reboot ionet
+
+# To shutdown a VM
 virsh shutdown ionet
 ```
 Delete KVM from your server, where "ionet" name of your Virtual Machine
