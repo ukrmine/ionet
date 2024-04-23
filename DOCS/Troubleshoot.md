@@ -2,6 +2,11 @@
 
 ## Linux
 
+## -- Stopping and Remove Docker containers, Uninstall Docker and NVIDIA --
+```Bash
+curl -L https://github.com/ukrmine/ionet/raw/main/reset_drivers_and_docker.sh -o reset_drivers_and_docker.sh && chmod +x reset_drivers_and_docker.sh && ./reset_drivers_and_docker.sh
+```
+
 To list all Virtual Machines (VM), where "ionet" name of your Virtual Machine:
 
 ```Bash
