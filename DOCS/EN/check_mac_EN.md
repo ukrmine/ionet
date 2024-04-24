@@ -2,7 +2,7 @@
 
 - [Main EN](README_EN.md)
 
-## 2. Install script check.sh for worker on MacOS M* CPUs
+## 3. Install script check.sh
 
 Install
 ```Bash
@@ -11,9 +11,9 @@ mkdir $HOME/Documents/ionet && cd $HOME/Documents/ionet && curl -L https://githu
 ```
 Delete
 ```Bash
-# Delete folder with all files
+# Delete script file
 rm -R $HOME/Documents/ionet
 
-# Delete 
+# Remove a script from the autoloader
 crontab -l | grep -v 'check.sh' | crontab -
 ```
