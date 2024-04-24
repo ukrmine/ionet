@@ -10,13 +10,13 @@
 ## 2. Install worker 
 ### Ubuntu 20.04 "QEMU Virtual CPU version 2.5+"
 
-- [Linux EN](DOCS/EN/Install_linux_EN.md)
-- [Linux UA](DOCS/UA/Install_linux_UA.md)
+- [English](DOCS/EN/Install_linux_EN.md)
+- [Українська](DOCS/UA/Install_linux_UA.md)
 
 ### MacOS "Apple M* CPUs"
 
-- [MacOS EN](DOCS/EN/Install_mac_EN.md)
-- [MacOS UA](DOCS/UA/Install_mac_UA.md)
+- [English](DOCS/EN/Install_mac_EN.md)
+- [Українська](DOCS/UA/Install_mac_UA.md)
 
 ## Script for workers
 - checking the status of a worker <a href="https://github.com/ukrmine/ionet/raw/main/check.sh" target="_blank">check.sh</a>
