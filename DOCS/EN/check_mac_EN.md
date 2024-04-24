@@ -2,7 +2,7 @@
 
 - [Main EN](README_EN.md)
 
-## 3. Install script check.sh
+## 3. Install and Delete script check.sh
 
 Install
 ```Bash
