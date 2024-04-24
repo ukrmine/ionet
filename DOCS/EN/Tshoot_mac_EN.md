@@ -6,4 +6,8 @@
   
 2. Error loading Python lib
    - Please upgrade your system to Sonoma 14.4.1
-
+  
+3. Docker daemon is not rinning. Please start Docker and try againe.
+   - colima start
+  
+4. 
