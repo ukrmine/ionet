@@ -1,5 +1,6 @@
 # :checkered_flag: Воркер для IO.NET 
 
+- [Головна UA](README_UA.md)
 - [Створеня воркера на сайті io.net](Preparation_ionet_UA.md)
 
 ## 2. Встановимо воркер "QEMU Virtual CPU version 2.5+" на Linux Ubuntu 20.04 сервер
