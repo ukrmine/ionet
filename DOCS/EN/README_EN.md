@@ -9,7 +9,7 @@
 * ### [MacOS Apple M* CPUs](Install_mac_EN.md)
 
 ## 3. Scripts
-* ### [Script for checking worker status](check_mac_EN.md)
+* ### [MacOS install check.sh script for checking worker status](check_mac_EN.md)
   
   Made with :heart: by <a href="https://github.com/ukrmine" target="_blank">Ukrmine</a>
 
