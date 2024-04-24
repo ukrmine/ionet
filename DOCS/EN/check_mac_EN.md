@@ -1,4 +1,4 @@
-# :checkered_flag: Script check for worker IO.NET "MacOS"
+# :checkered_flag: Script check.sh for worker IO.NET "MacOS"
 
 - [Main EN](README_EN.md)
 
