@@ -33,5 +33,5 @@
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure_worker.png)
 
-- [Install QEMU CPU worker on Linux](DOCS/EN/Install_linux_EN.md)
+- [Install QEMU CPU worker on Linux](Install_linux_EN.md)
 
