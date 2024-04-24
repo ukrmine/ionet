@@ -2,8 +2,9 @@
 
 ## 1. Preparation on site <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
+- [Main EN](README_EN.md)
+- [Install QEMU CPU worker on Linux](Install_linux_EN.md)
 
-<a href="https://github.com/ukrmine/ionet/blob/main/DOCS/EN/Preparation_ionet_EN.md#1-preparation-on-site-ionet" target="_blank">Preparation ionet</a>
 
 ## 2. Install worker on Linux Ubuntu 20.04 server
 2.1 Copy and paste in terminal
