@@ -55,7 +55,8 @@ cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o inst
     * `Put "4" Google cloud N1, Kamatera`
     * `Put "5" Enter custom CPU type`
   
-2. Paste the line your Docker Command that you copied earlier in paragraph 1.2-6.3
+2. Paste the line your Docker Command that you copied from <a href="https://cloud.io.net/worker/devices" target="_blank">io.net</a>  <a href="https://github.com/ukrmine/ionet/blob/main/DOCS/EN/Preparation_ionet_EN.md#63-run-the-command-to-connect-device" target="_blank">Example here</a>
+
    * `./launch_binary_linux --device_id=f42ee2d8-1ae3-445e-9a63-f3eb5b75ab5a --user_id=11694796-9a22-4a58-9766-09573c0d9df9 --operating_system="Linux" --usegpus=false --device_name=dsds`
 4. Name your device
    * `Worker01`
