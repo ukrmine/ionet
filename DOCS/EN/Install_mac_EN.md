@@ -16,7 +16,7 @@ mkdir $HOME/Documents/ionet && cd $HOME/Documents/ionet && curl -L https://githu
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/8107480c2bb849b9edadf8b213d805ad19297a56/pics/mac/2.Pass2Docker.png)
 
-2.2 
+2.2 Paste the line your Docker Command, which you need to copy
 
 
 
