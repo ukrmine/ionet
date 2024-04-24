@@ -9,7 +9,11 @@
 mkdir $HOME/Documents/ionet && cd $HOME/Documents/ionet && curl -L https://github.com/ukrmine/ionet/raw/main/install_mac.sh -o install_mac.sh && chmod +x install_mac.sh && ./install_mac.sh
 ```
 2.1.1 After running the script, it will ask for the password for the first time
+
 ![Image alt](https://github.com/ukrmine/ionet/blob/66385e48f4c8c6fc030d378d2017901624498339/pics/mac/1.Pass1Script.png)
+
 2.1.2 The second time it will ask for a password to install the Docker
+
+![Image alt](https://github.com/ukrmine/ionet/blob/8107480c2bb849b9edadf8b213d805ad19297a56/pics/mac/2.Pass2Docker.png)
 
 ### The worker is installed
