@@ -8,5 +8,6 @@
 ```Bash
 mkdir $HOME/Documents/ionet && cd $HOME/Documents/ionet && curl -L https://github.com/ukrmine/ionet/raw/main/install_mac.sh -o install_mac.sh && chmod +x install_mac.sh && ./install_mac.sh
 ```
-![Image alt](pics/mac/1.Pass1Script.png)
-The worker is installed
+![Image alt](https://github.com/ukrmine/ionet/blob/66385e48f4c8c6fc030d378d2017901624498339/pics/mac/1.Pass1Script.png)
+
+### The worker is installed
