@@ -3,5 +3,5 @@
 ## MacOS
 
 1. Error loading Python lib
-   - Please upgra
+   - Please upgrade your system to Sonoma 14.4.1
 
