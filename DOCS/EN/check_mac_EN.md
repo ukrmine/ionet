@@ -12,7 +12,7 @@ mkdir $HOME/Documents/ionet && cd $HOME/Documents/ionet && curl -L https://githu
 Delete
 ```Bash
 # Delete script file
-rm -R $HOME/Documents/ionet
+rm -R $HOME/Documents/ionet/check.sh
 
 # Remove a script from the autoloader
 crontab -l | grep -v 'check.sh' | crontab -
