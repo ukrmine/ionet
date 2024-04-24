@@ -35,3 +35,4 @@
 
 - [Головна UA](README_UA.md)
 - [Встановити QEMU CPU воркер на Лінукс](Install_linux_UA.md)
+- [Встановити воркер на MacOS](Install_mac_UA.md)
