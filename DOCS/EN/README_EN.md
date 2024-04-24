@@ -12,5 +12,5 @@
 - Worker status checking <a href="https://github.com/ukrmine/ionet/raw/main/check.sh" target="_blank">check.sh</a>
 - Restart worker <a href="https://github.com/ukrmine/ionet/raw/main/rerun.sh" target="_blank">rerun.sh</a>
   
-  Зроблено :heart: by <a href="https://github.com/ukrmine" target="_blank">Ukrmine</a>
+  Made with :heart: by <a href="https://github.com/ukrmine" target="_blank">Ukrmine</a>
 
