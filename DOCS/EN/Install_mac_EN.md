@@ -17,6 +17,10 @@ mkdir $HOME/Documents/ionet && cd $HOME/Documents/ionet && curl -L https://githu
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/8107480c2bb849b9edadf8b213d805ad19297a56/pics/mac/2.Pass2Docker.png)
 
+2.2 Go to site io.net put on button "Connect new worker" and configure it
+
+
+
 2.2 Paste the line your Docker Command, which you need to copy
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/cd6759e9b231333aea1ac47c4d010e620584a67e/pics/mac/4.1Docker_command_run2.png)
