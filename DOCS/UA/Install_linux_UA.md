@@ -1,4 +1,4 @@
-# :checkered_flag: Встановлення воркера для IO.NET 
+# :checkered_flag: Воркер для IO.NET 
 
 - [Створеня воркера на сайті io.net](Preparation_ionet_UA.md)
 
