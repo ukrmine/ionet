@@ -33,5 +33,7 @@
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure_worker.png)
 
+- [Main EN](README_EN.md)
 - [Install QEMU CPU worker on Linux](Install_linux_EN.md)
+- [Install worker on MacOS](Install_mac_EN.md)
 
