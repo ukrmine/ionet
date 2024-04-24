@@ -4,7 +4,7 @@
 
 ### [Створеня воркера на сайті io.net](Preparation_ionet_UA.md)
 
-## 2. Install worker 
+## 2. Інсталювання воркера
 ### [Ubuntu 20.04 QEMU Virtual CPU version 2.5+](Install_linux_UA.md)
 ### [MacOS Apple M* CPUs](Install_mac_UA.md)
 
