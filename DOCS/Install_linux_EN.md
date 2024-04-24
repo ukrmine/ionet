@@ -49,10 +49,10 @@ cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o inst
 <summary> 2.3 Please choose </summary>
 
 1. Hosting or CPU type
-    * `Put "1" Digital Ocean (AMD Premium)`
-    * `Put "2" AZURE D2as_v5 or D4as_v5`
-    * `Put "3" AZURE D2s_v5 or D4s_v5`
-    * `Put "4" Google cloud N1, Kamatera`
+    * `Put "1" if your server is on Digital Ocean (AMD Premium)`
+    * `Put "2" if your server is on AZURE D2as_v5 or D4as_v5`
+    * `Put "3" if your server is on AZURE D2s_v5 or D4s_v5`
+    * `Put "4" if your server is on Google cloud N1, Kamatera`
     * `Put "5" Enter custom CPU type`
   
 2. Paste the line your Docker Command that you copied from <a href="https://cloud.io.net/worker/devices" target="_blank">io.net</a>  <a href="https://github.com/ukrmine/ionet/blob/main/DOCS/EN/Preparation_ionet_EN.md#63-run-the-command-to-connect-device" target="_blank">Example here</a>
