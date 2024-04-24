@@ -1,11 +1,11 @@
-# :checkered_flag: Install worker for IO.NET (QEMU Virtual CPU version 2.5+)
+# :checkered_flag: Worker for IO.NET "Linux QEMU CPU"
 
 ## 1. Preparation on site <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
 - [Main EN](README_EN.md)
 - [Create worker on site io.net](Preparation_ionet_EN.md)
 
-## 2. Install worker on Linux Ubuntu 20.04 server
+## 2. Install worker "QEMU Virtual CPU version 2.5+" on Linux Ubuntu 20.04 server
 2.1 Copy and paste in terminal
 ```Bash
 # Change user to root
