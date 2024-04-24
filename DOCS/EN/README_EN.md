@@ -8,9 +8,8 @@
 * ### [Ubuntu 20.04 QEMU Virtual CPU version 2.5+](Install_linux_EN.md)
 * ### [MacOS Apple M* CPUs](Install_mac_EN.md)
 
-## Scripts
-- Worker status checking <a href="https://github.com/ukrmine/ionet/raw/main/check.sh" target="_blank">check.sh</a>
-- Restart worker <a href="https://github.com/ukrmine/ionet/raw/main/rerun.sh" target="_blank">rerun.sh</a>
+## 3. Scripts
+* ### [Script for checking worker status](check_mac_EN.md)
   
   Made with :heart: by <a href="https://github.com/ukrmine" target="_blank">Ukrmine</a>
 
