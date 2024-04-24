@@ -2,7 +2,7 @@
 
 QEMU Virtual CPU version 2.5+
 
-- [Створеня воркера на сайті io.net](Install_linux_UA.md)
+- [Створеня воркера на сайті io.net](Preparation_ionet_UA.md)
 
 ## 2. Встановимо воркер на Linux Ubuntu 20.04 сервер
 2.1 Зкопіюйте та вставте в термінал
