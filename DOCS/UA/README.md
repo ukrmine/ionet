@@ -2,7 +2,7 @@
 
 ## 1. Підготовка на сайті <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
-- <a href="https://github.com/ukrmine/ionet/blob/main/DOCS/EN/Preparation_ionet_EN.md#1-preparation-on-site-ionet" target="_blank">Створеня воркера на сайті io.net</a>
+### Створеня воркера на сайті io.net
 
 ## 2. Install worker 
 ### [Ubuntu 20.04 QEMU Virtual CPU version 2.5+](Install_linux_UA.md)
