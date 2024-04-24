@@ -1,4 +1,4 @@
-# :checkered_flag: Воркер для IO.NET 
+# :checkered_flag: Воркер для IO.NET (Linux QEMU CPU)
 
 - [Головна UA](README_UA.md)
 - [Створеня воркера на сайті io.net](Preparation_ionet_UA.md)
