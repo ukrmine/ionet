@@ -22,7 +22,7 @@ cd /home && curl -L https://github.com/ukrmine/ionet/raw/main/install.sh -o inst
     * `Введіть "4" якщо у Вас Google cloud N1, Kamatera`
     * `Введіть "5" якщо у Вас Enter custom CPU type`
   
-2. Вставте команду для запуску воркера, яку ви копіювали в пункті 1.2-6.3
+2. Вставте команду для запуску воркера , яку Вам потрібно зкопіювати <a href="https://github.com/ukrmine/ionet/blob/main/DOCS/UA/Preparation_ionet_UA.md#63-run-the-command-to-connect-device" target="_blank">тут</a> 
    * `./launch_binary_linux --device_id=f42ee2d8-1ae3-445e-9a63-f3eb5b75ab5a --user_id=11694796-9a22-4a58-9766-09573c0d9df9 --operating_system="Linux" --usegpus=false --device_name=worker01`
 4. Введіть Hostname сервера
    * `Server01`
