@@ -2,6 +2,8 @@
 launch_string="Yours Run Docker Command"
 file_path="/root"
 binary_name=$(basename "${launch_string%% *}")
+echo "$binary_name"
+echo "$file_path/$binary_name"
 MonID=$(docker ps -a | grep "io-worker-monitor" | awk '{print $1}')
 MonCPU=$(docker stats --no-stream $MonID --format "{{.CPUPerc}}" | tr -d '%')
 
