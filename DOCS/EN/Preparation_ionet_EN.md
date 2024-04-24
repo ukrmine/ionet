@@ -26,7 +26,7 @@
       * `Skip this step`
     - 6.2 Run the command to launch binary
       * `Skip this step`
-    - 6.3 Run the command to connect device
+    - ### 6.3 Run the command to connect device
       * `Copy this string`
 
 </details>
