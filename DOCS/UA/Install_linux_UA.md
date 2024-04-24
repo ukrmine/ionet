@@ -1,10 +1,8 @@
 # :checkered_flag: Встановлення воркера для IO.NET 
 
-QEMU Virtual CPU version 2.5+
+- [Створеня воркера на сайті io.net](Preparation_ionet_UA.md)
 
-- [Створеня воркера на сайті io.net](Preparation_ionet_EN.md)
-
-## 2. Встановимо воркер на Linux Ubuntu 20.04 сервер
+## 2. Встановимо воркер "QEMU Virtual CPU version 2.5+" на Linux Ubuntu 20.04 сервер
 2.1 Зкопіюйте та вставте в термінал
 ```Bash
 # Змінити користувача на root
