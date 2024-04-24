@@ -20,4 +20,8 @@ mkdir $HOME/Documents/ionet && cd $HOME/Documents/ionet && curl -L https://githu
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/cd6759e9b231333aea1ac47c4d010e620584a67e/pics/mac/4.1Docker_command_run2.png)
 
+2.3 
+
+![Image alt](https://github.com/ukrmine/ionet/blob/b44a14d6929da27dc11e8d4e0a68c460db8332aa/pics/mac/5.Instalation_succesfuf.png)
+
 ### The worker is installed
