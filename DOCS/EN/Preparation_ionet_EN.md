@@ -1,5 +1,7 @@
 # 1. Preparation on site <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
+- [Main EN](README_EN.md)
+
 1.1 Connect new worker
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Create_new_worker.png)
@@ -33,7 +35,6 @@
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure_worker.png)
 
-- [Main EN](README_EN.md)
 - [Install QEMU CPU worker on Linux](Install_linux_EN.md)
 - [Install worker on MacOS](Install_mac_EN.md)
 
