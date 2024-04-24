@@ -6,18 +6,10 @@
 
 ## 2. Install worker 
 ### [Ubuntu 20.04 QEMU Virtual CPU version 2.5+](Install_linux_UA.md)
+### [MacOS Apple M* CPUs](Install_mac_UA.md)
 
-
-- [English](DOCS/EN/Install_linux_EN.md)
-- [Українська](DOCS/UA/Install_linux_UA.md)
-
-### MacOS "Apple M* CPUs"
-
-- [English](DOCS/EN/Install_mac_EN.md)
-- [Українська](DOCS/UA/Install_mac_UA.md)
-
-## Script for workers
-- checking the status of a worker <a href="https://github.com/ukrmine/ionet/raw/main/check.sh" target="_blank">check.sh</a>
-- restart the worker <a href="https://github.com/ukrmine/ionet/raw/main/rerun.sh" target="_blank">rerun.sh</a>
+## Скрипти для воркерів
+- Перевірка статуса воркера<a href="https://github.com/ukrmine/ionet/raw/main/check.sh" target="_blank">check.sh</a>
+- Перезапуск воркера<a href="https://github.com/ukrmine/ionet/raw/main/rerun.sh" target="_blank">rerun.sh</a>
   
-  Made with :heart: by <a href="https://github.com/ukrmine" target="_blank">Ukrmine</a>
+  Зроблено :heart: by <a href="https://github.com/ukrmine" target="_blank">Ukrmine</a>
