@@ -1,4 +1,4 @@
-# :checkered_flag: Воркери(нода) для проекту IO.NET 
+# :checkered_flag: Воркер(нода) для проекту IO.NET 
 
 ## 1. Підготовка на сайті <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
