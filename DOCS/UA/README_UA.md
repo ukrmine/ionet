@@ -2,11 +2,11 @@
 
 ## 1. Підготовка на сайті <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
-### [Створеня воркера на сайті io.net](Preparation_ionet_UA.md)
+* ### [Створеня воркера на сайті io.net](Preparation_ionet_UA.md)
 
 ## 2. Інсталювання воркера
-### [Ubuntu 20.04 QEMU Virtual CPU version 2.5+](Install_linux_UA.md)
-### [MacOS Apple M* CPUs](Install_mac_UA.md)
+* ### [Ubuntu 20.04 QEMU Virtual CPU version 2.5+](Install_linux_UA.md)
+* ### [MacOS Apple M* CPUs](Install_mac_UA.md)
 
 ## Скрипти для воркерів
 - Перевірка статуса воркера <a href="https://github.com/ukrmine/ionet/raw/main/check.sh" target="_blank">check.sh</a>
