@@ -29,3 +29,6 @@ You can wait 10-20 min and check containers
 ```Bash
 docker ps
 ```
+![Image alt](https://github.com/ukrmine/ionet/blob/9e1cc878f4b7ab65a1ff957c3ec63b20812a4504/pics/mac/Docker_ps_good.png)
+
+If you see the same two containers and they work for more than 5 minutes, then everything is fine
