@@ -4,7 +4,8 @@
 
 ## 1. Preparation on site <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
 
-- <a href="https://github.com/ukrmine/ionet/blob/main/DOCS/EN/Preparation_ionet_EN.md#1-preparation-on-site-ionet" target="_blank">Preparation ionet</a>
+- <a href="https://github.com/ukrmine/ionet/blob/main/DOCS/EN/Preparation_ionet_EN.md#1-preparation-on-site-ionet" target="_blank">Creating a worker on the io.net website</a>
+- <a href="https://github.com/ukrmine/ionet/blob/main/DOCS/EN/Preparation_ionet_EN.md#1-preparation-on-site-ionet" target="_blank">Створеня воркера на сайті io.net</a>
 
 ## 2. Install worker 
 ### Ubuntu 20.04 "QEMU Virtual CPU version 2.5+"
