@@ -2,9 +2,7 @@
 
 QEMU Virtual CPU version 2.5+
 
-## 1. Реєструємось на сайті <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
-
-- [Linux UA](DOCS/UA/Install_linux_UA.md)
+- [Створеня воркера на сайті io.net](Install_linux_UA.md)
 
 ## 2. Встановимо воркер на Linux Ubuntu 20.04 сервер
 2.1 Зкопіюйте та вставте в термінал
