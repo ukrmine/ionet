@@ -19,13 +19,13 @@ mkdir $HOME/Documents/ionet && cd $HOME/Documents/ionet && curl -L https://githu
 
 2.2 Go to site io.net put on button "Connect new worker" and configure it
 
+![Image alt](https://github.com/ukrmine/ionet/blob/6dffb6ae09f367b499c66a00aaf05119f55a9fe5/pics/mac/mac_prep.png)
 
-
-2.2 Paste the line your Docker Command, which you need to copy
+2.3 Paste the line command to connect device, which you copied in the previous step
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/cd6759e9b231333aea1ac47c4d010e620584a67e/pics/mac/4.1Docker_command_run2.png)
 
-2.3 The worker is installed
+2.4 The worker is installed
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/b44a14d6929da27dc11e8d4e0a68c460db8332aa/pics/mac/5.Instalation_succesfuf.png)
 
