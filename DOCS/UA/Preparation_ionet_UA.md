@@ -33,4 +33,5 @@
 
 ![Image alt](https://github.com/ukrmine/ionet/blob/main/pics/Configure_worker.png)
 
+- [Головна UA](README_UA.md)
 - [Встановити QEMU CPU воркер на Лінукс](Install_linux_UA.md)
