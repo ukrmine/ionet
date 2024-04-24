@@ -26,7 +26,7 @@
       * `Пропускаємо цей крок`
     - 6.2 Run the command to launch binary
       * `Пропускаємо цей крок`
-    - 6.3 Run the command to connect device
+    - ### 6.3 Run the command to connect device
       * `Копіюємо цю команду, вона знадобиться в пункті 2.3-2`
 
 </details>
