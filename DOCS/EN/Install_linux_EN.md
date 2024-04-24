@@ -1,7 +1,5 @@
 # :checkered_flag: Worker for IO.NET "Linux QEMU CPU"
 
-## 1. Preparation on site <a href="https://cloud.io.net/worker/devices/" target="_blank">IO.NET</a>
-
 - [Main EN](README_EN.md)
 - [Create worker on site io.net](Preparation_ionet_EN.md)
 
