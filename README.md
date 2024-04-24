@@ -6,7 +6,7 @@
 
 - <a href="https://github.com/ukrmine/ionet/blob/main/DOCS/EN/Preparation_ionet_EN.md#1-preparation-on-site-ionet" target="_blank">Preparation ionet</a>
 
-## Install worker 
+## 2. Install worker 
 ### Ubuntu 20.04 "QEMU Virtual CPU version 2.5+"
 
 - [Linux EN](DOCS/Install_linux_EN.md)
