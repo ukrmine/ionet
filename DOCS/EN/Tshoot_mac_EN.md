@@ -10,4 +10,5 @@
 3. Docker daemon is not rinning. Please start Docker and try againe.
    - colima start
   
-4. 
+4. Error: bad CPU type in executable: ./launch_binary_mac
+   - Install Rosetta2 `softwareupdate --install-rosetta`
