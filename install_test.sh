@@ -85,14 +85,10 @@ sudo usermod -aG kvm $USER
 sudo usermod -aG libvirt $USER
 mkdir -p $basedir $vmdir
 if [ ! -f "$basedir/$image" ]; then
-#  wget -P "$basedir" https://cloud-images.ubuntu.com/focal/current/$image
-  wget -P "$basedir" --content-disposition "https://www.dropbox.com/scl/fi/tqvr9si1u9mrim9vvwxr8/focal-server-cloudimg-amd64.img?rlkey=vv55oux10ifu6txtm7vkc8icn&st=6w8sux74&dl=0"
+  wget -P "$basedir" https://cloud-images.ubuntu.com/focal/current/$image
 fi
 qemu-img create -F qcow2 -b $basedir/$image -f qcow2 $vmdir/$vmname.qcow2 $ssd
-if [[ -z "virsh net-list --all | grep "default\s*active"" ]]; then
-    echo "Network 'default' is not active. Starting the network..."
-    virsh net-start default
-fi
+virsh net-start default
 
 MAC_ADDR=$(printf '52:54:00:%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)))
 INTERFACE=eth01
