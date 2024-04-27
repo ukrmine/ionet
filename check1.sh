@@ -7,6 +7,22 @@ echo "$file_path/$binary_name"
 token=$(awk -F'"' '{print $36}' ionet_device_cache.json)
 MonID=$(docker ps -a | grep "io-worker-monitor" | awk '{print $1}')
 MonCPU=$(docker stats --no-stream $MonID --format "{{.CPUPerc}}" | tr -d '%')
+restart=false
+
+while getopts ":r" opt; do
+  case $opt in
+    r)
+      restart=true
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
+done
+
+if [[ $restart == true ]]; then
+    action="RESTART"
+fi
 
 if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
     echo "io-launch is WORKING, wait 5min"
