@@ -13,7 +13,7 @@
 
 ```Bash
 # Download script check.sh and execute script
-curl -L -o check.sh https://github.com/ukrmine/ionet/raw/main/check.sh && chmod +x check.sh && ./check.sh
+curl -L -o /root/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh && /root/chmod +x check.sh && /root/check.sh
 
 #Add two rules
 #1. Run the script every 10 minutes
