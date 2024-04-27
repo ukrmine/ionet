@@ -187,23 +187,14 @@ write_files:
       sed -i 's/^#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
       sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
       curl -L -o /root/ionet-setup.sh https://github.com/ionet-official/io-net-official-setup-script/raw/main/ionet-setup.sh
-      curl -L -o /root/launch_binary_linux https://github.com/ionet-official/io_launch_binaries/raw/main/launch_binary_linux
+      curl -L -o /root/launch_binary_linux https://github.com/ionet-official/io_launch_binaries/raw/main/io_net_launch_binary_linux
       curl -L -o /root/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh
-      curl -L -o /root/rerun.sh https://github.com/ukrmine/ionet/raw/main/rerun.sh
-      sed -i "s|launch_string=.*|launch_string=\"$launch\"|" /root/check.sh
-      sed -i "s|launch_string=.*|launch_string=\"$launch\"|" /root/rerun.sh
-      chmod +x /root/launch_binary_linux && chmod +x /root/check.sh
       chmod +x /root/ionet-setup.sh && /root/ionet-setup.sh
-      chmod +x /root/rerun.sh && /root/rerun.sh
+      chmod +x /root/io_net_launch_binary_linux
       curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
       apt install -y speedtest
 runcmd:
   - [ bash, "/root/script.sh" ]
-  - |
-    crontab<<EOF
-    */10 * * * * /root/check.sh
-    03 03 * * * /root/rerun.sh
-    EOF
   - service ssh reload
   - rm /root/script.sh
 EOF
@@ -220,13 +211,9 @@ virsh autostart $vmname
 ssh_key=$(cat /root/.ssh/id_rsa.pub)
 sudo sed -i '/# If not running interactively/i alias noda="ssh root@'$IP_ADDR'"' /etc/bash.bashrc
 sudo sed -i '/# If not running interactively/i alias nodacheck="ssh root@'$IP_ADDR' "/root/check.sh""' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias nodarerun="ssh root@'$IP_ADDR' "/root/rerun.sh""' /etc/bash.bashrc
-sudo sed -i '/# If not running interactively/i alias nodaspeed="ssh root@'$IP_ADDR' "speedtest""' /etc/bash.bashrc
 
 echo "Setup completed."
 
 echo "Login to VM enter - "noda""
-echo "Check Connectivity Tier - "nodaspeed""
-echo "Check worker - "nodacheck""
-echo "Rerun worker - "nodarerun""
 exec bash
+noda "$launch"
