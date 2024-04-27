@@ -15,12 +15,9 @@
 # Download script check.sh and execute script
 curl -L -o /root/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh && chmod +x /root/check.sh && /root/check.sh
 
-#Add two rules
-#1. Run the script every 10 minutes
-#2. Restart the worker at night
+#Run the script every 12 minutes
 crontab<<EOF
-*/10 * * * * /root/check.sh
-03 03 * * * /root/check.sh -r
+*/12 * * * * /root/check.sh
 EOF
 ```
 
