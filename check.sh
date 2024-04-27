@@ -1,5 +1,9 @@
 #!/bin/bash
 file_path="/root"
+if [ ! -f ionet_device_cache.json ]; then
+    echo "Error: File ionet_device_cache.json does not exist."
+    exit 1
+fi
 device_name=$(grep -o '"device_name":"[^"]*' $file_path/ionet_device_cache.json | cut -d'"' -f4)
 device_id=$(grep -o '"device_id":"[^"]*' $file_path/ionet_device_cache.json | cut -d'"' -f4)
 user_id=$(grep -o '"user_id":"[^"]*' $file_path/ionet_device_cache.json | cut -d'"' -f4)
