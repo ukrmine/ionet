@@ -1,7 +1,7 @@
 #!/bin/bash
 file_path="/home"
 if [ ! -f ionet_device_cache.json ]; then
-    echo "Error: File ionet_device_cache.json does not exist."
+    echo "Error: The io.net worker is not configured."
     exit 1
 fi
 device_name=$(grep -o '"device_name":"[^"]*' $file_path/ionet_device_cache.json | cut -d'"' -f4)
