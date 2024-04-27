@@ -2,6 +2,8 @@
 file_path="/home"
 if [ ! -f ionet_device_cache.json ]; then
     echo "Error: File to run the io.net worker not found."
+    echo "Go to site https://cloud.io.net/worker/devices and run worker"
+    echo "Guide to launching a worker https://medium.com/@bitcoin_50400/reload-worker-io-net-v2-01-c64f5def15a1"
     exit 1
 fi
 device_name=$(grep -o '"device_name":"[^"]*' $file_path/ionet_device_cache.json | cut -d'"' -f4)
