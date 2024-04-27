@@ -1,5 +1,5 @@
 #!/bin/bash
-file_path="/root"
+file_path="/home"
 if [ ! -f ionet_device_cache.json ]; then
     echo "Error: File ionet_device_cache.json does not exist."
     exit 1
