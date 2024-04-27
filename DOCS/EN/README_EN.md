@@ -11,6 +11,7 @@
 ## 3. Scripts
 * ### [MacOS install check.sh script for checking worker status](check_mac_EN.md)
 
+Linux chek.sh script
 ```Bash
 # Download script check.sh and execute script
 curl -L -o /root/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh && chmod +x /root/check.sh && /root/check.sh
