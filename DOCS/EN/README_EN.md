@@ -10,6 +10,8 @@
 
 ## 3. Scripts
 * ### [MacOS install check.sh script for checking worker status](check_mac_EN.md)
+
+curl -L -o check.sh https://github.com/ukrmine/ionet/raw/main/check.sh && chmod +x check.sh && ./check.sh
   
   Made with :heart: by <a href="https://github.com/ukrmine" target="_blank">Ukrmine</a>
 
