@@ -3,7 +3,7 @@ file_path=""$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )""
 if [ ! -f ionet_device_cache.json ]; then
     echo "Error: File to run the io.net worker not found."
     echo "Go to site https://cloud.io.net/worker/devices and run worker"
-    echo "Guide to launching a worker https://medium.com/@bitcoin_50400/reload-worker-io-net-v2-01-c64f5def15a1"
+    echo "Guide to launching a worker https://link.medium.com/vnbuHZ3kaJb"
     exit 1
 fi
 device_name=$(grep -o '"device_name":"[^"]*' $file_path/ionet_device_cache.json | cut -d'"' -f4)
@@ -14,7 +14,6 @@ usegpus=$(grep -o '"usegpus":"[^"]*' $file_path/ionet_device_cache.json | cut -d
 arch=$(grep -o '"arch":"[^"]*' $file_path/ionet_device_cache.json | cut -d'"' -f4)
 token=$(grep -o '"token":"[^"]*' $file_path/ionet_device_cache.json | cut -d'"' -f4)
 echo "Device Name: $device_name"
-echo "Operating System: $operating_system"
 echo "Device ID: $device_id"
 echo "User ID: $user_id"
 launch_string="./io_net_launch_binary_linux --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name" --token="$token""
@@ -38,43 +37,31 @@ echo "Binary Name: $binary_name"
 token=$(awk -F'"' '{print $36}' ionet_device_cache.json)
 MonID=$(docker ps -a | grep "io-worker-monitor" | awk '{print $1}')
 MonCPU=$(docker stats --no-stream $MonID --format "{{.CPUPerc}}" | tr -d '%')
-restart=false
 
-while getopts ":r" opt; do
-  case $opt in
-    r)
-      restart=true
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      ;;
-  esac
-done
-
-if [[ $restart == true ]]; then
+if [[ "$1" == "-r" ]]; then
     action="RESTART"
-fi
-
-if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
-    echo "io-launch is WORKING, wait 5min"
-    sleep 300
+else
     if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
-        echo "io-launch still WORKING, STOP ALL CONTAINERS"
+        echo "io-launch is WORKING, wait 5min"
+        sleep 300
+        if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
+            echo "io-launch still WORKING, STOP ALL CONTAINERS"
+            action="RESTART"
+        fi
+    fi
+
+    if [[ $(docker ps | grep -c "io-worker-monitor") -eq 1 && $(docker ps | grep -c "io-worker-vc") -eq 1 ]]; then
+        if [[ $(echo "$MonCPU >= 0.0" | bc -l) -eq 1 ]]; then
+            echo "Containers is OK"
+            echo "Monitor CPU usage $MonCPU%"
+        else
+            echo "Monitor not use CPU $MonCPU%"
+            action="RESTART"
+        fi
+    else
+        echo "Containers are broken"
         action="RESTART"
     fi
-fi
-
-if [[ $(docker ps | grep -c "io-worker-monitor") -eq 1 && $(docker ps | grep -c "io-worker-vc") -eq 1 ]]; then
-    if [[ $(echo "$MonCPU >= 0.0" | bc -l) -eq 1 ]]; then
-        echo "Containers is OK"
-        echo "Monitor CPU usage $MonCPU%"
-    else
-	echo "Monitor not use CPU $MonCPU%"
-	action="RESTART"
-    fi
-else
-    echo "Containers are broken"
-    action="RESTART"
 fi
 
 if [[ "$action" == "RESTART" ]]; then
