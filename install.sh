@@ -190,7 +190,7 @@ write_files:
       curl -L -o /root/launch_binary_linux https://github.com/ionet-official/io_launch_binaries/raw/main/io_net_launch_binary_linux
       curl -L -o /root/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh
       chmod +x /root/ionet-setup.sh && /root/ionet-setup.sh
-      chmod +x /root/io_net_launch_binary_linux
+      chmod +x /root/io_net_launch_binary_linux && chmod +x /root/check.sh
       curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
       apt install -y speedtest
 runcmd:
