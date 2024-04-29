@@ -80,9 +80,9 @@ case $operating_system in
 esac
 
 if [ -z "$new_string" ]; then
-    launch_string="./$binary_name --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name"" 
+    launch_string="$binary_name --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name"" 
 else
-    launch_string="$new_string"
+    launch_string=${new_string#./}
 fi
 
 curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/$binary_name -o $home_dir/$binary_name
