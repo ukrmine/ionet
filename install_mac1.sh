@@ -1,5 +1,6 @@
 #!/bin/bash
 processor_type=$(sysctl -n machdep.cpu.brand_string)
+#Intel(R) Core(TM) i3-1000NG4 CPU @ 1.10GHz
 macos_ver=$(sw_vers -productVersion)
 if [[ "$macos_ver" > "14.0" ]]; then
     echo "Your system is Sonoma $macos_ver"
