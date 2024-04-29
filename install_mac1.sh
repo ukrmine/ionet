@@ -15,13 +15,11 @@ fi
 home_dir="$HOME/Documents/ionet"
 if [ ! -d "$home_dir" ]; then
     mkdir -p "$home_dir"
-    echo "The folder /ionet is created."
+    echo "The folder $home_dir is created."
 else
-    echo "The folder /ionet already exists."
+    echo "The folder $home_dir already exists."
 fi
-
 cd $home_dir
-
 if ! command -v docker &> /dev/null; then
     echo "Docker is not installed. Install it via Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -37,9 +35,7 @@ if ! command -v docker &> /dev/null; then
 else
     echo "Docker is already installed."
 fi
-
 cache_file="ionet_device_cache"
-
 if [ -f "$cache_file.json" ]; then
     echo "The file $cache_file.json exists."
     json_data=$(cat ionet_device_cache.json)
