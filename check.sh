@@ -73,5 +73,5 @@ if [[ "$action" == "RESTART" ]]; then
     curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/$binary_name -o $file_path/$binary_name
     chmod +x $file_path/$binary_name
     echo "START NEW NODE"
-    echo "Yes" | $file_path/$launch_string --token "$token"
+    echo "Yes" | $file_path/$launch_string
 fi
