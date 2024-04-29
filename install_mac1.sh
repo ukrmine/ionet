@@ -99,10 +99,10 @@ sed -i '' "s|#colima start|colima start|" $home_dir/check.sh
 #$new_string
 #echo "Yes" | $launch_string
 #read -p "Paste your token for silent authentification" token
-output=$(echo "Yes" | $launch_string | tee /dev/tty)
+output=$(echo "Yes" | $home_dir/$launch_string | tee /dev/tty)
 token=$(echo "$output" | grep "Use the following token as" | awk '{print $NF}')
-echo "Yes" | "$launch_string --token="$token""
+echo "Yes" | "$home_dir/$launch_string --token="$token"
 echo "Wait until the containers are loaded for 10min."
-sleep 600
+sleep 420
 $home_dir/check.sh
 echo "Congratulation. Your IO worker is launched and ready."
