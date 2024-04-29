@@ -26,7 +26,7 @@ curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/io_net_lau
 chmod +x $home_dir/io_net_launch_binary_mac
 curl -L -o $home_dir/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh && chmod +x $home_dir/check.sh
 #read -p "Yours Run Docker Command: " new_string
-sed -i '' "s|file_path=\"/root\"|file_path=\"$home_dir\"|" $home_dir/check.sh
+sed -i '' "s|^file_path=.*|file_path=\"$home_dir\"|g" $home_dir/check.sh
 sed -i '' "s|#colima start|colima start|" $home_dir/check.sh
 crontab<<EOF
 */12 * * * * $home_dir/check.sh
