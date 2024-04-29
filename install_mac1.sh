@@ -34,3 +34,4 @@ rm $home_dir/install_mac.sh
 softwareupdate --install-rosetta --agree-to-license
 read -p "Run the command to connect device (worker) from https://cloud.io.net/worker/devices/" new_string
 $new_string
+echo "Insssssttttaaaaalllaaattttiiiooonnn Ended"
