@@ -20,6 +20,11 @@ else
     echo "The folder $home_dir already exists."
 fi
 cd $home_dir
+curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/$binary_name -o $home_dir/$binary_name
+chmod +x $home_dir/$binary_name
+curl -L -o $home_dir/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh && chmod +x $home_dir/check.sh
+sed -i '' "s|^file_path=.*|file_path=\"$home_dir\"|g" $home_dir/check.sh
+sed -i '' "s|#colima start|colima start|" $home_dir/check.sh
 if ! command -v docker &> /dev/null; then
     echo "Docker is not installed. Install it via Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -38,10 +43,8 @@ fi
 cache_file="ionet_device_cache"
 new_string=""
 if [ -f "$cache_file.json" ]; then
-    echo "The file $cache_file.json exists."
-    json_data=$(cat ionet_device_cache.json)
-    arch=$(echo "$json_data" | awk -F', ' '{print $6}' | awk -F': ' '{print $2}' | tr -d '"')
-    token=$(echo "$json_data" | awk -F', ' '{print $7}' | awk -F': ' '{print $2}' | tr -d '"')
+    echo "Configuration file found."
+    $home_dir/check.sh
 else
     if [ -f "$cache_file.txt" ]; then
         echo "Old worker data found."
@@ -50,7 +53,6 @@ else
         echo "No worker data found. Install a new worker."
         echo "Guide to launching a worker https://link.medium.com/vnbuHZ3kaJb - 1.3 command from this article"
         read -p "Run the command to connect device (worker) from https://cloud.io.net/worker/devices/" new_string
-        exit 1
     fi
 fi
 
@@ -85,11 +87,6 @@ else
     launch_string=${new_string#./}
 fi
 
-curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/$binary_name -o $home_dir/$binary_name
-chmod +x $home_dir/$binary_name
-curl -L -o $home_dir/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh && chmod +x $home_dir/check.sh
-sed -i '' "s|^file_path=.*|file_path=\"$home_dir\"|g" $home_dir/check.sh
-sed -i '' "s|#colima start|colima start|" $home_dir/check.sh
 #crontab<<EOF
 #*/12 * * * * $home_dir/check.sh
 #EOF
@@ -97,8 +94,6 @@ sed -i '' "s|#colima start|colima start|" $home_dir/check.sh
 #softwareupdate --install-rosetta --agree-to-license
 output=$(echo "Yes" | $home_dir/$launch_string | tee /dev/tty)
 token=$(echo "$output" | grep "Use the following token as" | awk '{print $NF}')
-#launch_string="$launch_string --token="$token""
-#webauth=$(echo "Yes" | $home_dir/$launch_string )
 sed -i '' 's/\("token":\)""/\1"'$token'"/' ionet_device_cache.json
 echo "Wait until the containers are loaded for 10min."
 sleep 420
