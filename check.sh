@@ -1,8 +1,7 @@
 #!/bin/bash
 file_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-cache_file="ionet_device_cache"
 
-if [ -f "$cache_file.json" ]; then
+if [ -f "ionet_device_cache.json" ]; then
     echo "Configuration file found."
     device_file="ionet_device_cache.json"
 else
@@ -20,6 +19,7 @@ token=$(grep -o '"token":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
 echo "Device Name: $device_name"
 echo "Device ID: $device_id"
 echo "User ID: $user_id"
+
 case $operating_system in
     "macOS")
         binary_name="io_net_launch_binary_mac"
@@ -35,7 +35,6 @@ case $operating_system in
         exit 1
         ;;
 esac
-#echo "Binary Name: $binary_name"
 #colima start
 token=$(awk -F'"' '{print $36}' $device_file)
 MonID=$(docker ps -a | grep "io-worker-monitor" | awk '{print $1}')
