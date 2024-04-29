@@ -98,7 +98,12 @@ sed -i '' "s|#colima start|colima start|" $home_dir/check.sh
 #softwareupdate --install-rosetta --agree-to-license
 #read -p "Run the command to connect device (worker) from https://cloud.io.net/worker/devices/" new_string
 #$new_string
-echo "Yes" | $launch_string
-read -p "Paste your token for silent authentification" token
+#echo "Yes" | $launch_string
+#read -p "Paste your token for silent authentification" token
+output=$(echo "Yes" | $launch_string)
+token=$(echo "$output" | grep "Use the following token as" | awk '{print $NF}')
 echo "Yes" | "$launch_string --token="$token""
+echo "Wait until the containers are loaded for 10min."
+sleep 600
+$home_dir/check.sh
 echo "Congratulation. Your IO worker is launched and ready."
