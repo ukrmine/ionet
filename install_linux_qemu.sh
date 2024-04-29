@@ -6,8 +6,8 @@ if [ ! -d "$home_dir" ]; then
 else
     echo "The folder $home_dir already exists."
 fi
-cd $home_dir
 
+cd $home_dir
 curl -L -o /root/ionet-setup.sh https://github.com/ionet-official/io-net-official-setup-script/raw/main/ionet-setup.sh
 chmod +x /root/ionet-setup.sh && /root/ionet-setup.sh
 cache_file="$home_dir/ionet_device_cache"
@@ -54,7 +54,7 @@ EOF
 
 curl -L -o $home_dir/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh && chmod +x $home_dir/check.sh
 sed -i '' "s|^file_path=.*|file_path=\"$home_dir\"|g" $home_dir/check.sh
-sed -i '' "s|#colima start|colima start|" $home_dir/check.sh
+sed -i '' "s|colima start|#colima start|" $home_dir/check.sh
 new_string=""
 
 if [ -f "$cache_file.json" ]; then
