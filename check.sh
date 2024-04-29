@@ -2,12 +2,14 @@
 file_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 #colima start
 
+check_file() {
 if [ -f "$file_path/ionet_device_cache.json" ]; then
     json_data=$(cat $file_path/ionet_device_cache.json)
     token=$(echo "$json_data" | awk -F',' '{print $9}' | awk -F':' '{print $2}' | tr -d '"')
     if [[ -n $token ]]; then
         echo "Worker data found with token. Run worker"
-        
+        check_io_launch
+        check_containers
     else
         echo "Worker data found without token. Add web token"
         exit 1
@@ -16,6 +18,7 @@ else
     echo "Configuration file not found. Install worker"
     exit 1
 fi
+}
 
 get_data() {
 device_name=$(echo "$json_data" | awk -F', ' '{print $1}' | awk -F': ' '{print $2}' | tr -d '"')
@@ -45,7 +48,18 @@ esac
 launch_string="./$binary_name --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name""
 }
 
-    
+check_io_launch() {
+if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
+    echo "io-launch container is WORKING, wait 5min"
+    sleep 300
+    if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
+        echo "io-launch container still WORKING, STOP ALL CONTAINERS"
+        get_data
+        restart
+    fi
+fi
+}
+
 check_containers() {
 if [[ $(docker ps | grep -c "io-worker-monitor") -eq 1 && $(docker ps | grep -c "io-worker-vc") -eq 1 ]]; then
     MonID=$(docker ps -a | grep "io-worker-monitor" | awk '{print $1}')
@@ -53,24 +67,16 @@ if [[ $(docker ps | grep -c "io-worker-monitor") -eq 1 && $(docker ps | grep -c 
     if [[ $(echo "$MonCPU >= 0.0" | bc -l) -eq 1 ]]; then
         echo "Containers is OK"
         echo "Monitor CPU usage $MonCPU%"
+        exit 1
     else
         echo "Monitor not use CPU $MonCPU%"
+        get_data
         restart
     fi
 else
     echo "Containers are broken"
+    get_data
     restart
-fi
-}
-
-check_io_launch() {
-if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
-    echo "io-launch container is WORKING, wait 5min"
-    sleep 300
-    if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
-        echo "io-launch container still WORKING, STOP ALL CONTAINERS"
-        restart
-    fi
 fi
 }
 
@@ -87,5 +93,9 @@ echo "Yes" | $file_path/$launch_string
 }
 
 if [[ "$1" == "-r" ]]; then
+    get_data
     restart
 fi
+
+check_file
+
