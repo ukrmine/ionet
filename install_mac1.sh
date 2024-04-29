@@ -101,7 +101,8 @@ sed -i '' "s|#colima start|colima start|" $home_dir/check.sh
 #read -p "Paste your token for silent authentification" token
 output=$(echo "Yes" | $home_dir/$launch_string | tee /dev/tty)
 token=$(echo "$output" | grep "Use the following token as" | awk '{print $NF}')
-echo "Yes" | "$home_dir/$launch_string --token="$token"
+echo "$token"
+echo "Yes" | "$home_dir/$launch_string --token="$token""
 echo "Wait until the containers are loaded for 10min."
 sleep 420
 $home_dir/check.sh
