@@ -3,20 +3,11 @@ file_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 cache_file="ionet_device_cache"
 
 if [ -f "$cache_file.json" ]; then
-    echo "The file $cache_file.json exists."
+    echo "Configuration file found."
     device_file="ionet_device_cache.json"
 else
-    echo "The file $cache_file.json not exists."
-    if [ -f "$cache_file.txt" ]; then
-        echo "The file $cache_file.txt exists."
-        device_file="ionet_device_cache.txt"
-    else
-        echo "The files $cache_file.json and $cache_file.txt not exists."
-        echo "Error: File to run the io.net worker not found."
-        echo "Go to site https://cloud.io.net/worker/devices and run worker"
-        echo "Guide to launching a worker https://link.medium.com/vnbuHZ3kaJb"
-        exit 1
-    fi
+    echo "Configuration file not found."
+    exit 1
 fi
 
 device_name=$(grep -o '"device_name":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
@@ -29,7 +20,6 @@ token=$(grep -o '"token":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
 echo "Device Name: $device_name"
 echo "Device ID: $device_id"
 echo "User ID: $user_id"
-launch_string="./io_net_launch_binary_linux --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name" --token="$token""
 case $operating_system in
     "macOS")
         binary_name="io_net_launch_binary_mac"
@@ -45,11 +35,12 @@ case $operating_system in
         exit 1
         ;;
 esac
-echo "Binary Name: $binary_name"
+#echo "Binary Name: $binary_name"
 #colima start
 token=$(awk -F'"' '{print $36}' $device_file)
 MonID=$(docker ps -a | grep "io-worker-monitor" | awk '{print $1}')
 MonCPU=$(docker stats --no-stream $MonID --format "{{.CPUPerc}}" | tr -d '%')
+launch_string="./io_net_launch_binary_linux --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name" --token="$token""
 
 if [[ "$1" == "-r" ]]; then
     action="RESTART"
