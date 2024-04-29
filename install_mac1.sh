@@ -37,10 +37,9 @@ else
     echo "Docker is already installed."
 fi
 
-cache_file="ionet_device_cache"
+cache_file="$home_dir/ionet_device_cache"
 
 install_without_token() {
-json_data=$(cat ionet_device_cache.txt)
 device_name=$(echo "$json_data" | awk -F', ' '{print $1}' | awk -F': ' '{print $2}' | tr -d '"')
 device_id=$(echo "$json_data" | awk -F', ' '{print $2}' | awk -F': ' '{print $2}' | tr -d '"')
 user_id=$(echo "$json_data" | awk -F', ' '{print $3}' | awk -F': ' '{print $2}' | tr -d '"')
@@ -94,11 +93,13 @@ if [ -f "$cache_file.json" ]; then
         exit 1
     else
         echo "Worker data found without token."
+        json_data=$(cat $cache_file.json)
         install_without_token
     fi
 else
     if [ -f "$cache_file.txt" ]; then
         echo "Old worker data found."
+        json_data=$(cat $cache_file.txt)
         install_without_token
     else
         echo "No worker data found. Install a new worker."
