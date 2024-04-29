@@ -43,13 +43,12 @@ if [ -f "$cache_file.json" ]; then
     arch=$(echo "$json_data" | awk -F', ' '{print $6}' | awk -F': ' '{print $2}' | tr -d '"')
     token=$(echo "$json_data" | awk -F', ' '{print $7}' | awk -F': ' '{print $2}' | tr -d '"')
 else
-    echo "The file $cache_file.json not exists."
     if [ -f "$cache_file.txt" ]; then
-        echo "The file $cache_file.txt exists."
+        echo "Old worker data found."
         json_data=$(cat ionet_device_cache.txt)
     else
-        echo "No worker data found. Install a new worker"
-        echo "Guide to launching a worker https://link.medium.com/vnbuHZ3kaJb"
+        echo "No worker data found. Install a new worker."
+        echo "Guide to launching a worker https://link.medium.com/vnbuHZ3kaJb - 1.3 command from this article"
         read -p "Run the command to connect device (worker) from https://cloud.io.net/worker/devices/" new_string
         exit 1
     fi
