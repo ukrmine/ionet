@@ -28,7 +28,23 @@ if ! command -v docker &> /dev/null; then
 else
     echo "Docker is already installed."
 fi
-
+cache_file="ionet_device_cache"
+if [ -f "$cache_file.json" ]; then
+    echo "The file $cache_file.json exists."
+    device_file="ionet_device_cache.json"
+else
+    echo "The file $cache_file.json not exists."
+    if [ -f "$cache_file.txt" ]; then
+        echo "The file $cache_file.txt exists."
+        device_file="ionet_device_cache.txt"
+    else
+        echo "The files $cache_file.json and $cache_file.txt not exists."
+        echo "Error: File to run the io.net worker not found."
+        echo "Go to site https://cloud.io.net/worker/devices and run worker"
+        echo "Guide to launching a worker https://link.medium.com/vnbuHZ3kaJb"
+        exit 1
+    fi
+fi
 device_name=$(awk -F'"' '/"device_id":/{print $4}' $file_path/$device_file)
 device_id=$(awk -F'"' '/"device_id":/{print $4}' $file_path/$device_file)
 user_id=$(awk -F'"' '/"device_id":/{print $4}' $file_path/$device_file)
@@ -67,6 +83,7 @@ crontab<<EOF
 EOF
 rm $home_dir/install_mac.sh
 softwareupdate --install-rosetta --agree-to-license
-read -p "Run the command to connect device (worker) from https://cloud.io.net/worker/devices/" new_string
-$new_string
+#read -p "Run the command to connect device (worker) from https://cloud.io.net/worker/devices/" new_string
+#$new_string
+$launch_string
 echo "Insssssttttaaaaalllaaattttiiiooonnn Ended"
