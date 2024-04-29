@@ -6,7 +6,13 @@ else
     echo "It is recommended to update your Mac to the latest version of Sonoma"
 fi
 home_dir="$HOME/Documents/ionet"
-mkdir $home_dir && cd $home_dir
+if [ ! -d "$home_dir" ]; then
+    mkdir -p "$home_dir"
+    echo "The folder /ionet is created."
+else
+    echo "The folder /ionet already exists."
+fi
+cd $home_dir
 if ! command -v docker &> /dev/null; then
     echo "Docker is not installed. Install it via Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
