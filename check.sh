@@ -1,18 +1,31 @@
 #!/bin/bash
 file_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-if [ ! -f ionet_device_cache.json ]; then
-    echo "Error: File to run the io.net worker not found."
-    echo "Go to site https://cloud.io.net/worker/devices and run worker"
-    echo "Guide to launching a worker https://link.medium.com/vnbuHZ3kaJb"
-    exit 1
+cache_file="ionet_device_cache"
+
+if [ -f "$cache_file.json" ]; then
+    echo "The file $cache_file.json exists."
+    device_file="ionet_device_cache.json"
+else
+    echo "The file $cache_file.json not exists."
+    if [ -f "$cache_file.txt" ]; then
+        echo "The file $cache_file.txt exists."
+        device_file="ionet_device_cache.txt"
+    else
+        echo "The files $cache_file.json and $cache_file.txt not exists."
+        echo "Error: File to run the io.net worker not found."
+        echo "Go to site https://cloud.io.net/worker/devices and run worker"
+        echo "Guide to launching a worker https://link.medium.com/vnbuHZ3kaJb"
+        exit 1
+    fi
 fi
-device_name=$(grep -o '"device_name":"[^"]*' $file_path/ionet_device_cache.json | cut -d'"' -f4)
-device_id=$(grep -o '"device_id":"[^"]*' $file_path/ionet_device_cache.json | cut -d'"' -f4)
-user_id=$(grep -o '"user_id":"[^"]*' $file_path/ionet_device_cache.json | cut -d'"' -f4)
-operating_system=$(grep -o '"operating_system":"[^"]*' $file_path/ionet_device_cache.json | cut -d'"' -f4)
-usegpus=$(grep -o '"usegpus":"[^"]*' $file_path/ionet_device_cache.json | cut -d'"' -f4)
-arch=$(grep -o '"arch":"[^"]*' $file_path/ionet_device_cache.json | cut -d'"' -f4)
-token=$(grep -o '"token":"[^"]*' $file_path/ionet_device_cache.json | cut -d'"' -f4)
+
+device_name=$(grep -o '"device_name":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
+device_id=$(grep -o '"device_id":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
+user_id=$(grep -o '"user_id":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
+operating_system=$(grep -o '"operating_system":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
+usegpus=$(grep -o '"usegpus":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
+arch=$(grep -o '"arch":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
+token=$(grep -o '"token":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
 echo "Device Name: $device_name"
 echo "Device ID: $device_id"
 echo "User ID: $user_id"
@@ -34,7 +47,7 @@ case $operating_system in
 esac
 echo "Binary Name: $binary_name"
 #colima start
-token=$(awk -F'"' '{print $36}' ionet_device_cache.json)
+token=$(awk -F'"' '{print $36}' $device_file)
 MonID=$(docker ps -a | grep "io-worker-monitor" | awk '{print $1}')
 MonCPU=$(docker stats --no-stream $MonID --format "{{.CPUPerc}}" | tr -d '%')
 
@@ -42,10 +55,10 @@ if [[ "$1" == "-r" ]]; then
     action="RESTART"
 else
     if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
-        echo "io-launch is WORKING, wait 5min"
+        echo "io-launch container is WORKING, wait 5min"
         sleep 300
         if docker ps -a --format '{{.Image}}' | grep -q "io-launch"; then
-            echo "io-launch still WORKING, STOP ALL CONTAINERS"
+            echo "io-launch container still WORKING, STOP ALL CONTAINERS"
             action="RESTART"
         fi
     fi
