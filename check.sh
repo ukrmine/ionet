@@ -1,9 +1,16 @@
 #!/bin/bash
 file_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
-if [ -f "ionet_device_cache.json" ]; then
-    echo "Configuration file found."
-    device_file="ionet_device_cache.json"
+if [ -f "$file_path/ionet_device_cache.json" ]; then
+    json_data=$(cat $file_path/ionet_device_cache.json)
+    token=$(echo "$json_data" | awk -F',' '{print $9}' | awk -F':' '{print $2}' | tr -d '"')
+    if [[ -n $token ]]; then
+        echo "Worker data found with token. Run worker"
+        device_file="ionet_device_cache.json"
+    else
+        echo "Worker data found without token."
+        exit 1
+    fi
 else
     echo "Configuration file not found."
     exit 1
