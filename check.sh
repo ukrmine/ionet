@@ -16,17 +16,15 @@ else
     exit 1
 fi
 
-device_name=$(grep -o '"device_name":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
-device_id=$(grep -o '"device_id":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
-user_id=$(grep -o '"user_id":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
-operating_system=$(grep -o '"operating_system":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
-usegpus=$(grep -o '"usegpus":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
-arch=$(grep -o '"arch":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
-token=$(grep -o '"token":"[^"]*' $file_path/$device_file | cut -d'"' -f4)
+device_name=$(echo "$json_data" | awk -F', ' '{print $1}' | awk -F': ' '{print $2}' | tr -d '"')
+device_id=$(echo "$json_data" | awk -F', ' '{print $2}' | awk -F': ' '{print $2}' | tr -d '"')
+user_id=$(echo "$json_data" | awk -F', ' '{print $3}' | awk -F': ' '{print $2}' | tr -d '"')
+operating_system=$(echo "$json_data" | awk -F', ' '{print $4}' | awk -F': ' '{print $2}' | tr -d '"')
+usegpus=$(echo "$json_data" | awk -F', ' '{print $5}' | awk -F': ' '{print $2}' | tr -d '"}')
+
 echo "Device Name: $device_name"
 echo "Device ID: $device_id"
 echo "User ID: $user_id"
-
 case $operating_system in
     "macOS")
         binary_name="io_net_launch_binary_mac"
@@ -42,6 +40,7 @@ case $operating_system in
         exit 1
         ;;
 esac
+
 #colima start
 token=$(awk -F'"' '{print $36}' $device_file)
 MonID=$(docker ps -a | grep "io-worker-monitor" | awk '{print $1}')
