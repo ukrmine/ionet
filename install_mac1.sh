@@ -1,6 +1,11 @@
 #!/bin/bash
 processor_type=$(sysctl -n machdep.cpu.brand_string)
-#Intel(R) Core(TM) i3-1000NG4 CPU @ 1.10GHz
+if [[ "$processor_type" == *"Apple"* ]]; then
+    echo "Your CPU is $processor_type"
+else
+    echo "Warning: This script is intended for Apple CPU only."
+    exit 1
+fi
 macos_ver=$(sw_vers -productVersion)
 if [[ "$macos_ver" > "14.0" ]]; then
     echo "Your system is Sonoma $macos_ver"
