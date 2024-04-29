@@ -52,7 +52,7 @@ else
     else
         echo "No worker data found. Install a new worker."
         echo "Guide to launching a worker https://link.medium.com/vnbuHZ3kaJb - 1.3 command from this article"
-        read -p "Run the command to connect device (worker) from https://cloud.io.net/worker/devices/" new_string
+        read -p "Run the command to connect device (worker) from https://cloud.io.net/worker/devices/ : " new_string
     fi
 fi
 
