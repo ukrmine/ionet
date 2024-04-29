@@ -1,5 +1,5 @@
 #!/bin/bash
-file_path=""$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )""
+file_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 if [ ! -f ionet_device_cache.json ]; then
     echo "Error: File to run the io.net worker not found."
     echo "Go to site https://cloud.io.net/worker/devices and run worker"
