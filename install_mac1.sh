@@ -25,7 +25,6 @@ fi
 curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/io_net_launch_binary_mac -o $home_dir/io_net_launch_binary_mac
 chmod +x $home_dir/io_net_launch_binary_mac
 curl -L -o $home_dir/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh && chmod +x $home_dir/check.sh
-#read -p "Yours Run Docker Command: " new_string
 sed -i '' "s|^file_path=.*|file_path=\"$home_dir\"|g" $home_dir/check.sh
 sed -i '' "s|#colima start|colima start|" $home_dir/check.sh
 crontab<<EOF
@@ -33,4 +32,5 @@ crontab<<EOF
 EOF
 rm $home_dir/install_mac.sh
 softwareupdate --install-rosetta --agree-to-license
-echo "Run the command to connect device (worker) from https://cloud.io.net/worker/devices/"
+read -p "Run the command to connect device (worker) from https://cloud.io.net/worker/devices/" new_string
+$new_string
