@@ -41,15 +41,11 @@ if [ -f "$cache_file.json" ]; then
     json_data=$(cat ionet_device_cache.json)
     arch=$(echo "$json_data" | awk -F', ' '{print $6}' | awk -F': ' '{print $2}' | tr -d '"')
     token=$(echo "$json_data" | awk -F', ' '{print $7}' | awk -F': ' '{print $2}' | tr -d '"')
-#    launch_string="./$binary_name --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name" --token="$token""
 else
     echo "The file $cache_file.json not exists."
     if [ -f "$cache_file.txt" ]; then
         echo "The file $cache_file.txt exists."
         json_data=$(cat ionet_device_cache.txt)
-#        arch=""
-#        token=""
-#        launch_string="./$binary_name --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name""
     else
         echo "The files $cache_file.json and $cache_file.txt not exists."
         echo "Error: File to run the io.net worker not found."
@@ -88,7 +84,7 @@ case $operating_system in
         ;;
 esac
 
-launch_string="./$binary_name --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name" --token="$token""
+launch_string="./$binary_name --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name" 
 curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/$binary_name -o $home_dir/$binary_name
 chmod +x $home_dir/$binary_name
 curl -L -o $home_dir/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh && chmod +x $home_dir/check.sh
@@ -103,4 +99,6 @@ sed -i '' "s|#colima start|colima start|" $home_dir/check.sh
 #$new_string
 echo "$launch_string"
 $launch_string
+read -p "Paste your token for silent aothorisation" token
+"$launch_string --token="$token""
 echo "Insssssttttaaaaalllaaattttiiiooonnn Ended"
