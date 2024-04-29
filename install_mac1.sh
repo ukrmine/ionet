@@ -28,6 +28,35 @@ if ! command -v docker &> /dev/null; then
 else
     echo "Docker is already installed."
 fi
+
+device_name=$(awk -F'"' '/"device_id":/{print $4}' $file_path/$device_file)
+device_id=$(awk -F'"' '/"device_id":/{print $4}' $file_path/$device_file)
+user_id=$(awk -F'"' '/"device_id":/{print $4}' $file_path/$device_file)
+operating_system=$(awk -F'"' '/"device_id":/{print $4}' $file_path/$device_file)
+usegpus=$(awk -F'"' '/"device_id":/{print $4}' $file_path/$device_file)
+arch=$(awk -F'"' '/"device_id":/{print $4}' $file_path/$device_file)
+token=$(awk -F'"' '/"device_id":/{print $4}' $file_path/$device_file)
+echo "Device Name: $device_name"
+echo "Device ID: $device_id"
+echo "User ID: $user_id"
+launch_string="./io_net_launch_binary_linux --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name" --token="$token""
+case $operating_system in
+    "macOS")
+        binary_name="io_net_launch_binary_mac"
+        ;;
+    "Linux")
+        binary_name="io_net_launch_binary_linux"
+        ;;
+    "Windows")
+        binary_name="io_net_launch_binary_windows.exe"
+        ;;
+    *)
+        echo "Unsupported operating system: $operating_system"
+        exit 1
+        ;;
+esac
+echo "Binary Name: $binary_name"
+
 curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/io_net_launch_binary_mac -o $home_dir/io_net_launch_binary_mac
 chmod +x $home_dir/io_net_launch_binary_mac
 curl -L -o $home_dir/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh && chmod +x $home_dir/check.sh
