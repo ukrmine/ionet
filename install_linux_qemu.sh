@@ -7,8 +7,9 @@ else
     echo "The folder $home_dir already exists."
 fi
 cd $home_dir
-curl -L -o /root/ionet-setup.sh https://github.com/ionet-official/io-net-official-setup-script/raw/main/ionet-setup.sh
 
+curl -L -o /root/ionet-setup.sh https://github.com/ionet-official/io-net-official-setup-script/raw/main/ionet-setup.sh
+chmod +x /root/ionet-setup.sh && /root/ionet-setup.sh
 cache_file="$home_dir/ionet_device_cache"
 
 install_without_token() {
