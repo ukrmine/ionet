@@ -99,7 +99,7 @@ sed -i '' "s|#colima start|colima start|" $home_dir/check.sh
 #$new_string
 #echo "Yes" | $launch_string
 #read -p "Paste your token for silent authentification" token
-output=$(echo "Yes" | $launch_string)
+output=$(echo "Yes" | $launch_string | grep "Option 1")
 token=$(echo "$output" | grep "Use the following token as" | awk '{print $NF}')
 echo "Yes" | "$launch_string --token="$token""
 echo "Wait until the containers are loaded for 10min."
