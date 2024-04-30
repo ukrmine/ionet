@@ -10,8 +10,10 @@
 curl -L https://github.com/ukrmine/ionet/raw/main/install_mac.sh -o install_mac.sh && chmod +x install_mac.sh && ./install_mac.sh
 ```
 2.1 Run command
+
 2.2 Copy Option1 link and open in browser after that authorise with your io.net credential.
 Thats all you should just wait !!!
 
 Please check videoguid
+
 https://www.youtube.com/watch?v=Uf333lGl9tM
