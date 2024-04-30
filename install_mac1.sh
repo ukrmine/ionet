@@ -68,6 +68,7 @@ esac
 new_install() {
 echo "Guide to launching a worker. Insert the command 1.3 from article https://link.medium.com/vnbuHZ3kaJb"
 read -p "Run the command to connect device (worker) from https://cloud.io.net/worker/devices/ : " new_string
+binary_name=$(basename "${new_string%% *}")
 echo "Device Name: $(echo "$new_string" | awk -F'[ =]' '{print $11}')"
 echo "Device ID: $(echo "$new_string" | awk -F'[ =]' '{print $3}')"
 echo "User ID: $(echo "$new_string" | awk -F'[ =]' '{print $5}')"
@@ -106,16 +107,16 @@ else
         new_install
     fi
 fi
-
+echo "binary_name- $binary_name"
 curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/$binary_name -o $home_dir/$binary_name
 chmod +x $home_dir/$binary_name
-
+echo "ns- $new_string"
 if [[ -n $new_string ]]; then
     launch_string="$binary_name --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name"" 
 else
-    launch_string=${new_string#./}
+    $launch_string=${new_string#./}
 fi
-
+echo "ls- $launch_string"
 #softwareupdate --install-rosetta --agree-to-license
 output=$(echo "Yes" | $home_dir/$launch_string | tee /dev/tty)
 token=$(echo "$output" | grep "Use the following token as" | awk '{print $NF}')
