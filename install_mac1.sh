@@ -88,7 +88,6 @@ EOF
 curl -L -o $home_dir/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh && chmod +x $home_dir/check.sh
 sed -i '' "s|^file_path=.*|file_path=\"$home_dir\"|g" $home_dir/check.sh
 sed -i '' "s|#colima start|colima start|" $home_dir/check.sh
-new_string=""
 
 if [ -f "$cache_file.json" ]; then
     json_data=$(cat $cache_file.json)
@@ -115,16 +114,14 @@ fi
 
 curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/$binary_name -o $home_dir/$binary_name
 chmod +x $home_dir/$binary_name
-
 launch_string="$binary_name --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name"" 
-
-#softwareupdate --install-rosetta --agree-to-license
+softwareupdate --install-rosetta --agree-to-license
 output=$(echo "Yes" | $home_dir/$launch_string | tee /dev/tty)
 token=$(echo "$output" | grep "Use the following token as" | awk '{print $NF}')
 sed -i '' 's/\("token":\)""/\1"'$token'"/' ionet_device_cache.json
 echo "Wait until the containers are loaded for 10min."
 sleep 420
 $home_dir/check.sh
-#autorun
+autorun
 #rm $home_dir/install_mac.sh
 echo "Congratulation. Your IO worker is launched and ready."
