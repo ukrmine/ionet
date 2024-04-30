@@ -21,11 +21,11 @@ fi
 }
 
 get_data() {
-device_name=$(echo "$json_data" | awk -F', ' '{print $1}' | awk -F': ' '{print $2}' | tr -d '"')
-device_id=$(echo "$json_data" | awk -F', ' '{print $2}' | awk -F': ' '{print $2}' | tr -d '"')
-user_id=$(echo "$json_data" | awk -F', ' '{print $3}' | awk -F': ' '{print $2}' | tr -d '"')
-operating_system=$(echo "$json_data" | awk -F', ' '{print $4}' | awk -F': ' '{print $2}' | tr -d '"')
-usegpus=$(echo "$json_data" | awk -F', ' '{print $5}' | awk -F': ' '{print $2}' | tr -d '"}')
+device_name=$(echo "$json_data" | awk -F',' '{print $1}' | awk -F':' '{print $2}' | tr -d '"')
+device_id=$(echo "$json_data" | awk -F',' '{print $2}' | awk -F':' '{print $2}' | tr -d '"')
+user_id=$(echo "$json_data" | awk -F',' '{print $3}' | awk -F':' '{print $2}' | tr -d '"')
+operating_system=$(echo "$json_data" | awk -F',' '{print $4}' | awk -F':' '{print $2}' | tr -d '"')
+usegpus=$(echo "$json_data" | awk -F',' '{print $5}' | awk -F':' '{print $2}' | tr -d '"}')
 echo "Device Name: $device_name"
 echo "Device ID: $device_id"
 echo "User ID: $user_id"
