@@ -123,5 +123,5 @@ echo "Wait until the containers are loaded for 10min."
 sleep 600
 $home_dir/check.sh
 autorun
-#rm $home_dir/install_mac.sh
+rm $home_dir/install_mac.sh
 echo "Congratulation. Your IO worker is launched and ready."
