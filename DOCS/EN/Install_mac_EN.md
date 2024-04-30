@@ -7,7 +7,7 @@
 - Recommendation to upgrade your system to Sonoma 14.4.1
 Open Terminal app and put this command
 ```Bash
-mkdir $HOME/Documents/ionet && cd $HOME/Documents/ionet && curl -L https://github.com/ukrmine/ionet/raw/main/install_mac.sh -o install_mac.sh && chmod +x install_mac.sh && ./install_mac.sh
+curl -L https://github.com/ukrmine/ionet/raw/main/install_mac.sh -o install_mac.sh && chmod +x install_mac.sh && ./install_mac.sh
 ```
 2.1.1 After running the script, it will ask for the password for the first time, to install worker
 
