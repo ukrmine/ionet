@@ -7,6 +7,7 @@ else
     echo "The folder $home_dir already exists."
 fi
 
+apt-get update && apt-get upgrade -y
 cd $home_dir
 curl -L -o /root/ionet-setup.sh https://github.com/ionet-official/io-net-official-setup-script/raw/main/ionet-setup.sh
 chmod +x /root/ionet-setup.sh && /root/ionet-setup.sh
