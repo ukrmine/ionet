@@ -119,9 +119,9 @@ softwareupdate --install-rosetta --agree-to-license
 output=$(echo "Yes" | $home_dir/$launch_string | tee /dev/tty)
 token=$(echo "$output" | grep "Use the following token as" | awk '{print $NF}')
 sed -i '' 's/\("token":\)""/\1"'$token'"/' ionet_device_cache.json
-echo "Wait until the containers are loaded for 10min."
-sleep 600
-$home_dir/check.sh
+#echo "Wait until the containers are loaded for 10min."
+#sleep 600
+#$home_dir/check.sh
 autorun
 rm $home_dir/install_mac.sh
 echo "Congratulation. Your IO worker is launched and ready."
