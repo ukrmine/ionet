@@ -124,4 +124,3 @@ sed -i '' 's/\("token":\)""/\1"'$token'"/' ionet_device_cache.json
 #$home_dir/check.sh
 autorun
 rm $home_dir/install_mac.sh
-echo "Congratulation. Your IO worker is launched and ready."
