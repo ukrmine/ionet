@@ -81,7 +81,7 @@ echo "User ID: $user_id"
 
 autorun() {
 crontab<<EOF
-*/12 * * * * $home_dir/check.sh
+*/15 * * * * $home_dir/check.sh
 EOF
 }
 
