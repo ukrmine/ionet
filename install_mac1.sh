@@ -22,16 +22,8 @@ fi
 cd $home_dir
 
 if ! command -v docker &> /dev/null; then
-    echo "Docker is not installed. Install it via Homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    brew install --cask docker
-    brew install docker docker-compose colima
-    colima start
-    unset DOCKER_HOST
-    unset DOCKER_CERT_PATH
-    unset DOCKER_TLS_VERIFY
+    apt-get update && apt-get upgrade
+    curl -fsSL https://get.docker.com/ -o get-docker.sh && sh get-docker.sh
     echo "Docker is successfully installed."
 else
     echo "Docker is already installed."
@@ -120,8 +112,8 @@ output=$(echo "Yes" | $home_dir/$launch_string | tee /dev/tty)
 token=$(echo "$output" | grep "Use the following token as" | awk '{print $NF}')
 sed -i '' 's/\("token":\)""/\1"'$token'"/' ionet_device_cache.json
 echo "Wait until the containers are loaded for 10min."
-sleep 420
+sleep 600
 $home_dir/check.sh
 autorun
-#rm $home_dir/install_mac.sh
+rm $home_dir/install_mac.sh
 echo "Congratulation. Your IO worker is launched and ready."
