@@ -114,6 +114,8 @@ fi
 
 curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/$binary_name -o $home_dir/$binary_name
 chmod +x $home_dir/$binary_name
+echo "Disable sleep mode for a device"
+$home_dir/$binary_name --disable_sleep_mode=true
 launch_string="$binary_name --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name"" 
 softwareupdate --install-rosetta --agree-to-license
 output=$(echo "Yes" | $home_dir/$launch_string | tee /dev/tty)
