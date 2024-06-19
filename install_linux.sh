@@ -15,8 +15,8 @@ cache_file="$home_dir/ionet_device_cache"
 
 if ! command -v docker &> /dev/null; then
     echo "Docker is not installed."
-    curl -fsSL https://get.docker.com/ -o /root/get-docker.sh
-    sh /root/get-docker.sh
+    curl -fsSL https://get.docker.com/ -o $home_dir/get-docker.sh
+    sh $home_dir/get-docker.sh
 else
     echo "Docker is already installed."
 fi
