@@ -72,7 +72,7 @@ echo "User ID: $user_id"
 
 autorun() {
 crontab<<EOF
-*/12 * * * * $home_dir/check.sh
+*/15 * * * * $home_dir/check.sh
 EOF
 }
 
@@ -117,10 +117,9 @@ chmod +x $home_dir/$binary_name
 launch_string="$binary_name --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name""
 output=$(echo "Yes" | $home_dir/$launch_string | tee /dev/tty)
 token=$(echo "$output" | grep "Use the following token as" | awk '{print $NF}')
-sed -i '' 's/\("token":\)""/\1"'$token'"/' ionet_device_cache.json
+sed -i '' 's/\("token":\)""/\1"'$token'"/' $home_dir/ionet_device_cache.json
 #echo "Wait until the containers are loaded for 10min."
 #sleep 420
 #$home_dir/check.sh
-#autorun
-#rm $home_dir/install_mac.sh
-#echo "Congratulation. Your IO worker is launched and ready."
+autorun
+rm $home_dir/install_linux.sh
