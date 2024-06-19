@@ -10,8 +10,14 @@ fi
 apt-get update && apt-get upgrade -y
 cd $home_dir
 curl -L -o $home_dir/ionet-setup.sh https://github.com/ionet-official/io-net-official-setup-script/raw/main/ionet-setup.sh
-chmod +x $home_dir/ionet-setup.sh && $home_dir/ionet-setup.sh
+chmod +x $home_dir/ionet-setup.sh
+$home_dir/ionet-setup.sh
+curl -L -o $home_dir/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh
+chmod +x $home_dir/check.sh
+sed -i '' "s|^file_path=.*|file_path=\"$home_dir\"|g" $home_dir/check.sh
+sed -i '' "s|colima start|#colima start|" $home_dir/check.sh
 cache_file="$home_dir/ionet_device_cache"
+new_string=""
 
 if ! command -v docker &> /dev/null; then
     echo "Docker is not installed."
@@ -50,10 +56,18 @@ esac
 new_install() {
 echo "Guide to launching a worker. Insert the command 1.3 from article https://link.medium.com/vnbuHZ3kaJb"
 read -p "Run the command to connect device (worker) from https://cloud.io.net/worker/devices/ : " new_string
-echo "Device Name: $(echo "$new_string" | awk -F'[ =]' '{print $11}')"
-echo "Device ID: $(echo "$new_string" | awk -F'[ =]' '{print $3}')"
-echo "User ID: $(echo "$new_string" | awk -F'[ =]' '{print $5}')"
+#echo "Device Name: $(echo "$new_string" | awk -F'[ =]' '{print $11}')"
+#echo "Device ID: $(echo "$new_string" | awk -F'[ =]' '{print $3}')"
+#echo "User ID: $(echo "$new_string" | awk -F'[ =]' '{print $5}')"
+device_name=$(echo "$new_string" | awk -F'[ =]' '{print $11}')
+device_id=$(echo "$new_string" | awk -F'[ =]' '{print $3}')
+user_id=$(echo "$new_string" | awk -F'[ =]' '{print $5}')
+operating_system=$(echo "$new_string" | awk -F'[ =]' '{print $7}')
+usegpus=$(echo "$new_string" | awk -F'[ =]' '{print $9}')
 binary_name=$(echo "$new_string" | sed 's|^\./||' | awk '{print $1}')
+echo "Device Name: $device_name"
+echo "Device ID: $device_id"
+echo "User ID: $user_id"
 }
 
 autorun() {
@@ -62,11 +76,11 @@ crontab<<EOF
 EOF
 }
 
-curl -L -o $home_dir/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh
-chmod +x $home_dir/check.sh
-sed -i '' "s|^file_path=.*|file_path=\"$home_dir\"|g" $home_dir/check.sh
-sed -i '' "s|colima start|#colima start|" $home_dir/check.sh
-new_string=""
+#curl -L -o $home_dir/check.sh https://github.com/ukrmine/ionet/raw/main/check.sh
+#chmod +x $home_dir/check.sh
+#sed -i '' "s|^file_path=.*|file_path=\"$home_dir\"|g" $home_dir/check.sh
+#sed -i '' "s|colima start|#colima start|" $home_dir/check.sh
+##new_string=""
 
 if [ -f "$cache_file.json" ]; then
     json_data=$(cat $cache_file.json)
@@ -91,15 +105,18 @@ else
     fi
 fi
 
+echo "launch_string is $launch_string"
 curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/$binary_name -o $home_dir/$binary_name
 chmod +x $home_dir/$binary_name
+
+echo "binary_name is $binary_name"
 
 if [[ -n $new_string ]]; then
     launch_string="$binary_name --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name""
 else
     launch_string=${new_string#./}
 fi
-
+echo "123123123213213123123123"
 output=$(echo "Yes" | $home_dir/$launch_string | tee /dev/tty)
 token=$(echo "$output" | grep "Use the following token as" | awk '{print $NF}')
 sed -i '' 's/\("token":\)""/\1"'$token'"/' ionet_device_cache.json
