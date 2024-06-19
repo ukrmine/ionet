@@ -1,5 +1,5 @@
 #!/bin/bash
-home_dir="/root/ionet"
+home_dir="/root"
 if [ ! -d "$home_dir" ]; then
     mkdir -p "$home_dir"
     echo "The folder $home_dir is created."
