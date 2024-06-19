@@ -9,8 +9,8 @@ fi
 
 apt-get update && apt-get upgrade -y
 cd $home_dir
-curl -L -o /root/ionet-setup.sh https://github.com/ionet-official/io-net-official-setup-script/raw/main/ionet-setup.sh
-chmod +x /root/ionet-setup.sh && /root/ionet-setup.sh
+curl -L -o $home_dir/ionet-setup.sh https://github.com/ionet-official/io-net-official-setup-script/raw/main/ionet-setup.sh
+chmod +x $home_dir/ionet-setup.sh && $home_dir/ionet-setup.sh
 cache_file="$home_dir/ionet_device_cache"
 
 if ! command -v docker &> /dev/null; then
