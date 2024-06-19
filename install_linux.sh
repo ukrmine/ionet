@@ -13,6 +13,14 @@ curl -L -o /root/ionet-setup.sh https://github.com/ionet-official/io-net-officia
 chmod +x /root/ionet-setup.sh && /root/ionet-setup.sh
 cache_file="$home_dir/ionet_device_cache"
 
+if ! command -v docker &> /dev/null; then
+    echo "Docker is not installed. Install it via Homebrew..."
+    curl -fsSL https://get.docker.com/ -o /root/get-docker.sh
+    sh /root/get-docker.sh
+else
+    echo "Docker is already installed."
+fi
+
 install_without_token() {
 device_name=$(echo "$json_data" | awk -F', ' '{print $1}' | awk -F': ' '{print $2}' | tr -d '"')
 device_id=$(echo "$json_data" | awk -F', ' '{print $2}' | awk -F': ' '{print $2}' | tr -d '"')
