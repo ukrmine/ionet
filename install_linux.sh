@@ -105,18 +105,16 @@ else
     fi
 fi
 
-echo "launch_string is $launch_string"
 curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/$binary_name -o $home_dir/$binary_name
 chmod +x $home_dir/$binary_name
 
-echo "binary_name is $binary_name"
+#if [[ -n $new_string ]]; then
+#    launch_string="$binary_name --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name""
+#else
+#    launch_string=${new_string#./}
+#fi
 
-if [[ -n $new_string ]]; then
-    launch_string="$binary_name --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name""
-else
-    launch_string=${new_string#./}
-fi
-echo "123123123213213123123123"
+launch_string="$binary_name --device_id="$device_id" --user_id="$user_id" --operating_system="$operating_system" --usegpus="$usegpus" --device_name="$device_name""
 output=$(echo "Yes" | $home_dir/$launch_string | tee /dev/tty)
 token=$(echo "$output" | grep "Use the following token as" | awk '{print $NF}')
 sed -i '' 's/\("token":\)""/\1"'$token'"/' ionet_device_cache.json
