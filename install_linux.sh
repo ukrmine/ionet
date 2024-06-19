@@ -1,5 +1,5 @@
 #!/bin/bash
-home_dir="$HOME/ionet"
+home_dir="/root/ionet"
 if [ ! -d "$home_dir" ]; then
     mkdir -p "$home_dir"
     echo "The folder $home_dir is created."
@@ -14,7 +14,7 @@ chmod +x /root/ionet-setup.sh && /root/ionet-setup.sh
 cache_file="$home_dir/ionet_device_cache"
 
 if ! command -v docker &> /dev/null; then
-    echo "Docker is not installed. Install it via Homebrew..."
+    echo "Docker is not installed."
     curl -fsSL https://get.docker.com/ -o /root/get-docker.sh
     sh /root/get-docker.sh
 else
@@ -99,7 +99,7 @@ else
 fi
 
 #softwareupdate --install-rosetta --agree-to-license
-output=$(echo "Yes" | $home_dir/$launch_string | tee /dev/tty)
+output=$(echo "Yes" | $home_dir/$launch_string)
 token=$(echo "$output" | grep "Use the following token as" | awk '{print $NF}')
 sed -i '' 's/\("token":\)""/\1"'$token'"/' ionet_device_cache.json
 echo "Wait until the containers are loaded for 10min."
