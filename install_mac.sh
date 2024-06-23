@@ -4,7 +4,7 @@ if [[ "$processor_type" == *"Apple"* ]]; then
     echo "Your CPU is $processor_type"
 else
     echo "Warning: This script is intended for Apple CPU only."
-    exit 1
+#    exit 1
 fi
 macos_ver=$(sw_vers -productVersion)
 if [[ "$macos_ver" > "14.0" ]]; then
