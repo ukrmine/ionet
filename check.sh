@@ -82,7 +82,7 @@ fi
 
 restart() {
 echo "STOP AND DELETE ALL CONTAINERS"
-docker rm -f $(docker ps -aq) && docker rmi -f $(docker images -q)
+docker rm -f $(docker ps -aq) && docker rmi -f $(docker images -a -q)
 yes | docker system prune -a
 echo "DOWNLOAD FILE $binary_name"
 rm -rf $file_path/$binary_name
